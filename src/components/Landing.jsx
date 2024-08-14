@@ -38,7 +38,7 @@ export default function Example() {
             <div className="mt-10 animate-in text-white-100 flex items-center justify-center gap-x-6">
               <a
                 href="/signin"
-                className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-secondary shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-900"
+                className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-secondary shadow-sm transition duration-200 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-900"
               >
                 Get started
               </a>
