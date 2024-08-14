@@ -29,7 +29,7 @@ function App() {
     <Router>
       <div className="container">
         <Routes>
-          <Route path="/signin" element={isAuthenticated ? <Navigate to="/upload" /> : <LoginForm onLogin={handleLogin} />} />
+          <Route path="https://groxai.vercel.app/signin" element={isAuthenticated ? <Navigate to="/upload" /> : <LoginForm onLogin={handleLogin} />} />
           {/* <Route path="/upload" element={isAuthenticated ? <Upload onUpload={handleUpload} /> : <Navigate to="/" />} />
           <Route path="/interview" element={isAuthenticated ? <Chat questions={questions} interviewId={interviewId} /> : <Navigate to="/" />} /> */}
           <Route path="https://groxai.vercel.app/upload" element={<Upload onUpload={handleUpload} />} />
