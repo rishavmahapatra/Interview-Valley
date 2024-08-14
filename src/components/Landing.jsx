@@ -31,7 +31,7 @@ export default function Example() {
             <h1 className="  delay-75 duration-1000 text-4xl  font-bold tracking-tight  drop-shadow-2xl sm:text-6xl">
               Boost your confidence, ace the job interview
             </h1>
-            <p className="animate-pulse duration-900 mt-6 text-lg leading-8 ">
+            <p className="animate-pulse mt-6 text-lg leading-8 ">
               Practice job interview questions tailored to your job description.
               Get instant AI score and feedback.
             </p>
@@ -40,7 +40,7 @@ export default function Example() {
                 href="/signin"
                 className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-secondary shadow-sm transition duration-200 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-900"
               >
-                Get started
+                Login
               </a>
             </div>
           </div>
