@@ -3,7 +3,7 @@
 export default function Example() {
   return (
     <div>
-      <div className="relative h-80  px-6 pt-14 lg:px-8">
+      <div className="relative h-80 mt-12 px-6 pt-14 lg:px-8">
         <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -28,7 +28,7 @@ export default function Example() {
             </div>
           </div>
           <div className="  text-center">
-            <h1 className="  delay-75 duration-1000 text-4xl  font-bold tracking-tight  drop-shadow-2xl sm:text-6xl">
+            <h1 className="  delay-100 duration-1000 text-4xl  font-bold tracking-tight  drop-shadow-2xl sm:text-6xl">
               Boost your confidence, ace the job interview
             </h1>
             <p className="animate-pulse mt-6 text-lg leading-8 ">
