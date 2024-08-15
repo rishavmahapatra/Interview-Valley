@@ -31,7 +31,7 @@ export default function LoginForm({ onLogin }) {
 
   return (
     <div>
-    <Card className="w-full  max-w-2xl mx-auto my-28">
+    <Card className="w-full max-w-2xl mx-auto my-40">
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>

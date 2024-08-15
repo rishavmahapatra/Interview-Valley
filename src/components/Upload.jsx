@@ -41,7 +41,7 @@ export default function Upload({onUpload}) {
     };
   return (
     <div>
-    <Card className="sm:flex sm:flex-row w-full  max-w-4xl mx-auto pt-10 my-28 sm:my-40">
+    <Card className="sm:flex sm:flex-row w-full  max-w-4xl mx-auto pt-10 my-40">
       <CardHeader>
         <CardTitle className="text-2xl">Upload Files</CardTitle>
         <CardDescription>
