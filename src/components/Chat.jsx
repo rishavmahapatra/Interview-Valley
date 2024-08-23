@@ -34,12 +34,12 @@ function Chat({ questions, interviewId }) {
   };
 
   return (
-    <div>
+    <div className='mt-52'>
       <h2>Interview</h2>
       <div id="chat-window">
         {questions.slice(0, currentQuestionIndex + 1).map((question, index) => (
           <div key={index}>
-            <div className="message-box">{question}</div>
+            <div className="mt-10 mx-14 message-box">{question}</div>
             {index < currentQuestionIndex && <div className="message-box my-text">Answer:{responses[question]}</div>}
           </div>
         ))}
@@ -52,6 +52,7 @@ function Chat({ questions, interviewId }) {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyUp={(e) => e.key === 'Enter' && handleSendMessage()}
+            className="mt-3 text-black mx-16"
           />
           <button onClick={handleSendMessage}>Send</button>
         </div>
