@@ -21,8 +21,8 @@ function App() {
   const [user, setUser] = useState();
 
   const setUsername = (user) => setUser(user);
-  const handleLogin = () => {setIsAuthenticated(true); console.log('LoginAuthenticated: ' + `${isAuthenticated}` )};
-  const handleLogout = () => {setIsAuthenticated(false);console.log(`LogoutAuthenticated: ${isAuthenticated}`)};
+  const handleLogin = () => {setIsAuthenticated(true); console.log('Login')};
+  const handleLogout = () => {setIsAuthenticated(false);console.log('Logout')};
   const handleUpload = (questions, interviewId) => {
     setQuestions(questions);
     setInterviewId(interviewId);
@@ -31,9 +31,10 @@ function App() {
   useEffect(()=> {
     if (token) {
     console.log('Token found');
-    handleLogin()}
+    // handleLogin()
+    }
     else {console.error('No Token found');
-      handleLogout()
+      // handleLogout()
     }
   },[token]);
 
@@ -42,11 +43,9 @@ function App() {
       <Router>
         <Navbar onLogout={handleLogout}authenticated={isAuthenticated} />
         <Routes>
-          <Route path="/" element={isAuthenticated ? (
-            <Navigate to="/home" />
-              ) : (
-                <Landing />
-              )} />
+          <Route path="/" element={
+            <Landing />
+          } />
           <Route path="*" element={<Navigate to="/" />} />
           <Route
             path="/login"

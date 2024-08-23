@@ -78,7 +78,7 @@ export default function Upload({onUpload}) {
           />
         </div>
       </div> */}
-    <Card className="sm:flex w-full max-w-4xl mx-auto pt-8 pb-6 my-40 lg:my-52">
+    <Card className="sm:flex w-full max-w-4xl mx-auto pt-8 pb-6 my-40 lg:my-44">
       <CardHeader>
         <CardTitle className="text-2xl">Upload Files</CardTitle>
         <CardDescription>

@@ -23,7 +23,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar({ authenticated }) {
+export default function Navbar({ authenticated,onLogout }) {
   return (
     <Disclosure as="nav" className="bg-stone-950 sticky w-full top-0 left-0 z-50">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -97,8 +97,8 @@ export default function Navbar({ authenticated }) {
                   <MenuItem>
                     <Link onClick={()=>{localStorage.removeItem('access_token');
                       onLogout();
-                      // to="/landing"
                     }}
+                      to="/"
                       className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                     >
                       Logout

@@ -60,7 +60,7 @@ export default function LoginForm({ onLogin, userName }) {
 
   return (
     <div>
-      <Card className="  max-w-2xl mx-auto my-32">
+      <Card className="max-w-80 sm:max-w-2xl mx-auto my-32">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
