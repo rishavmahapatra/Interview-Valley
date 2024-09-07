@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
+  // Button,
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
@@ -10,13 +11,15 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Button } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
+import { useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: "Home", href: "/home", current: false },
   { name: "Interview", href: "/upload", current: false },
-  { name: "Skill Extactor", href: "/interview", current: false },
-  { name: "About", href: "#", current: false },
+  // { name: "Skill Extactor", href: "/interview", current: false },
+  // { name: "About", href: "#", current: false },
 ];
 
 function classNames(...classes) {
@@ -24,8 +27,10 @@ function classNames(...classes) {
 }
 
 export default function Navbar({ authenticated,onLogout }) {
+  const navigate = useNavigate();
   return (
-    <Disclosure as="nav" className="bg-stone-950 sticky w-full top-0 left-0 z-50">
+    // bg-stone-950
+    <Disclosure as="nav" className="dark:bg-transparent dark:backdrop-blur-3xl dark:shadow-zinc-800 bg-slate-300 shadow-sm sticky w-full h-auto top-0 left-0 z-50">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -38,7 +43,7 @@ export default function Navbar({ authenticated,onLogout }) {
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex text-2xl drop-shadow-2xl text-purple-100 font-bold flex-shrink-0 items-center">
+            <div className="flex text-2xl drop-shadow-2xl text-primary font-bold flex-shrink-0 items-center">
               <Link to="/">GroxAI</Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
@@ -51,7 +56,7 @@ export default function Navbar({ authenticated,onLogout }) {
                     className={classNames(
                       item.current
                         ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        : "text-primary hover:bg-gray-700 hover:text-white",
                       "rounded-md px-3 py-2 text-sm font-medium"
                     )}
                   >
@@ -63,7 +68,7 @@ export default function Navbar({ authenticated,onLogout }) {
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <ModeToggle />
-            {authenticated && (
+            {authenticated ? (
               <Menu as="div" className="relative ml-3">
                 <div>
                   <MenuButton className="relative flex rounded-full text-sm">
@@ -105,7 +110,9 @@ export default function Navbar({ authenticated,onLogout }) {
                     </Link>
                   </MenuItem>
                 </MenuItems>
-              </Menu>
+              </Menu> )
+              : (
+              <Button className="w-xs m-2" variant="outline" onClick = { ()=>navigate('/signup') } >Register</Button>
             )}
           </div>
         </div>

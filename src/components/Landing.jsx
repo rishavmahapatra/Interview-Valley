@@ -5,7 +5,7 @@ export default function Landing() {
   const navigate = useNavigate();
   
   return (
-    <div className="relative h-96 px-6 pt-14 lg:px-8">
+    <div className="relative h-96 px-6 pt-10 lg:px-8">
       <div>
         <div
           aria-hidden="true"
@@ -21,7 +21,7 @@ export default function Landing() {
         </div>
         <div className="mx-auto max-w-2xl py-28 sm:py-38 lg:py-28">
           <div className=" hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-blue-20 ring-1 ring-primary-600/10 hover:ring-primary-600/20">
+            <div className="relative antialiased rounded-full px-3 py-1 text-sm leading-6 text-blue-20 ring-1 ring-primary-600/10 hover:ring-primary-600/20">
               Level up your interview game with real-time AI-Generated
               Questions.{" "}
               <a href="#" className=" font-semibold text-primary-600 ">
@@ -31,14 +31,15 @@ export default function Landing() {
             </div>
           </div>
           <div className="  text-center">
-            <h1 className="animate-pulse delay-100 duration-800 text-4xl  font-bold tracking-tight  drop-shadow-2xl sm:text-6xl">
+          {/* animate-pulse delay-100 duration-800 */}
+            <h1 className=" text-4xl antialiased font-bold tracking-tight  drop-shadow-2xl sm:text-6xl">
               Boost your confidence, ace the job interview
             </h1>
             <p className="mt-6 text-lg leading-8 ">
               Practice job interview questions tailored to your job description.
               Get instant AI score and feedback.
             </p>
-            <Button className="m-10" onClick = { ()=>navigate('/login') } >Login</Button>
+            <Button className="m-10" variant="outline" onClick = { ()=>navigate('/signin') } >Get Started</Button>
             
           </div>
         </div>

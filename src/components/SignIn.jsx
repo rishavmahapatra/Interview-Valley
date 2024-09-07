@@ -1,17 +1,20 @@
+import { Link } from 'react-router-dom';
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
-export default function LoginForm({ onLogin, userName }) {
+export const description =
+  "A login form with email and password. There's an option to login with Google and a link to sign up if you don't have an account."
+
+export function SignIn({ onLogin, userName }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -57,45 +60,51 @@ export default function LoginForm({ onLogin, userName }) {
       alert("An error occurred. Please try again later.");
     }
   };
-
   return (
-    <div>
-      <Card className="max-w-xs sm:max-w-lg mx-auto my-32">
-        <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-4">
+    <Card className="mx-auto mt-24 max-w-sm">
+      <CardHeader>
+        <CardTitle className="text-2xl">Login</CardTitle>
+        <CardDescription>
+          Enter your email below to login to your account
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="username">Email</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
-              id="username"
-              type="username"
-              placeholder="e.g. rishav@gmail.com"
+              id="email"
+              type="email"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              placeholder="m@example.com"
               required
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="flex items-center">
+              <Label htmlFor="password">Password</Label>
+              <Link href="#" className="ml-auto inline-block text-sm underline">
+                Forgot your password?
+              </Link>
+            </div>
+            <Input id="password" type="password" value={password}
+              onChange={(e) => setPassword(e.target.value)} required />
           </div>
-        </CardContent>
-        <CardFooter>
-          <Button onClick={handleSubmit} className="w-full">
-            Sign in
+          <Button type="submit" onClick={handleSubmit} className="w-full">
+            Login
           </Button>
-        </CardFooter>
-      </Card>
-    </div>
-  );
+          <Button variant="outline" className="w-full">
+            Login with Google
+          </Button>
+        </div>
+        <div className="mt-4 text-center text-sm">
+          Don&apos;t have an account?{" "}
+          <Link to="/signup" className="underline">
+            Sign up
+          </Link>
+        </div>
+      </CardContent>
+    </Card>
+  )
 }
