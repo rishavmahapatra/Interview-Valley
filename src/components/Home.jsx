@@ -79,8 +79,8 @@ export default function Home({ username = "Interviewer" }) {
  
   return (
     <div className=" lg:min-h-screen top-0 lg:flex  xl:gap-x-44 lg:absolute ">
-      <div className="px-4 lg:dark:bg-black w-80 h-52 lg:h-auto lg:mt-16 flex flex-col space-y-14  items-start  lg:justify-start">
-        <h1 className="lg:my-6  dark:text-neutral-200 px-2 antialiased mb-6 lg:text-xl">
+      <div className="px-4 lg:dark:bg-black w-80 h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14  items-start  lg:justify-start">
+        <h1 className="lg:my-6 my-1 dark:text-neutral-200 px-2 antialiased mb-6 lg:text-xl">
           Hello {username} <br /> Welcome.
         </h1>
         <RecentInterview />
