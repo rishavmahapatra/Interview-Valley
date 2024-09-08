@@ -5,7 +5,7 @@ export default function Landing() {
   const navigate = useNavigate();
   
   return (
-    <div className="relative h-96 px-6 pt-10 lg:px-8">
+    <div className=" relative h-96 px-6 pt-10 lg:px-8">
       <div>
         <div
           aria-hidden="true"

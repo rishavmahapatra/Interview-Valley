@@ -16,8 +16,8 @@ import { ModeToggle } from "./mode-toggle";
 import { useNavigate } from "react-router-dom";
 
 const navigation = [
-  { name: "Home", href: "/home", current: false },
-  { name: "Interview", href: "/upload", current: false },
+  // { name: "Home", href: "/home", current: false },
+  // { name: "Interview", href: "/upload", current: false },
   // { name: "Skill Extactor", href: "/interview", current: false },
   // { name: "About", href: "#", current: false },
 ];
@@ -43,7 +43,8 @@ export default function Navbar({ authenticated,onLogout }) {
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex text-2xl drop-shadow-2xl text-primary font-bold flex-shrink-0 items-center">
+          {/* text-2xl text-primary font-bold */}
+            <div className="flex  drop-shadow-2xl bg-clip-text text-transparent bg-gradient-to-b text-2xl font-bold from-primary to-neutral-300 flex-shrink-0 items-center">
               <Link to="/">GroxAI</Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
@@ -112,7 +113,7 @@ export default function Navbar({ authenticated,onLogout }) {
                 </MenuItems>
               </Menu> )
               : (
-              <Button className="w-xs m-2" variant="outline" onClick = { ()=>navigate('/signup') } >Register</Button>
+              <Button className="w-20  lg:m-2" variant="outline" onClick = { ()=>navigate('/signup') } >Register</Button>
             )}
           </div>
         </div>

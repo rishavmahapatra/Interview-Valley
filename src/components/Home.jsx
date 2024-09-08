@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import RecentInterview from "./RecentInterview";
 
 export default function Home({ username = "Interviewer" }) {
   const [firstName, setFirstName] = useState("");
@@ -75,26 +76,28 @@ export default function Home({ username = "Interviewer" }) {
       alert("Failed to upload files. Please try again.");
     }
   };
-  const str = username.split("@", 1);
+ 
   return (
-    <div className="lg:min-h-screen top-0 lg:flex gap-x-64 lg:absolute ">
-      <div className=" min-w-64 mt-16 flex flex-col  items-start justify-start  border-r-2 ">
-        <h1 className="mt-24 ml-3 dark:text-slate-100 px-2 antialiased font-medium mb-6 text-lg">
-          Hello Rishav <br /> Welcome Back
+    <div className=" lg:min-h-screen top-0 lg:flex  xl:gap-x-44 lg:absolute ">
+      <div className="px-4 lg:dark:bg-black w-80 h-52 lg:h-auto lg:mt-16 flex flex-col space-y-14  items-start  lg:justify-start">
+        <h1 className="lg:my-6  dark:text-neutral-200 px-2 antialiased mb-6 lg:text-xl">
+          Hello {username} <br /> Welcome.
         </h1>
+        <RecentInterview />
       </div>
-      <div className="relative left-24 m-10 flex flex-col justify-center items-center">
-        <p className="my-6 antialiased text-2xl font-medium  ">
-          First step towards the{" "}
-          <span className="text-3xl line-through text-red-600">lazy</span>{" "}
-          <span className="mx-1 text-3xl text-blue-400">SMART</span> interview!
-        </p>
+      <div className="relative top-56 lg:-top-4 flex flex-col max-w-4xl justify-center lg:gap-3  items-center">
+      <p className="text-2xl mx-8 sm:text-5xl antialiased text-center font-bold  bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400 py-8">
+      First step towards the{" "}
+          <span className=" line-through decoration-primary text-neutral-500">lazy</span>{" "}
+          <span className="mx-1">SMART</span> interview!
+      </p>
         <Dialog>
           <DialogTrigger asChild>
-            <Button className="w-56">Start Interview</Button>
+          {/* bg-gradient-to-b from-neutral-100 to-cyan-600  hover:bg-gradient-to-t */}
+            <Button className="lg:w-36 ">Start Interview</Button>
           </DialogTrigger>
           <DialogContent
-            className="sm:max-w-[425px]"
+            className=" sm:max-w-[425px]"
             // onInteractOutside={(e) => { e.preventDefault(); }}
           >
             <DialogHeader>

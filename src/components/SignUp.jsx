@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Navigate, Link, useNavigate } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
 
 import { Button } from "@/components/ui/button"
@@ -15,19 +15,14 @@ import { Label } from "@/components/ui/label"
 export const description =
   "A sign up form with first name, last name, email and password inside a card. There's an option to sign up with GitHub and a link to login if you already have an account"
 
-export function SignUp() {
-  const responseGoogle = async (authResult)=>{
-    try {
-      console.log(authResult)
-    } catch (error) {
-      console.error(error);
-      
-    }
-  }
-  const googleLogin = useGoogleLogin({
-    onSuccess: responseGoogle,
-    onError: responseGoogle,
-    flow: 'auth-code'
+export function SignUp({onLogin}) {
+  const navigate = useNavigate();
+  
+  const Login = useGoogleLogin({
+    onSuccess: (tokenResponse) => {console.log(tokenResponse), onLogin(),navigate('/home')},
+  flow: 'auth-code',
+    // onError: responseGoogle,
+
   })
   return (
     <Card className="mx-auto mt-24 max-w-sm">
@@ -66,7 +61,7 @@ export function SignUp() {
             Create an account
           </Button>
           <Button variant="outline" className="w-full"
-            onClick={googleLogin}
+            onClick={Login}
           >
             Sign up with Google
           </Button>

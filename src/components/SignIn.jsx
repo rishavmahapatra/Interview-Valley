@@ -11,12 +11,22 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
+import { useGoogleLogin } from '@react-oauth/google';
+
 export const description =
   "A login form with email and password. There's an option to login with Google and a link to sign up if you don't have an account."
 
 export function SignIn({ onLogin, userName }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const Login = useGoogleLogin({
+    onSuccess: (tokenResponse) => {console.log(tokenResponse), onLogin(),navigate('/home')},
+  flow: 'auth-code',
+    // onError: responseGoogle,
+
+  })
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,7 +104,7 @@ export function SignIn({ onLogin, userName }) {
           <Button type="submit" onClick={handleSubmit} className="w-full">
             Login
           </Button>
-          <Button variant="outline" className="w-full">
+          <Button onClick={Login} variant="outline" className="w-full">
             Login with Google
           </Button>
         </div>

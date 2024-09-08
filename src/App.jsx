@@ -6,7 +6,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import LoginForm from "./components/LoginForm.jsx";
 import Upload from "./components/Upload.jsx";
 import Landing from "./components/Landing.jsx";
 import Navbar from "./components/Navbar.jsx";
@@ -23,13 +22,7 @@ function App() {
   const [interviewId, setInterviewId] = useState("");
   const [user, setUser] = useState();
 
-  const GoogleAuthWrapper = ()=>{
-    return(
-      <GoogleOAuthProvider clientId ="750789723123-1sd7uafuq4nrr52b3dm7lk5dhgmf7vn5.apps.googleusercontent.com">
-        <SignUp></SignUp>
-      </GoogleOAuthProvider>
-    )
-  }
+  
   const setUsername = (user) => setUser(user);
   const handleLogin = () => {
     setIsAuthenticated(true);
@@ -57,6 +50,7 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <GoogleOAuthProvider clientId ="750789723123-1sd7uafuq4nrr52b3dm7lk5dhgmf7vn5.apps.googleusercontent.com">
       <Router>
         <Navbar onLogout={handleLogout} authenticated={isAuthenticated} />
         <Routes>
@@ -98,7 +92,7 @@ function App() {
             }
           />
 
-          <Route path="/signup" element={<GoogleAuthWrapper />} />
+          <Route path="/signup" element={<SignUp onLogin={handleLogin} />} />
 
           <Route
             path="/interview"
@@ -112,6 +106,7 @@ function App() {
           />
         </Routes>
       </Router>
+      </GoogleOAuthProvider>
     </ThemeProvider>
   );
 }
