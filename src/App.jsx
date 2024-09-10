@@ -17,7 +17,7 @@ import { SignIn } from "./components/SignIn.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [interviewId, setInterviewId] = useState("");
   const [user, setUser] = useState();

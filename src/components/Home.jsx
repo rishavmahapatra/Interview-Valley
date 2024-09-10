@@ -21,13 +21,16 @@ export default function Home({ username = "Interviewer" }) {
   const [company, setCompany] = useState("");
   const [resume, setResume] = useState(null);
   const [jobDescription, setJobDescription] = useState(null);
-  // const navigate = useNavigate();
+  const [loading, setLoading] = useState(false); // Loading state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let url = `http://127.0.0.1:8000/questions_generation_from_files/?interviewee_fname=${encodeURIComponent(
-      firstName
-    )}`;
+    if (!firstName || (!resume && !jobDescription)) {
+      alert("Please Enter Mandatory Fields and try again");
+      return;
+    }
+
+    let url = `http://127.0.0.1:8000/questions_generation_from_files/?interviewee_fname=${encodeURIComponent(firstName)}`;
     if (lastName) {
       url += `&interviewee_lname=${encodeURIComponent(lastName)}`;
     }
@@ -40,10 +43,7 @@ export default function Home({ username = "Interviewer" }) {
     if (company) {
       url += `&interviewee_company=${encodeURIComponent(company)}`;
     }
-    if (!firstName || (!resume && !jobDescription)) {
-      alert("Please Enter Mandatory Fields and try again");
-      return;
-    }
+
     const formData = new FormData();
     if (resume) {
       formData.append("files_upload", resume);
@@ -55,56 +55,59 @@ export default function Home({ username = "Interviewer" }) {
     const token = localStorage.getItem("access_token");
 
     if (!token) {
-      return <h1 className="mt-16"> Please Login</h1>;
+      alert("Please Login again to continue using services");
+
+      return;
     }
 
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/json",
-      },
-      body: formData,
-    });
+    setLoading(true); // Set loading to true
 
-    if (response.ok) {
-      const data = await response.json();
-      // onUpload(data.questions, data.interview_id);
-      console.log(data);
-      // navigate("/interview"); // Navigate to Chat component
-    } else {
-      alert("Failed to upload files. Please try again.");
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        // Handle the successful response, e.g., navigate to another page
+      } else {
+        alert("Failed to upload files. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during fetch:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setLoading(false); // Set loading to false when request completes
     }
   };
- 
+
   return (
-    <div className=" lg:min-h-screen top-0 lg:flex  xl:gap-x-44 lg:absolute ">
-      <div className="px-4 lg:dark:bg-black w-80 h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14  items-start  lg:justify-start">
-        <h1 className="lg:my-6 my-1 dark:text-neutral-200 px-2 antialiased mb-6 lg:text-xl">
-          Hello {username} <br /> Welcome.
+    <div className="lg:min-h-screen top-0 lg:flex xl:gap-x-40 lg:absolute">
+      <div className="px-4 lg:bg-neutral-300 lg:dark:bg-black w-80 h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 items-start lg:justify-start">
+        <h1 className="lg:my-6 my-2 dark:text-neutral-200 px-2 antialiased lg:text-xl">
+          Hello {username} <br /> Welcome 👋
         </h1>
         <RecentInterview />
       </div>
-      <div className="relative top-56 lg:-top-4 flex flex-col max-w-4xl justify-center lg:gap-3  items-center">
-      <p className="text-2xl mx-8 sm:text-5xl antialiased text-center font-bold  bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400 py-8">
-      First step towards the{" "}
-          <span className=" line-through decoration-primary text-neutral-500">lazy</span>{" "}
-          <span className="mx-1">SMART</span> interview!
-      </p>
+      <div className="relative top-56 lg:-top-4 flex flex-col max-w-4xl justify-center lg:gap-6 items-center">
+        <p className="text-2xl sm:text-5xl antialiased text-center font-bold bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400">
+          First step towards the{" "}
+          <span className="line-through decoration-primary text-neutral-400">lazy</span>{" "}
+          <span className="bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-100 to-neutral-500">SMART</span> interview!
+        </p>
         <Dialog>
           <DialogTrigger asChild>
-          {/* bg-gradient-to-b from-neutral-100 to-cyan-600  hover:bg-gradient-to-t */}
-            <Button className="lg:w-36 ">Start Interview</Button>
+            <Button className="lg:w-36">Start Interview</Button>
           </DialogTrigger>
-          <DialogContent
-            className=" sm:max-w-[425px]"
-            // onInteractOutside={(e) => { e.preventDefault(); }}
-          >
+          <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Enter Interviewee details</DialogTitle>
-              {/* <DialogDescription>
-          Enter Interviewee details
-          </DialogDescription> */}
             </DialogHeader>
             <div className="grid gap-2 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
@@ -158,7 +161,7 @@ export default function Home({ username = "Interviewer" }) {
                   Company
                 </Label>
                 <Input
-                  id="interviewee_companyl"
+                  id="interviewee_company"
                   placeholder=" optional"
                   className="col-span-3"
                   onChange={(e) => setCompany(e.target.value)}
@@ -167,7 +170,6 @@ export default function Home({ username = "Interviewer" }) {
               <DialogHeader className="my-4">
                 <DialogTitle>Upload Resume or Job Description</DialogTitle>
               </DialogHeader>
-              {/* <DialogTitle>Upload Resume & Job Description</DialogTitle> */}
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="resume" className="text-right">
                   Resume
@@ -190,14 +192,14 @@ export default function Home({ username = "Interviewer" }) {
                 <Input
                   id="jd"
                   type="file"
-                  className=" file:text-muted-foreground col-span-3"
+                  className="file:text-muted-foreground col-span-3"
                   onChange={(e) => setJobDescription(e.target.files[0])}
                 />
               </div>
             </div>
             <DialogFooter>
               <Button type="submit" onClick={handleSubmit}>
-                Save & proceed
+                {loading ? "Loading..." : "Save & proceed"} {/* Show loading state */}
               </Button>
             </DialogFooter>
           </DialogContent>
