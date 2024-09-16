@@ -30,8 +30,8 @@ export default function Navbar({ authenticated,onLogout }) {
   const navigate = useNavigate();
   return (
     // bg-stone-950
-    <Disclosure as="nav" className="dark:bg-transparent dark:backdrop-blur-3xl dark:shadow-zinc-800 bg-slate-300 shadow-sm sticky w-full h-auto top-0 left-0 z-50">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <Disclosure as="nav" className="dark:bg-transparent bg-slate-900 backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky w-full h-auto top-0 left-0 z-50">
+      <div className="mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button */}
@@ -44,7 +44,7 @@ export default function Navbar({ authenticated,onLogout }) {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           {/* text-2xl text-primary font-bold */}
-            <div className="flex  drop-shadow-2xl bg-clip-text text-transparent bg-gradient-to-b text-2xl font-bold from-primary to-neutral-300 flex-shrink-0 items-center">
+            <div className="flex text-white drop-shadow-2xl text-2xl font-bold flex-shrink-0 items-center">
               <Link to="/">GroxAI</Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
@@ -67,8 +67,8 @@ export default function Navbar({ authenticated,onLogout }) {
               </div>
             </div>
           </div>
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <ModeToggle className="absolute top-0" />
+          <div className="absolute inset-y-0 right-0 flex items-center gap-x-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <ModeToggle/>
             {authenticated ? (
               <Menu as="div" className="relative ml-3">
                 <div>

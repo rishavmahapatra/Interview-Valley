@@ -35,7 +35,7 @@ const Blackhole = () => {
   }, []);
 
   return (
-    <div className={`lazy-video ${isVisible ? 'lazy-video-loaded' : ''}  w-full h-full absolute top-52 `}>
+    <div className={`lazy-video ${isVisible ? 'lazy-video-loaded' : ''}  w-full h-full absolute top-7`}>
         {/* -top-32 */}
       <video
         ref={videoRef}
