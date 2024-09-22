@@ -133,7 +133,7 @@ export default function Navbar({ authenticated, onLogout }) {
                 Login
               </Button>
               <Button
-                className="hidden lg:inline lg:m-2 hover:bg-indigo-600"
+                className="hidden lg:inline lg:m-2 xl:hover:bg-indigo-600"
                 variant="outline"
                 onClick={() => navigate("/signup")}
               >
