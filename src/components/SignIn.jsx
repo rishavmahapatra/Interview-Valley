@@ -73,7 +73,7 @@ export function SignIn({ onLogin, userName }) {
   return (
     <div>
       
-    <Card className="relative mx-auto mt-24 max-w-sm">
+    <Card className="relative mx-auto mt-20 max-w-sm">
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>

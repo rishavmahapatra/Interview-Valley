@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   // Button,
   Disclosure,
@@ -26,11 +26,14 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar({ authenticated,onLogout }) {
+export default function Navbar({ authenticated, onLogout }) {
   const navigate = useNavigate();
   return (
     // bg-stone-950
-    <Disclosure as="nav" className="dark:bg-transparent bg-slate-900 backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky w-full h-auto top-0 left-0 z-50">
+    <Disclosure
+      as="nav"
+      className="bg-transparent bg-slate-900 backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky w-full h-auto top-0 left-0 z-50"
+    >
       <div className="mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -38,13 +41,19 @@ export default function Navbar({ authenticated,onLogout }) {
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-[open]:hidden" />
-              <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
+              <Bars3Icon
+                aria-hidden="true"
+                className="block h-6 w-6 group-data-[open]:hidden"
+              />
+              <XMarkIcon
+                aria-hidden="true"
+                className="hidden h-6 w-6 group-data-[open]:block"
+              />
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          {/* text-2xl text-primary font-bold */}
-            <div className="flex text-white drop-shadow-2xl text-2xl font-bold flex-shrink-0 items-center">
+            {/* text-2xl text-primary font-bold */}
+            <div className="flex dark:text-primary drop-shadow-2xl text-2xl font-bold flex-shrink-0 items-center">
               <Link to="/">GroxAI</Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
@@ -68,7 +77,7 @@ export default function Navbar({ authenticated,onLogout }) {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center gap-x-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <ModeToggle/>
+            {/* <ModeToggle /> */}
             {authenticated ? (
               <Menu as="div" className="relative ml-3">
                 <div>
@@ -101,9 +110,11 @@ export default function Navbar({ authenticated,onLogout }) {
                     </Link>
                   </MenuItem>
                   <MenuItem>
-                    <Link onClick={()=>{localStorage.removeItem('access_token');
-                      onLogout();
-                    }}
+                    <Link
+                      onClick={() => {
+                        localStorage.removeItem("access_token");
+                        onLogout();
+                      }}
                       to="/"
                       className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                     >
@@ -111,9 +122,24 @@ export default function Navbar({ authenticated,onLogout }) {
                     </Link>
                   </MenuItem>
                 </MenuItems>
-              </Menu> )
-              : (
-              <Button className="w-20  lg:m-2" variant="outline" onClick = { ()=>navigate('/signup') } >Register</Button>
+              </Menu>
+            ) : (
+              <div>
+              <Button
+                className="hidden lg:inline lg:m-2"
+                // variant="outline"
+                onClick={() => navigate("/signin")}
+              >
+                Login
+              </Button>
+              <Button
+                className="hidden lg:inline lg:m-2 hover:bg-indigo-600"
+                variant="outline"
+                onClick={() => navigate("/signup")}
+              >
+                Register
+              </Button>
+              </div>
             )}
           </div>
         </div>

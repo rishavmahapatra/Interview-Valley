@@ -88,18 +88,18 @@ export default function Home({ username = "Interviewer" }) {
   };
 
   return (
-    <div className="lg:min-h-screen top-0  lg:flex lg:gap-x-16 2xl:gap-x-52 lg:absolute">
-      <div className="px-4 lg:bg-neutral-300 lg:dark:bg-black w-80 2xl:w-96 h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 items-start lg:justify-start">
+    <div className="lg:min-h-screen top-0  lg:flex lg:gap-x-24 lg:absolute">
+      <div className="px-4 w-80  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 items-start lg:justify-start">
         <h1 className="lg:my-6 my-2 dark:text-neutral-200 px-2 antialiased lg:text-xl">
           Hello {username} <br /> Welcome 👋
         </h1>
         <RecentInterview />
       </div>
-      <div className="relative top-56 2xl:left-96 lg:-top-4 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-6 xl:gap-10 items-center">
-        <p className="text-2xl sm:text-5xl antialiased text-center font-bold bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400">
+      <div className="relative top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-8 items-center">
+        <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-extrabold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-200 to-neutral-400">
           First step towards the{" "}
-          <span className="line-through decoration-primary text-neutral-400">lazy</span>{" "}
-          <span className="bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400">SMART</span> interview!
+          <span className="line-through decoration-neutral-300 text-neutral-400">lazy</span>{" "}
+          SMART interview!
         </p>
         <Dialog>
           <DialogTrigger asChild>
