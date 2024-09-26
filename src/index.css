@@ -69,9 +69,19 @@
 @layer base {
   * {
     
-    scrollbar-width: none; 
+    /* scrollbar-width: none;  */
   }
   body {
     @apply bg-background text-foreground;
+    
+  }
+ 
+  .fade-in {
+    animation: fadeIn ease 500ms;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
 }

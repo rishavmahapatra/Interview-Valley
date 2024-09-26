@@ -25,7 +25,7 @@ export function SignUp({onLogin}) {
 
   })
   return (
-    <Card className="mx-auto mt-20 max-w-sm">
+    <Card className="fade-in mx-auto mt-20 max-w-sm">
       <CardHeader>
         <CardTitle className="text-xl">Sign Up</CardTitle>
         <CardDescription>

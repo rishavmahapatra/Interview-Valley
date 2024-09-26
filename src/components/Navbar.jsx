@@ -77,7 +77,7 @@ export default function Navbar({ authenticated, onLogout }) {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center gap-x-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            {/* <ModeToggle /> */}
+            <ModeToggle />
             {authenticated ? (
               <Menu as="div" className="relative ml-3">
                 <div>
@@ -126,15 +126,15 @@ export default function Navbar({ authenticated, onLogout }) {
             ) : (
               <div>
               <Button
-                className="hidden lg:inline lg:m-2"
-                // variant="outline"
+                className="hidden lg:inline lg:m-1 border-0"
+                variant="outline"
                 onClick={() => navigate("/signin")}
               >
                 Login
               </Button>
               <Button
-                className="hidden lg:inline lg:m-2 xl:hover:bg-indigo-600"
-                variant="outline"
+                className="hidden lg:inline lg:m-1"
+                // variant="outline"
                 onClick={() => navigate("/signup")}
               >
                 Register
