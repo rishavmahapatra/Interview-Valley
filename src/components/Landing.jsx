@@ -8,7 +8,7 @@ export default function Landing() {
 
   return (
     <div>
-      <div className=" min-h-screen ">
+      <div className="sm:min-h-screen ">
         {/* <img className="absolute -z-10 object-cover max-h-screen min-h-screen w-full top-16" src="bg.webp" alt="bg" /> */}
         {/* bg-gradient-to-r from-[#1f0505] via-[#440464] to-[#010736] */}
         {/* <Blackhole /> */}
@@ -54,7 +54,7 @@ export default function Landing() {
                   <iframe
                   // shadow-md shadow-indigo-400
                     className="rounded-lg  sm:w-[640px] sm:h-[360px] w-[360px] h-[198px]"
-                    src="https://www.youtube.com/embed/1OCiv1ypo3k?mute=1&autoplay=1&controls=0&rel=0&loop=1&playlist=1OCiv1ypo3k&cc_load_policy=0"
+                    src="https://www.youtube.com/embed/1OCiv1ypo3k?mute=1&autoplay=0&controls=0&rel=0&loop=1&playlist=1OCiv1ypo3k&cc_load_policy=0"
                     title="How to Use"
                     // frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
