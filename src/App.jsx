@@ -53,7 +53,7 @@ function App() {
       <GoogleOAuthProvider clientId ="750789723123-1sd7uafuq4nrr52b3dm7lk5dhgmf7vn5.apps.googleusercontent.com">
       <Router>
         {/* <div>
-        <img className="absolute -z-10 object-cover min-h-screen max-h-screen top-16 w-full" src="bg.webp" alt="bg" />
+        <img className=" absolute -z-10 object-cover h-screen  top-16 w-full" src="bg.webp" alt="bg" />
         </div> */}
         <Navbar onLogout={handleLogout} authenticated={isAuthenticated} />
         <Routes>

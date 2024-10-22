@@ -79,6 +79,10 @@
   .fade-in {
     animation: fadeIn ease 500ms;
   }
+  .translate{
+    animation: fadeIn ease-in-out 700ms;
+  }
+  
   
   @keyframes fadeIn {
     0% { opacity: 0; }
