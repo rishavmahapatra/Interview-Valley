@@ -8,13 +8,17 @@ export default function Landing() {
 
   return (
     <div>
-      <div className="sm:min-h-screen ">
+      {/* <div className="sm:min-h-screen"> */}
+ {/* only for portfolio purpose- uncomment first line and comment below line */}
+      <div className="sm:max-h-screen mt-32">
         {/* <img className="absolute -z-10 object-cover max-h-screen min-h-screen w-full top-16" src="bg.webp" alt="bg" /> */}
         {/* bg-gradient-to-r from-[#1f0505] via-[#440464] to-[#010736] */}
         {/* <Blackhole /> */}
         <div className="relative">
           <div>
             <div className="relative mx-auto max-w-5xl my-20 sm:py-38 ">
+             
+              <div className="mt-24"></div>
               <div className=" hidden sm:mb-8 sm:flex sm:justify-center">
                 <div className="fade-in bg-neutral-950 shadow-sm shadow-indigo-500 relative antialiased rounded-full px-3 py-2 text-md leading-6 text-blue-100 ring-1 ring-primary-600/10 hover:ring-primary-600/20">
                   Level up your interview game with real-time AI-Generated
@@ -50,7 +54,7 @@ export default function Landing() {
                   Get Started
                 </Button>
                 {/* YouTube Autoplay Video */}
-                <div className="relative mx-auto mt-10 mb-16 flex justify-center max-w-4xl w-full">
+                {/* <div className="relative mx-auto mt-10 mb-16 flex justify-center max-w-4xl w-full">
                   <iframe
                   // shadow-md shadow-indigo-400 border-opacity-50 border-2 border-indigo-400
                     className="rounded-lg ring-1 sm:w-[640px] sm:h-[360px] w-[360px] h-[198px]"
@@ -61,18 +65,18 @@ export default function Landing() {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="min-h-screen ">
+      {/* <div className="min-h-screen ">
         <h1 className=" mx-auto text-center text-3xl font-bold sticky top-20 ">Features</h1>
       </div>
       <div className="relative  min-h-screen">
         
-      </div>
+      </div> */}
       {/* bg-[#030014] */}
     </div>
   );
