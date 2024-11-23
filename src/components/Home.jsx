@@ -22,6 +22,7 @@ export default function Home({ username = "Interviewer" }) {
   const [resume, setResume] = useState(null);
   const [jobDescription, setJobDescription] = useState(null);
   const [loading, setLoading] = useState(false); // Loading state
+  const [questions, setQuestions] = useState({})
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +31,7 @@ export default function Home({ username = "Interviewer" }) {
       return;
     }
 
-    let url = `http://127.0.0.1:8000/questions_generation_from_files/?interviewee_fname=${encodeURIComponent(firstName)}`;
+    let url = `https://interviewvalley.onrender.com/questions_generation_from_files/?interviewee_fname=${encodeURIComponent(firstName)}`;
     if (lastName) {
       url += `&interviewee_lname=${encodeURIComponent(lastName)}`;
     }
@@ -75,6 +76,7 @@ export default function Home({ username = "Interviewer" }) {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
+        setQuestions(data);
         // Handle the successful response, e.g., navigate to another page
       } else {
         alert("Failed to upload files. Please try again.");
@@ -96,14 +98,14 @@ export default function Home({ username = "Interviewer" }) {
         <RecentInterview />
       </div>
       <div className="relative top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-8 items-center">
-        <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-extrabold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-200 to-neutral-400">
+        <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-extrabold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600">
           First step towards the{" "}
-          <span className="line-through decoration-neutral-300 text-neutral-400">lazy</span>{" "}
+          <span className="line-through decoration-2 decoration-accent-foreground bg-clip-text text-transparent">lazy</span>{" "}
           SMART interview!
         </p>
         <Dialog>
           <DialogTrigger asChild>
-            <Button className="lg:w-36">Start Interview</Button>
+            <Button className="lg:w-64">Start Interview</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
