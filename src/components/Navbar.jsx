@@ -33,7 +33,7 @@ export default function Navbar({ authenticated, onLogout }) {
     // bg-stone-950
     <Disclosure
       as="nav"
-      className=" dark:bg-black backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky w-full h-auto top-0 left-0 z-50"
+      className=" dark:bg-zinc-950 backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky w-full h-auto top-0 left-0 z-50"
     >
       <div className="mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
@@ -56,7 +56,7 @@ export default function Navbar({ authenticated, onLogout }) {
             {/* text-2xl text-primary font-bold */}
             <div className="flex dark:text-primary drop-shadow-2xl text-2xl font-bold flex-shrink-0 items-center">
              
-              <Link to="/"> <img className="w-40" src="iv-dark-horizontal-logo.jpeg" alt="logo"/></Link>
+              <Link to="/"> <img className="w-40" src="logo.png" alt="logo"/></Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">

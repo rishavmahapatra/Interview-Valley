@@ -8,7 +8,7 @@ export default function FeatureCard() {
   ];
 
   return (
-    <div className="grid gap-10 xxl:grid-cols-2 mt-16 mx-4">
+    <div className="grid gap-2 lg:grid-cols-2 mt-16 mx-4">
       {cardTitle.map((cardTitle, index) => (
         <Card className="w-full mx-auto bg-gradient-to-r text-black from-cyan-200 to-violet-600" key={index}>
             <CardHeader className="flex flex-row items-center">
