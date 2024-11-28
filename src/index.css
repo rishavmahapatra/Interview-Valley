@@ -71,9 +71,15 @@
     
     /* scrollbar-width: none;  */
   }
-  body {
+  /* body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+   
+    font-weight: normal;
     @apply bg-background text-foreground;
-    
+  } */
+  body {
+    margin: 0;
+    padding: 0;
+    @apply bg-background text-foreground;
   }
  
   .fade-in {

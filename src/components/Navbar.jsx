@@ -11,6 +11,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+// import {logo} from ".../public/iv-dark-horizontal-logo.jpeg"
 import { Button } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +39,7 @@ export default function Navbar({ authenticated, onLogout }) {
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button */}
-            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+            {/* <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
               <Bars3Icon
@@ -49,12 +50,13 @@ export default function Navbar({ authenticated, onLogout }) {
                 aria-hidden="true"
                 className="hidden h-6 w-6 group-data-[open]:block"
               />
-            </DisclosureButton>
+            </DisclosureButton> */}
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             {/* text-2xl text-primary font-bold */}
             <div className="flex dark:text-primary drop-shadow-2xl text-2xl font-bold flex-shrink-0 items-center">
-              <Link to="/">GroxAI</Link>
+             
+              <Link to="/"> <img className="w-40" src="iv-dark-horizontal-logo.jpeg" alt="logo"/></Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">

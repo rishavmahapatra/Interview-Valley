@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import RecentInterview from "./RecentInterview";
+import QuestionsPage from "./QuestionsPage";
 
 export default function Home({ username = "Interviewer" }) {
   const [firstName, setFirstName] = useState("");
@@ -22,7 +23,8 @@ export default function Home({ username = "Interviewer" }) {
   const [resume, setResume] = useState(null);
   const [jobDescription, setJobDescription] = useState(null);
   const [loading, setLoading] = useState(false); // Loading state
-  const [questions, setQuestions] = useState({})
+  const [questions, setQuestions] = useState([]);
+  const [data,SetData] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,7 +78,8 @@ export default function Home({ username = "Interviewer" }) {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-        setQuestions(data);
+        setQuestions(data.questions);
+        SetData(data);
         // Handle the successful response, e.g., navigate to another page
       } else {
         alert("Failed to upload files. Please try again.");
@@ -91,13 +94,15 @@ export default function Home({ username = "Interviewer" }) {
 
   return (
     <div className="lg:min-h-screen top-0  lg:flex lg:gap-x-24 lg:absolute">
-      <div className="px-4 w-80  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 items-start lg:justify-start">
+      {/* removed lg:absolute from above */}
+      <div className="px-4 lg:w-80  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 lg:items-start lg:justify-start">
         <h1 className="lg:my-6 my-2 dark:text-neutral-200 px-2 antialiased lg:text-xl">
-          Hello {username} <br /> Welcome 👋
+          Welcome {username} 👋
+          {/* <br /> Welcome  */}
         </h1>
         <RecentInterview />
       </div>
-      <div className="relative top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-8 items-center">
+      {questions.length===0 ? (<div className="relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-8 items-center">
         <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-extrabold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600">
           First step towards the{" "}
           <span className="line-through decoration-2 decoration-accent-foreground bg-clip-text text-transparent">lazy</span>{" "}
@@ -206,7 +211,7 @@ export default function Home({ username = "Interviewer" }) {
             </DialogFooter>
           </DialogContent>
         </Dialog>
-      </div>
+      </div> ) : (<QuestionsPage data={data} questions={questions} />) }
     </div>
   );
 }
