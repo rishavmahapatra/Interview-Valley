@@ -19,6 +19,7 @@ export const description =
 export function SignIn({ onLogin, userName }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const Login = useGoogleLogin({
     onSuccess: (tokenResponse) => {console.log(tokenResponse), onLogin(),navigate('/home')},
@@ -30,7 +31,8 @@ export function SignIn({ onLogin, userName }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
+    setLoading(true);
     // Prepare the data as URL-encoded
     const formBody = new URLSearchParams();
     formBody.append("grant_type", "password");
@@ -69,6 +71,9 @@ export function SignIn({ onLogin, userName }) {
       console.error("Error caught:", error);
       alert("An error occurred. Please try again later.");
     }
+    finally{
+      setLoading(false);
+    }
   };
   return (
     <div>
@@ -103,9 +108,11 @@ export function SignIn({ onLogin, userName }) {
             <Input id="password" type="password" value={password}
               onChange={(e) => setPassword(e.target.value)} required />
           </div>
-          <Button type="submit" onClick={handleSubmit} className="w-full">
+          {loading ? (<Button className="w-full">
+            Logging In
+          </Button>) :(<Button type="submit" onClick={handleSubmit} className="w-full">
             Login
-          </Button>
+          </Button>)}
           {/* <Button onClick={Login} variant="outline" className="w-full">
             Login with Google
           </Button> */}
