@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 import { useGoogleLogin } from '@react-oauth/google';
 
 export const description =
-  "A login form with email and password. There's an option to login with Google and a link to sign up if you don't have an account."
+  "A login form with email and password. There's a link to sign up if you don't have an account."
 
 export function SignIn({ onLogin, userName }) {
   const [username, setUsername] = useState("");
@@ -46,7 +46,7 @@ export function SignIn({ onLogin, userName }) {
       const response = await fetch("https://interviewvalley.onrender.com/token/login", {
         method: "POST",
         headers: {
-          Accept: "application/json",
+          'Accept': "application/json",
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: formBody.toString(), // Send the form data as a string
@@ -108,11 +108,9 @@ export function SignIn({ onLogin, userName }) {
             <Input id="password" type="password" value={password}
               onChange={(e) => setPassword(e.target.value)} required />
           </div>
-          {loading ? (<Button className="w-full">
-            Logging In
-          </Button>) :(<Button type="submit" onClick={handleSubmit} className="w-full">
-            Login
-          </Button>)}
+          <Button type="submit" onClick={handleSubmit} className="w-full">
+            {loading ? `Logging in` : "Login"}
+          </Button>
           {/* <Button onClick={Login} variant="outline" className="w-full">
             Login with Google
           </Button> */}

@@ -36,20 +36,20 @@ export default function Landing() {
               </div>
               <div className="fade-in antialiased text-center mx-auto ">
                 {/* animate-pulse delay-100 duration-800 */}
-                <h1 className=" translate text-5xl py-2 sm:text-8xl font-semibold bg-clip-text text-transparent bg-primary dark:bg-gradient-to-r from-[#c4e0fb] to-[#6a12f7]  ">
+                <h1 className=" translate text-5xl antialiased py-2 sm:text-8xl font-semibold bg-clip-text text-transparent bg-primary dark:bg-gradient-to-r from-[#c4e0fb] to-[#6a12f7]  ">
                   {/* <h1 className="text-5xl py-2 sm:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 tracking-tight "> */}
                   {/* <h1 className="text-5xl py-2 sm:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-tight "> */}
                   Interview Smarter,
                   <br />
                   Hire Faster
                 </h1>
-                <p className="mt-20 sm:mt-8 mx-auto max-w- sm:max-w-2xl text-sm sm:text-lg rounded-full px-3 py-2 text-md leading-1 dark:text-blue-100 ring-1 ring-primary-600/10 hover:ring-primary-600/20">
+                <p className="mt-20 sm:mt-8 antialiased mx-auto max-w- sm:max-w-3xl text-sm sm:text-lg rounded-full px-3 py-2 text-md leading-1 dark:text-blue-100 ring-1 ring-primary-600/10 hover:ring-primary-600/20">
                   Makes hiring easier by using AI to create questions based on
                   Resumes, JD & skills
                 </p>
 
                 <Button
-                  className=" mt-32 sm:mt-20 py-3 w-48 px-8 rounded-lg text-xl transition-transform transform hover:scale-105"
+                  className=" mt-32 antialiased sm:mt-20 py-3 w-48 px-8 rounded-lg text-lg transition-transform transform "
                   onClick={() => navigate("/signin")}
                 >
                   Get Started
@@ -67,7 +67,7 @@ export default function Landing() {
       </div>
 
       <div className="Product-Demo ">
-        <h1 className=" mx-auto text-center p-4 text-5xl w-full dark:bg-black font-semibold sticky top-16">
+        <h1 className=" mx-auto text-center p-4 text-5xl w-full dark:bg-black font-semibold  top-16">
           Product Demo
         </h1>
         <iframe
