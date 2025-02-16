@@ -24,7 +24,7 @@ export default function Home({ username = "Interviewer" }) {
   const [jobDescription, setJobDescription] = useState(null);
   const [loading, setLoading] = useState(false); // Loading state
   const [questions, setQuestions] = useState([]);
-  const [data,SetData] = useState({});
+  const [data, SetData] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +33,9 @@ export default function Home({ username = "Interviewer" }) {
       return;
     }
 
-    let url = `https://interviewvalley.onrender.com/questions_generation_from_files/?interviewee_fname=${encodeURIComponent(firstName)}`;
+    let url = `https://interviewvalley.onrender.com/questions_generation_from_files/?interviewee_fname=${encodeURIComponent(
+      firstName
+    )}`;
     if (lastName) {
       url += `&interviewee_lname=${encodeURIComponent(lastName)}`;
     }
@@ -93,125 +95,132 @@ export default function Home({ username = "Interviewer" }) {
   };
 
   return (
-    <div className="lg:min-h-screen top-0  lg:flex lg:gap-x-24 lg:absolute">
-      {/* removed lg:absolute from above */}
-      <div className="px-4 lg:w-80  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 lg:items-start lg:justify-start">
-        <h1 className="lg:my-6 my-2 dark:text-neutral-200 px-2 antialiased lg:text-xl">
-          Welcome {username} 👋
-          {/* <br /> Welcome  */}
-        </h1>
-        <RecentInterview />
-      </div>
-      {questions.length===0 ? (<div className="relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-8 items-center">
-        <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-extrabold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600">
-          First step towards the{" "}
-          <span className="line-through decoration-2 decoration-accent-foreground bg-clip-text text-transparent">lazy</span>{" "}
-          SMART interview!
-        </p>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button className="lg:w-64">Start Interview</Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Enter Interviewee details</DialogTitle>
-            </DialogHeader>
-            <div className="grid gap-2 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="interviewee_fname" className="text-right">
-                  First Name
-                </Label>
-                <Input
-                  id="interviewee_fname"
-                  placeholder="*required"
-                  className="col-span-3"
-                  onChange={(e) => setFirstName(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="interviewee_lname" className="text-right">
-                  Last Name
-                </Label>
-                <Input
-                  id="interviewee_lname"
-                  placeholder=" optional"
-                  className="col-span-3"
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </div>
+    <section id="home">
+      <div className="2xl:max-w-7xl lg:min-h-screen w-full justify-between mx-auto lg:flex ">
+        <div className="bg-neutral-900 px-4 lg:w-80  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 lg:items-center lg:justify-start">
+          <h1 className="lg:my-6 my-2 dark:text-neutral-200 px-2 antialiased lg:text-xl">
+            Welcome {username}
+          </h1>
+          <RecentInterview />
+        </div>
+        {questions.length === 0 ? (
+          <div className="w-full relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-8 items-center">
+            <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-extrabold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600">
+              First step towards the{" "}
+              <span className="line-through decoration-2 decoration-accent-foreground bg-clip-text text-transparent">
+                lazy
+              </span>{" "}
+              SMART interview!
+            </p>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="lg:w-64">Start Interview</Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Enter Interviewee details</DialogTitle>
+                </DialogHeader>
+                <div className="grid gap-2 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="interviewee_fname" className="text-right">
+                      First Name
+                    </Label>
+                    <Input
+                      id="interviewee_fname"
+                      placeholder="*required"
+                      className="col-span-3"
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="interviewee_lname" className="text-right">
+                      Last Name
+                    </Label>
+                    <Input
+                      id="interviewee_lname"
+                      placeholder=" optional"
+                      className="col-span-3"
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
+                  </div>
 
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="interviewee_email" className="text-right">
-                  Email Id
-                </Label>
-                <Input
-                  id="interviewee_email"
-                  placeholder=" optional"
-                  className="col-span-3"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="interviewee_phone" className="text-right">
-                  Phone No
-                </Label>
-                <Input
-                  id="interviewee_phone"
-                  placeholder=" optional"
-                  className="col-span-3"
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="interviewee_company" className="text-right">
-                  Company
-                </Label>
-                <Input
-                  id="interviewee_company"
-                  placeholder=" optional"
-                  className="col-span-3"
-                  onChange={(e) => setCompany(e.target.value)}
-                />
-              </div>
-              <DialogHeader className="my-4">
-                <DialogTitle>Upload Resume or Job Description</DialogTitle>
-              </DialogHeader>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="resume" className="text-right">
-                  Resume
-                </Label>
-                <Input
-                  id="resume"
-                  type="file"
-                  className="file:text-muted-foreground col-span-3"
-                  onChange={(e) => setResume(e.target.files[0])}
-                  required
-                />
-              </div>
-              <DialogDescription className="text-center m-0 p-0 gap-0">
-                or
-              </DialogDescription>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="jd" className="text-right">
-                  Job Desc
-                </Label>
-                <Input
-                  id="jd"
-                  type="file"
-                  className="file:text-muted-foreground col-span-3"
-                  onChange={(e) => setJobDescription(e.target.files[0])}
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button type="submit" onClick={handleSubmit}>
-                {loading ? "Loading..." : "Save & proceed"} {/* Show loading state */}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </div> ) : (<QuestionsPage data={data} questions={questions} />) }
-    </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="interviewee_email" className="text-right">
+                      Email Id
+                    </Label>
+                    <Input
+                      id="interviewee_email"
+                      placeholder=" optional"
+                      className="col-span-3"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="interviewee_phone" className="text-right">
+                      Phone No
+                    </Label>
+                    <Input
+                      id="interviewee_phone"
+                      placeholder=" optional"
+                      className="col-span-3"
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="interviewee_company" className="text-right">
+                      Company
+                    </Label>
+                    <Input
+                      id="interviewee_company"
+                      placeholder=" optional"
+                      className="col-span-3"
+                      onChange={(e) => setCompany(e.target.value)}
+                    />
+                  </div>
+                  <DialogHeader className="my-4">
+                    <DialogTitle>Upload Resume or Job Description</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="resume" className="text-right">
+                      Resume
+                    </Label>
+                    <Input
+                      id="resume"
+                      type="file"
+                      className="file:text-muted-foreground col-span-3"
+                      onChange={(e) => setResume(e.target.files[0])}
+                      required
+                    />
+                  </div>
+                  <DialogDescription className="text-center m-0 p-0 gap-0">
+                    or
+                  </DialogDescription>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="jd" className="text-right">
+                      Job Desc
+                    </Label>
+                    <Input
+                      id="jd"
+                      type="file"
+                      className="file:text-muted-foreground col-span-3"
+                      onChange={(e) => setJobDescription(e.target.files[0])}
+                    />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button type="submit" onClick={handleSubmit}>
+                    {loading ? "Loading..." : "Save & proceed"}{" "}
+                    {/* Show loading state */}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
+        ) : (
+          <QuestionsPage data={data} questions={questions} />
+        )}
+      </div>
+    </section>
   );
 }
