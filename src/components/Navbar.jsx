@@ -17,10 +17,10 @@ import { ModeToggle } from "./mode-toggle";
 import { useNavigate } from "react-router-dom";
 
 const navigation = [
-  { name: "Home", href: "/home", current: false },
-  { name: "Interview", href: "/upload", current: false },
+  { name: "Home", href: "/home", current: true },
+  { name: "Features", href: "/upload", current: false },
   { name: "Skill Extactor", href: "/interview", current: false },
-  { name: "About", href: "#", current: false },
+  { name: "FAQs", href: "#", current: false },
 ];
 
 function classNames(...classes) {
