@@ -74,7 +74,7 @@ export function SignUp({ onLogin }) {
   return ( 
     <div className="flex justify-center items-center h-screen">
     {Object.keys(accountData).length>0 ? <OtpVerification accountData={accountData} /> :
-    (<Card className="fade-in mx-auto max-w-sm ">
+    (<Card className="fade-in mx-auto p-px max-w-sm ">
       <CardHeader>
         <CardTitle className="text-xl">Sign Up</CardTitle>
         <CardDescription>

@@ -1,18 +1,15 @@
 "use client";
 import FeatureCard from "./FeatureCard";
 import Footer from "./Footer";
-// import Blackhole from "./Blackhole";
-
-import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 export default function Landing() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="group">
       <div className="dark:grid-background"></div>
-      {/* <div className="dark:grid-background"></div> */}
-      <section id="hero" className="pt-20 h-screen bg-neutral-990/90">
+      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 dark:grid-background"></div>
+      <section id="hero" className="py-20 min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-16">
           <div class="grid mt-10 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-8 mt-10">
@@ -24,17 +21,18 @@ export default function Landing() {
 
               <p class="text-xl text-muted-foreground text-gray-300">
                 Makes hiring easier by using AI to create questions based on
-                Resumes, JD &amp; skills. Get personalized interview questions
+                Resumes, Job Description &amp; skills. Get personalized interview questions
                 and feedback in seconds.
               </p>
 
               <div class="flex flex-wrap gap-4 ">
-                <button class="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
+                <button class="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg text-lg transition-all duration-300 transform hover:scale-105"
+                onClick={()=>navigate("/signup")}>
                   Get Started Free
                 </button>
-                <button class="px-8 py-4 border border-indigo-500 text-indigo-400 hover:bg-indigo-500 hover:text-white font-medium rounded-lg text-lg transition-all duration-300">
+                {/* <button class="px-8 py-4 border border-indigo-500 text-indigo-400 hover:bg-indigo-500 hover:text-white font-medium rounded-lg text-lg transition-all duration-300">
                   Watch Demo
-                </button>
+                </button> */}
               </div>
 
               <div class="flex items-center gap-4 text-gray-400 animate__delay-3s">
@@ -88,7 +86,7 @@ export default function Landing() {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-              How GroxAI Works
+              How Interview Valley Works
             </h2>
             <p class="text-gray-400 text-lg max-w-2xl mx-auto">
               Three simple steps to transform your hiring process with
@@ -170,11 +168,11 @@ export default function Landing() {
         </div>
       </section>
 
-      <section id="benefits" class="py-20 bg-neutral-900">
+      <section id="benefits" class="py-20 bg-neutral-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16 animate__animated animate__fadeIn">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-              Why Choose GroxAI?
+              Why Choose Interview Valley?
             </h2>
             <p class="text-gray-400 text-lg max-w-2xl mx-auto">
               Experience the advantages of AI-powered interviewing that saves
@@ -291,7 +289,9 @@ export default function Landing() {
                     <span class="text-white font-medium">Cost Reduction</span>
                     <span class="text-green-400 font-bold">60%</span>
                   </div>
-                  <button class="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity duration-300">
+                  <button
+                   onClick={()=>navigate("/signup")}
+                   class="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity duration-300">
                     Start Optimizing Your Hiring
                   </button>
                 </div>
