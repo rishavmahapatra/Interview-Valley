@@ -10,79 +10,297 @@ export default function Landing() {
 
   return (
     <div>
-      <div className="min-h-screen">
-        {/* only for portfolio purpose- uncomment first line and comment below line */}
-        {/* <div className="sm:max-h-screen mt-32"> */}
-        <img
-          className="absolute -z-10 blur-sm object-contain h-[650px] opacity-30 brightness-50  w-full top-16"
-          src="bg-transparent.png"
-          alt="bg"
-        />
-        {/* bg-gradient-to-r from-[#1f0505] via-[#440464] to-[#010736] */}
-        {/* <Blackhole /> */}
-        <div className="relative">
-          <div>
-            <div className="relative mx-auto mt-16 lg:my-20 sm:py-38 ">
-              <div className="lg:mt-24"></div>
-              <div className=" hidden sm:mb-8 sm:flex sm:justify-center">
-                {/* <div className="fade-in bg-neutral-950 shadow-sm shadow-indigo-500 relative antialiased rounded-full px-3 py-2 text-md leading-6 text-blue-100 ring-1 ring-primary-600/10 hover:ring-primary-600/20">
-                  Level up the interview game with real-time AI-Generated
-                  Questions.{" "}
-                  <a href="#" className=" font-semibold text-primary-600 ">
-                    <span aria-hidden="true" className=" absolute inset-0 " />
-                    Read more <span aria-hidden="true">&rarr;</span>
-                  </a>
-                </div> */}
-              </div>
-              <div className="fade-in antialiased text-center mx-auto ">
-                {/* animate-pulse delay-100 duration-800 */}
-                <h1 className=" translate text-5xl antialiased py-2 sm:text-8xl font-semibold bg-clip-text text-transparent bg-primary dark:bg-gradient-to-r from-[#c4e0fb] to-[#6a12f7]  ">
-                  {/* <h1 className="text-5xl py-2 sm:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 tracking-tight "> */}
-                  {/* <h1 className="text-5xl py-2 sm:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-tight "> */}
-                  Interview Smarter,
-                  <br />
-                  Hire Faster
-                </h1>
-                <p className="mt-20 sm:mt-8 antialiased mx-auto max-w- sm:max-w-3xl text-sm sm:text-lg rounded-full px-3 py-2 text-md leading-1 dark:text-blue-100 ring-1 ring-primary-600/10 hover:ring-primary-600/20">
-                  Makes hiring easier by using AI to create questions based on
-                  Resumes, JD & skills
-                </p>
+      <div className="dark:grid-background"></div>
+      {/* <div className="dark:grid-background"></div> */}
+      <section id="hero" className="pt-20 h-screen bg-neutral-990/90">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-16">
+          <div class="grid mt-10 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8 mt-10">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight ">
+                Interview Smarter,
+                <br />
+                <span class="text-indigo-500">Hire Faster</span>
+              </h1>
 
-                <Button
-                  className=" mt-32 antialiased sm:mt-20 py-3 w-48 px-8 rounded-lg text-lg transition-transform transform "
-                  onClick={() => navigate("/signin")}
-                >
-                  Get Started
-                </Button>
+              <p class="text-xl text-muted-foreground text-gray-300">
+                Makes hiring easier by using AI to create questions based on
+                Resumes, JD &amp; skills. Get personalized interview questions
+                and feedback in seconds.
+              </p>
+
+              <div class="flex flex-wrap gap-4 ">
+                <button class="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
+                  Get Started Free
+                </button>
+                <button class="px-8 py-4 border border-indigo-500 text-indigo-400 hover:bg-indigo-500 hover:text-white font-medium rounded-lg text-lg transition-all duration-300">
+                  Watch Demo
+                </button>
+              </div>
+
+              <div class="flex items-center gap-4 text-gray-400 animate__delay-3s">
+                <span class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  No Credit Card Required
+                </span>
+                <span class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  Instant Access
+                </span>
+              </div>
+            </div>
+
+            <div class="relative">
+              <video
+                class="w-full rounded-[8px]"
+                src="https://d12araoe7z5xxk.cloudfront.net/landing-page/video/new-hero-video.mp4"
+                muted=""
+                autoplay=""
+                loop=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FeatureCard />
+
+      <section id="howItWorks" class="py-20 ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+              How GroxAI Works
+            </h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+              Three simple steps to transform your hiring process with
+              AI-powered interviews
+            </p>
+          </div>
+
+          <div class="relative">
+            {/* <!-- Connection Line --> */}
+            <div class="hidden lg:block absolute left-1/2 top-24 bottom-24 w-0.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-indigo-500 -translate-x-1/2"></div>
+
+            {/* <!-- Step 1 --> */}
+            <div class="relative lg:grid lg:grid-cols-2 gap-8 items-center mb-20 group">
+              <div class="lg:text-right animate__animated animate__fadeInLeft">
+                <div class="bg-neutral-800 p-8 rounded-2xl border border-neutral-700 hover:border-indigo-500 transition-all duration-300">
+                  <span class="inline-block bg-indigo-600/20 text-indigo-400 text-sm font-semibold px-3 py-1 rounded-full mb-4">
+                    Step 1 ▾
+                  </span>
+                  <h3 class="text-2xl font-bold text-white mb-4">
+                    Upload Resume or Job Description
+                  </h3>
+                  <p class="text-gray-400">
+                    Simply upload your resume or job description. Our AI system
+                    will analyze the content to understand the required skills
+                    and experience level.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden lg:block w-20"></div>
+            </div>
+
+            {/* <!-- Step 2 --> */}
+            <div class="relative lg:grid lg:grid-cols-2 gap-8 items-center mb-20 group">
+              <div class="hidden lg:block w-20"></div>
+              <div>
+                <div class="bg-neutral-800 p-8 rounded-2xl border border-neutral-700 hover:border-indigo-500 transition-all duration-300">
+                  <span class="inline-block bg-purple-600/20 text-purple-400 text-sm font-semibold px-3 py-1 rounded-full mb-4">
+                    Step 2 ▾
+                  </span>
+                  <h3 class="text-2xl font-bold text-white mb-4">
+                    AI Generates Questions
+                  </h3>
+                  <p class="text-gray-400">
+                    Our advanced AI algorithms create tailored interview
+                    questions based on the provided information, ensuring
+                    relevance and depth.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* <!-- Step 3 --> */}
+            <div class="relative lg:grid lg:grid-cols-2 gap-8 items-center group">
+              <div class="lg:text-right ">
+                <div class="bg-neutral-800 p-8 rounded-2xl border border-neutral-700 hover:border-indigo-500 transition-all duration-300">
+                  <span class="inline-block bg-indigo-600/20 text-indigo-400 text-sm font-semibold px-3 py-1 rounded-full mb-4">
+                    Step 3 ▾
+                  </span>
+                  <h3 class="text-2xl font-bold text-white mb-4">
+                    Get Instant Feedback
+                  </h3>
+                  <p class="text-gray-400">
+                    Receive immediate feedback on responses, including skill
+                    assessment and suggested improvements for better interview
+                    performance.
+                  </p>
+                </div>
+              </div>
+              <div class="hidden lg:block w-20"></div>
+            </div>
+          </div>
+
+          {/* <div class="text-center mt-16 animate__animated animate__fadeInUp">
+        <button class="group relative inline-flex items-center justify-center px-8 py-4 font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg overflow-hidden transition-all duration-300 hover:scale-105">
+          <span class="relative">Try It Now - It's Free</span>
+          <div class="absolute inset-0 bg-white/20 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
+        </button>
+      </div> */}
+        </div>
+      </section>
+
+      <section id="benefits" class="py-20 bg-neutral-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16 animate__animated animate__fadeIn">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+              Why Choose GroxAI?
+            </h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+              Experience the advantages of AI-powered interviewing that saves
+              time and improves hiring accuracy
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+              {/* <!-- Benefit 1 --> */}
+              <div class="flex items-start space-x-4 animate__animated animate__fadeInLeft">
+                <div class="flex-shrink-0">
+                  <div class="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center">
+                    <svg
+                      class="w-6 h-6 text-indigo-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-white mb-2">
+                    Save Time and Resources
+                  </h3>
+                  <p class="text-gray-400">
+                    Reduce interview preparation time by 80% with instant
+                    AI-generated questions and evaluations.
+                  </p>
+                </div>
+              </div>
+
+              {/* <!-- Benefit 2 --> */}
+              <div class="flex items-start space-x-4 animate__animated animate__fadeInLeft animate__delay-1s">
+                <div class="flex-shrink-0">
+                  <div class="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center">
+                    <svg
+                      class="w-6 h-6 text-purple-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-white mb-2">
+                    Improved Accuracy
+                  </h3>
+                  <p class="text-gray-400">
+                    AI-driven analysis ensures consistent and unbiased
+                    evaluation of candidate skills and experience.
+                  </p>
+                </div>
+              </div>
+
+              {/* <!-- Benefit 3 --> */}
+              <div class="flex items-start space-x-4 ">
+                <div class="flex-shrink-0">
+                  <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center">
+                    <svg
+                      class="w-6 h-6 text-blue-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-white mb-2">
+                    Instant Results
+                  </h3>
+                  <p class="text-gray-400">
+                    Get immediate feedback and comprehensive skill assessments
+                    without any delay.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative ">
+              <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur-lg opacity-30"></div>
+              <div class="relative bg-neutral-900 p-8 rounded-2xl border border-neutral-700">
+                <div class="space-y-6">
+                  <div class="flex items-center justify-between p-4 bg-neutral-800 rounded-lg">
+                    <span class="text-white font-medium">Time Saved</span>
+                    <span class="text-green-400 font-bold">80%</span>
+                  </div>
+                  <div class="flex items-center justify-between p-4 bg-neutral-800 rounded-lg">
+                    <span class="text-white font-medium">Hiring Accuracy</span>
+                    <span class="text-green-400 font-bold">95%</span>
+                  </div>
+                  <div class="flex items-center justify-between p-4 bg-neutral-800 rounded-lg">
+                    <span class="text-white font-medium">Cost Reduction</span>
+                    <span class="text-green-400 font-bold">60%</span>
+                  </div>
+                  <button class="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity duration-300">
+                    Start Optimizing Your Hiring
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="mt-0">
-        <h1 className=" mx-auto text-center p-4 text-5xl dark:bg-black sticky top-16 ">
-          Features
-        </h1>
-        <FeatureCard />
-      </div>
-
-      <div className="Product-Demo ">
-        <h1 className=" mx-auto text-center p-4 text-5xl w-full dark:bg-black font-semibold  top-16">
-          Product Demo
-        </h1>
-        <iframe
-          // shadow-md shadow-indigo-400 border-opacity-50 border-2 border-indigo-400
-          className="rounded-lg mt-10 mx-auto ring-1 sm:w-[640px] sm:h-[360px] w-[360px] h-[198px]"
-          src="https://www.youtube.com/embed/1OCiv1ypo3k?mute=1&autoplay=0&controls=0&rel=0&loop=1&playlist=1OCiv1ypo3k&cc_load_policy=0"
-          title="How to Use"
-          alt="How to Use-Video"
-          // frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-        <Footer/>
-      </div>
+      </section>
+      <Footer />
     </div>
   );
 }
-// onClick = {Navigate to="/login"}

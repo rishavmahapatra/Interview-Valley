@@ -17,10 +17,10 @@ import { ModeToggle } from "./mode-toggle";
 import { useNavigate } from "react-router-dom";
 
 const navigation = [
-  // { name: "Home", href: "/home", current: false },
-  // { name: "Interview", href: "/upload", current: false },
-  // { name: "Skill Extactor", href: "/interview", current: false },
-  // { name: "About", href: "#", current: false },
+  { name: "Home", href: "/home", current: false },
+  { name: "Interview", href: "/upload", current: false },
+  { name: "Skill Extactor", href: "/interview", current: false },
+  { name: "About", href: "#", current: false },
 ];
 
 function classNames(...classes) {
@@ -33,13 +33,14 @@ export default function Navbar({ authenticated, onLogout }) {
     // bg-stone-950
     <Disclosure
       as="nav"
-      className=" dark:bg-zinc-950 backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky w-full h-auto top-0 left-0 z-50"
+      className="fixed w-full z-50 dark:bg-zinc-950 backdrop-blur-md dark:shadow-zinc-800 shadow-sm"
+      // className=" dark:bg-zinc-950 backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky  items-center h-auto top-0 left-0 z-50"
     >
-      <div className="mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          <div className="absolute left-0 flex items-center sm:hidden">
             {/* Mobile menu button */}
-            {/* <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+            <DisclosureButton className="group relative inline-flex rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
               <Bars3Icon
@@ -50,16 +51,16 @@ export default function Navbar({ authenticated, onLogout }) {
                 aria-hidden="true"
                 className="hidden h-6 w-6 group-data-[open]:block"
               />
-            </DisclosureButton> */}
+            </DisclosureButton>
           </div>
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div className="flex flex-1 space-x-48 xl:space-x-72 items-center justify-center sm:items-stretch sm:justify-start">
             {/* text-2xl text-primary font-bold */}
-            <div className="flex dark:text-primary drop-shadow-2xl text-2xl font-bold flex-shrink-0 items-center">
+            <div className="flex-shrink-0">
              
-              <Link to="/"> <img className="w-40" src="logo.png" alt="logo"/></Link>
+              <Link to="/"> <img className="cursor-pointer h-8 w-auto transition-opacity duration-300 opacity-100" src="logo.png" alt="logo"/></Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
-              <div className="flex space-x-4">
+              <div className="flex justify-between space-x-4">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
@@ -68,7 +69,7 @@ export default function Navbar({ authenticated, onLogout }) {
                     className={classNames(
                       item.current
                         ? "bg-gray-900 text-white"
-                        : "text-primary hover:bg-gray-700 hover:text-white",
+                        : "text-muted-foreground hover:bg-gray-700 hover:text-white",
                       "rounded-md px-3 py-2 text-sm font-medium"
                     )}
                   >
@@ -78,8 +79,8 @@ export default function Navbar({ authenticated, onLogout }) {
               </div>
             </div>
           </div>
-          <div className="absolute inset-y-0 right-0 flex items-center gap-x-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <ModeToggle />
+          <div className="absolute right-0 flex items-center gap-x-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            {/* <ModeToggle /> */}
             {authenticated ? (
               <Menu as="div" className="relative ml-3">
                 <div>
