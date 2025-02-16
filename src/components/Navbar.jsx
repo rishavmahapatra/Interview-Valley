@@ -17,7 +17,7 @@ import { ModeToggle } from "./mode-toggle";
 import { useNavigate } from "react-router-dom";
 
 const navigation = [
-  { name: "Home", href: "/home", current: true },
+  { name: "Home", href: "/home", current: false },
   { name: "Features", href: "/upload", current: false },
   { name: "Skill Extactor", href: "/interview", current: false },
   { name: "FAQs", href: "#", current: false },
