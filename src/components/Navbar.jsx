@@ -33,7 +33,7 @@ export default function Navbar({ authenticated, onLogout }) {
     // bg-stone-950
     <Disclosure
       as="nav"
-      className="fixed w-full z-50 dark:bg-zinc-950 backdrop-blur-md dark:shadow-zinc-800 shadow-sm"
+      className="fixed w-full z-50 dark:bg-neutral-950 backdrop-blur-md dark:shadow-zinc-800 shadow-sm"
       // className=" dark:bg-zinc-950 backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky  items-center h-auto top-0 left-0 z-50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -129,11 +129,12 @@ export default function FeatureCard() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {cardTitle.map((title, index) => (
             <div
-              className="relative group hover:-translate-y-1 transition-all duration-500"
+              className="relative group hover:-translate-y-2 transition-all duration-300 shadow-xl"
               key={index}
             >
-              <span className="absolute inset-x-0 bottom-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-md group-hover:blur-lg w-full mx-auto h-[10px]"></span>
-              <div className="relative h-full bg-neutral-950 p-6 rounded-xl border-b hover:border-indigo-500 border-neutral-700 transition-all duration-300">
+              <span className="absolute inset-x-0 -bottom-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent w-full mx-auto h-[10px]"></span>
+              <span className="absolute inset-x-0 -bottom-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm group-hover:blur-lg w-full mx-auto h-[10px] ransition-all duration-300"></span>
+              <div className="relative h-full bg-neutral-900 p-6 rounded-xl ">
                 <div className="text-left mb-4">
                   {icons[index]}{" "}
                   {/* Dynamically inserting the corresponding SVG */}
