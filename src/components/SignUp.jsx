@@ -72,7 +72,7 @@ export function SignUp({ onLogin }) {
     // onError: responseGoogle,
   });
   return ( 
-    <div className="flex justify-center items-center h-screen">
+    <div className="absolute inset-0 flex justify-center items-center max-h-screen">
     {Object.keys(accountData).length>0 ? <OtpVerification accountData={accountData} /> :
     (<Card className="fade-in mx-auto p-px max-w-sm ">
       <CardHeader>

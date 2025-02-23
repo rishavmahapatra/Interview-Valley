@@ -76,8 +76,8 @@ export function SignIn({ onLogin, userName }) {
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen">
-      <Card className="fade-in mx-auto p-px max-w-sm w-full ">
+    <div className="absolute inset-0 flex justify-center items-center max-h-screen">
+      <Card className="fade-in mx-auto p-px max-w-sm w-full">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>

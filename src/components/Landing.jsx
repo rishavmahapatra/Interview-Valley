@@ -6,10 +6,10 @@ export default function Landing() {
   const navigate = useNavigate();
 
   return (
-    <div className="group">
+    <div>
       <div className="dark:grid-background"></div>
-      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 dark:grid-background"></div>
-      <section id="hero" className="py-20 min-h-screen">
+      <div className="opacity-50 dark:grid-background"></div>
+      <section id="hero" className="py-20 translate min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-16">
           <div class="grid mt-10 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-8 mt-10">
@@ -35,7 +35,7 @@ export default function Landing() {
                 </button> */}
               </div>
 
-              <div class="flex items-center gap-4 text-gray-400 animate__delay-3s">
+              <div class="flex items-center gap-4 text-gray-400">
                 <span class="flex items-center">
                   <svg
                     class="w-5 h-5 text-green-500 mr-2"
@@ -67,7 +67,7 @@ export default function Landing() {
               </div>
             </div>
 
-            <div class="relative">
+            <div class="relative hidden md:block">
               <video
                 class="w-full rounded-[8px]"
                 src="https://d12araoe7z5xxk.cloudfront.net/landing-page/video/new-hero-video.mp4"
@@ -100,7 +100,7 @@ export default function Landing() {
 
             {/* <!-- Step 1 --> */}
             <div class="relative lg:grid lg:grid-cols-2 gap-8 items-center mb-20 group">
-              <div class="lg:text-right animate__animated animate__fadeInLeft">
+              <div class="lg:text-right">
                 <div class="bg-neutral-800 p-8 rounded-2xl border border-neutral-700 hover:border-indigo-500 transition-all duration-300">
                   <span class="inline-block bg-indigo-600/20 text-indigo-400 text-sm font-semibold px-3 py-1 rounded-full mb-4">
                     Step 1 ▾
