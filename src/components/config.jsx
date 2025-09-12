@@ -1,1 +1,1 @@
-export const url = "https://interviewvalley.onrender.com";
+export const url = "https://grox-ai-backend.onrender.com";

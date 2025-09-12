@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button"
+import {url} from '@/components/config.jsx';
 import {
   Card,
   CardContent,
@@ -43,7 +44,7 @@ export function SignIn({ onLogin, userName }) {
     // formBody.append("client_secret", "string");
 
     try {
-      const response = await fetch("http://localhost:8000/signin", {
+      const response = await fetch(`${url}/signin`, {
         method: "POST",
         headers: {
           'Accept': "application/json",

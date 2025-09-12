@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {url} from '@/components/config.jsx';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import RecentInterview from "./RecentInterview";
@@ -43,21 +44,21 @@ export default function Home({ username = "Interviewer" }) {
       return;
     }
 
-    let url = `https://interviewvalley.onrender.com/questions_generation_from_files/?interviewee_fname=${encodeURIComponent(
-      firstName
-    )}`;
-    if (lastName) {
-      url += `&interviewee_lname=${encodeURIComponent(lastName)}`;
-    }
-    if (email) {
-      url += `&interviewee_email=${encodeURIComponent(email)}`;
-    }
-    if (phone) {
-      url += `&interviewee_phone=${encodeURIComponent(phone)}`;
-    }
-    if (company) {
-      url += `&interviewee_company=${encodeURIComponent(company)}`;
-    }
+    // let url = `https://interviewvalley.onrender.com/questions_generation_from_files/?interviewee_fname=${encodeURIComponent(
+    //   firstName
+    // )}`;
+    // if (lastName) {
+    //   url += `&interviewee_lname=${encodeURIComponent(lastName)}`;
+    // }
+    // if (email) {
+    //   url += `&interviewee_email=${encodeURIComponent(email)}`;
+    // }
+    // if (phone) {
+    //   url += `&interviewee_phone=${encodeURIComponent(phone)}`;
+    // }
+    // if (company) {
+    //   url += `&interviewee_company=${encodeURIComponent(company)}`;
+    // }
 
     const formData = new FormData();
     if (resume) {
@@ -78,7 +79,7 @@ export default function Home({ username = "Interviewer" }) {
     setLoading(true); // Set loading to true
 
     try {
-      const response = await fetch("http://localhost:8000/upload", {
+      const response = await fetch(`${url}/upload`, {
         method: "POST",
         headers: {
           // Authorization: `Bearer ${token}`,
