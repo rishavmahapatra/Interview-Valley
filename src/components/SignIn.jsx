@@ -35,15 +35,15 @@ export function SignIn({ onLogin, userName }) {
     setLoading(true);
     // Prepare the data as URL-encoded
     const formBody = new URLSearchParams();
-    formBody.append("grant_type", "password");
-    formBody.append("username", username);
+    // formBody.append("grant_type", "password");
+    formBody.append("email", username);
     formBody.append("password", password);
-    formBody.append("scope", "");
-    formBody.append("client_id", "string");
-    formBody.append("client_secret", "string");
+    // formBody.append("scope", "");
+    // formBody.append("client_id", "string");
+    // formBody.append("client_secret", "string");
 
     try {
-      const response = await fetch("https://interviewvalley.onrender.com/token/login", {
+      const response = await fetch("http://localhost:8000/signin", {
         method: "POST",
         headers: {
           'Accept': "application/json",
@@ -57,7 +57,7 @@ export function SignIn({ onLogin, userName }) {
         console.log("Success:", result);
 
         // Store the access token
-      localStorage.setItem('access_token', result.access_token);
+      localStorage.setItem('access_token', result.name);
 
         // Call the onLogin function and pass the username
         onLogin();

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -15,6 +15,8 @@ import RecentInterview from "./RecentInterview";
 import QuestionsPage from "./QuestionsPage";
 
 export default function Home({ username = "Interviewer" }) {
+
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,11 +26,19 @@ export default function Home({ username = "Interviewer" }) {
   const [jobDescription, setJobDescription] = useState(null);
   const [loading, setLoading] = useState(false); // Loading state
   const [questions, setQuestions] = useState([]);
-  const [data, SetData] = useState({});
+  const [data, SetData] = useState([]);
 
+  const prevQuestions = JSON.parse(localStorage.getItem('questions'));
+  useEffect(()=>{
+    if(prevQuestions){
+      SetData(prevQuestions);
+    }
+  },[]);
+  // Update data when localStorage changes
+  // useEffect(()=>SetData(),[data])
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!firstName || (!resume && !jobDescription)) {
+    if  (!resume && !jobDescription) {
       alert("Please Enter Mandatory Fields and try again");
       return;
     }
@@ -51,27 +61,27 @@ export default function Home({ username = "Interviewer" }) {
 
     const formData = new FormData();
     if (resume) {
-      formData.append("files_upload", resume);
+      formData.append("resume", resume);
     }
     if (jobDescription) {
       formData.append("files_upload", jobDescription);
     }
 
-    const token = localStorage.getItem("access_token");
+    // const token = localStorage.getItem("access_token");
 
-    if (!token) {
-      alert("Please Login again to continue using services");
+    // if (!token) {
+    //   alert("Please Login again to continue using services");
 
-      return;
-    }
+    //   return;
+    // }
 
     setLoading(true); // Set loading to true
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch("http://localhost:8000/upload", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
           Accept: "application/json",
         },
         body: formData,
@@ -79,9 +89,9 @@ export default function Home({ username = "Interviewer" }) {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        setQuestions(data.questions);
+        // console.log(typeof data);
         SetData(data);
+        localStorage.setItem('questions', JSON.stringify(data));
         // Handle the successful response, e.g., navigate to another page
       } else {
         alert("Failed to upload files. Please try again.");
@@ -96,14 +106,14 @@ export default function Home({ username = "Interviewer" }) {
 
   return (
     <section id="home">
-      <div className="2xl:max-w-7xl lg:min-h-screen w-full justify-between mx-auto lg:flex ">
+      <div className="2xl:max-w-7xl lg:h-full lg:min-h-screen w-full justify-between mx-auto lg:flex ">
         <div className="bg-neutral-900 px-4 lg:w-80  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 lg:items-center lg:justify-start">
           <h1 className="lg:my-6 my-2 dark:text-neutral-200 px-2 antialiased lg:text-xl">
-            Welcome {username}
+            Welcome {localStorage.getItem("access_token")}
           </h1>
           <RecentInterview />
         </div>
-        {questions.length === 0 ? (
+        {data?.length === 0 ? (
           <div className="w-full relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-8 items-center">
             <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-extrabold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600">
               First step towards the{" "}
@@ -130,7 +140,7 @@ export default function Home({ username = "Interviewer" }) {
                       placeholder="*required"
                       className="col-span-3"
                       onChange={(e) => setFirstName(e.target.value)}
-                      required
+                      
                     />
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4">
@@ -218,7 +228,7 @@ export default function Home({ username = "Interviewer" }) {
             </Dialog>
           </div>
         ) : (
-          <QuestionsPage data={data} questions={questions} />
+          <QuestionsPage data={data}/>
         )}
       </div>
     </section>

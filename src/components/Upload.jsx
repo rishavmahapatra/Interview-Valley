@@ -20,10 +20,10 @@ export default function Upload({onUpload}) {
     const handleSubmit = async (e) => {
       e.preventDefault();
       const formData = new FormData();
-      formData.append("file_resume", resume); 
+      formData.append("resume", resume); 
       formData.append("file_jd", jobDescription);
 
-      const token = localStorage.getItem('access_token');
+      // const token = localStorage.getItem('access_token');
 
       if (!token) {
         // console.error('No token found');
@@ -32,7 +32,7 @@ export default function Upload({onUpload}) {
  
 
       const response = await fetch(
-        "http://127.0.0.1:8000/questions_generation_from_resume_jd",
+        "http://localhost:8000/upload",
         {
           method: "POST",
           // params: {

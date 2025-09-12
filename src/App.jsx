@@ -30,6 +30,8 @@ function App() {
   };
   const handleLogout = () => {
     setIsAuthenticated(false);
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("questions");
     console.log("Logout");
   };
   const handleUpload = (questions, interviewId) => {
@@ -41,8 +43,7 @@ function App() {
     token
       ? (console.log("Token found"),handleLogin(), console.log("token is: " + token))
       : console.error("No Token found");
-    // handleLogin()
-    // }
+    
     // else {console.error('No Token found');
     //   // handleLogout()
     // }
@@ -52,9 +53,6 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <GoogleOAuthProvider clientId ="750789723123-1sd7uafuq4nrr52b3dm7lk5dhgmf7vn5.apps.googleusercontent.com">
       <Router>
-        {/* <div>
-        <img className=" absolute -z-10 opacity-60 object-cover h-screen  top-16 w-full" src="bg.webp" alt="bg" />
-        </div> */}
         <Navbar onLogout={handleLogout} authenticated={isAuthenticated} />
         <Routes>
           <Route

@@ -17,9 +17,9 @@ import { ModeToggle } from "./mode-toggle";
 import { useNavigate } from "react-router-dom";
 
 const navigation = [
-  { name: "Home", href: "/home", current: false },
-  { name: "Features", href: "/upload", current: false },
-  { name: "Skill Extactor", href: "/interview", current: false },
+  { name: "Home", href: "/home", current: true },
+  { name: "Features", href: "#", current: false },
+  { name: "Skill Extactor", href: "#", current: false },
   { name: "FAQs", href: "#", current: false },
 ];
 
@@ -115,7 +115,6 @@ export default function Navbar({ authenticated, onLogout }) {
                   <MenuItem>
                     <Link
                       onClick={() => {
-                        localStorage.removeItem("access_token");
                         onLogout();
                       }}
                       to="/"

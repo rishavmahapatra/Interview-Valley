@@ -69,7 +69,7 @@ export default function Landing() {
 
             <div class="relative hidden md:block">
               <video
-                class="w-full rounded-[8px]"
+                className="w-full rounded-[8px]"
                 src="https://d12araoe7z5xxk.cloudfront.net/landing-page/video/new-hero-video.mp4"
                 muted=""
                 autoplay=""

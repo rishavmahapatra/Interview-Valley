@@ -133,7 +133,7 @@ export default function FeatureCard() {
               key={index}
             >
               <span className="absolute inset-x-0 -bottom-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent w-full mx-auto h-[10px]"></span>
-              <span className="absolute inset-x-0 -bottom-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm group-hover:blur-lg w-full mx-auto h-[10px] ransition-all duration-300"></span>
+              <span className="absolute inset-x-0 -bottom-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm group-hover:blur-lg w-full mx-auto h-[10px] transition-all duration-300"></span>
               <div className="relative h-full bg-neutral-900 p-6 rounded-xl ">
                 <div className="text-left mb-4">
                   {icons[index]}{" "}
