@@ -4,21 +4,21 @@ import { Button } from "@/components/ui/button"
 import {url} from '@/components/config.jsx';
 import { useState } from 'react'
 import ReactMarkdown from 'react-markdown';
-import { useSpeechSynthesis } from 'react-speech-kit'
+// import { useSpeechSynthesis } from 'react-speech-kit'
 
 export default function QuestionsPage({ data }) {
-  const { speak, cancel, speaking } = useSpeechSynthesis();
-  const handleSpeak = (markdownText) => {
-    if (speaking) {
-      cancel();
-      return;
-    }
+  // const { speak, cancel, speaking } = useSpeechSynthesis();
+  // const handleSpeak = (markdownText) => {
+  //   if (speaking) {
+  //     cancel();
+  //     return;
+  //   }
 
-    // ReactMarkdown doesn't automatically give you plain text from a rendered component.
-    // The most reliable way is to pass the original string to the speak function.
-    speak({ text: markdownText }); 
-    setIsSpeaking(true);
-  };
+  //   // ReactMarkdown doesn't automatically give you plain text from a rendered component.
+  //   // The most reliable way is to pass the original string to the speak function.
+  //   speak({ text: markdownText }); 
+  //   setIsSpeaking(true);
+  // };
   const [answer, setAnswer] = useState({});
   useEffect(() => {
     localStorage.setItem('answers', JSON.stringify(answer));
@@ -62,9 +62,9 @@ export default function QuestionsPage({ data }) {
         <div className="mt-4 p-4 bg-gray-900 rounded-md">
           <h3 className="text-lg font-semibold text-green-400 mb-2">Answer:</h3>
           <ReactMarkdown >{answer[x.id]}</ReactMarkdown>
-          <Button className="mt-2" onClick={() => handleSpeak(answer[x.id])}>
+          {/* <Button className="mt-2" onClick={() => handleSpeak(answer[x.id])}>
         {speaking ? 'Stop Speaking' : 'Read Aloud'}
-      </Button>
+      </Button> */}
         </div>)
         :(<Button className="mt-2" onClick={() => handleGetAnswer(x.id)}>Get Answer ➤</Button> )}
     </div>
