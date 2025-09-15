@@ -11,23 +11,16 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-
-import { useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
+import {jwtDecode} from "jwt-decode";
 
 export const description =
   "A login form with email and password. There's a link to sign up if you don't have an account."
 
-export function SignIn({ onLogin, userName }) {
+export function SignIn({ onLogin, user }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const Login = useGoogleLogin({
-    onSuccess: (tokenResponse) => {console.log(tokenResponse), onLogin(),navigate('/home')},
-  flow: 'auth-code',
-    // onError: responseGoogle,
-
-  })
   
 
   const handleSubmit = async (e) => {
@@ -62,7 +55,7 @@ export function SignIn({ onLogin, userName }) {
 
         // Call the onLogin function and pass the username
         onLogin();
-        userName(username);
+        user(username);
       } else {
         const errorText = await response.text();
         console.error("Error response:", errorText);
@@ -111,9 +104,18 @@ export function SignIn({ onLogin, userName }) {
             <Button type="submit" onClick={handleSubmit} className="w-full">
               {loading ? `Logging in` : "Login"}
             </Button>
-            {/* <Button onClick={Login} variant="outline" className="w-full">
-              Login with Google
-            </Button> */}
+            <GoogleLogin
+  onSuccess={credentialResponse => {
+    const decoded = jwtDecode(credentialResponse.credential);
+    localStorage.setItem("user", JSON.stringify(decoded));
+  console.log(localStorage.getItem("user"));
+  user(decoded);
+    onLogin();
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>
           </div>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}

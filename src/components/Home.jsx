@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import RecentInterview from "./RecentInterview";
 import QuestionsPage from "./QuestionsPage";
 
-export default function Home({ username = "Interviewer" }) {
+export default function Home({ user = "Interviewer" }) {
 
 
   const [firstName, setFirstName] = useState("");
@@ -110,7 +110,7 @@ export default function Home({ username = "Interviewer" }) {
       <div className="2xl:max-w-7xl lg:h-full lg:min-h-screen w-full justify-between mx-auto lg:flex ">
         <div className="bg-neutral-900 px-4 lg:w-80  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 lg:items-center lg:justify-start">
           <h1 className="lg:my-6 my-2 dark:text-neutral-200 px-2 antialiased lg:text-xl">
-            Welcome {localStorage.getItem("access_token")}
+            Welcome {localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).given_name : user}!
           </h1>
           <RecentInterview />
         </div>

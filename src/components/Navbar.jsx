@@ -27,7 +27,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar({ authenticated, onLogout }) {
+export default function Navbar({ authenticated, user, onLogout }) {
   const navigate = useNavigate();
   return (
     // bg-stone-950
@@ -87,7 +87,7 @@ export default function Navbar({ authenticated, onLogout }) {
                   <MenuButton className="relative flex rounded-full text-sm">
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">Open user menu</span>
-                    <svg
+                    {/* <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="primary"
                       viewBox="0 0 24 24"
@@ -100,7 +100,8 @@ export default function Navbar({ authenticated, onLogout }) {
                         strokeLinejoin="round"
                         d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                       />
-                    </svg>
+                    </svg> */}
+                    <img className="w-10 h-10 rounded-full" src={user?.picture} alt={user?.name} />
                   </MenuButton>
                 </div>
                 <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none">

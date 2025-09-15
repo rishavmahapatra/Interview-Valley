@@ -21,9 +21,6 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [interviewId, setInterviewId] = useState("");
   const [user, setUser] = useState();
-
-  
-  const setUsername = (user) => setUser(user);
   const handleLogin = () => {
     setIsAuthenticated(true);
     console.log("Login");
@@ -53,7 +50,7 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <GoogleOAuthProvider clientId ="750789723123-1sd7uafuq4nrr52b3dm7lk5dhgmf7vn5.apps.googleusercontent.com">
       <Router>
-        <Navbar onLogout={handleLogout} authenticated={isAuthenticated} />
+        <Navbar onLogout={handleLogout} user={user} authenticated={isAuthenticated} />
         <Routes>
           <Route
             path="/"
@@ -67,7 +64,7 @@ function App() {
               isAuthenticated ? (
                 <Navigate to="/home" />
               ) : (
-                <SignIn onLogin={handleLogin} userName={setUsername} />
+                <SignIn onLogin={handleLogin} user={setUser} />
               )
             }
           />
@@ -76,7 +73,7 @@ function App() {
             path="/home"
             element={
               isAuthenticated ? (
-                <Home username={user} />
+                <Home user={setUser} />
               ) : (
                 <Navigate to="/signin" />
               )
