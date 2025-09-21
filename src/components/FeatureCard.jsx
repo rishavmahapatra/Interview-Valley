@@ -115,10 +115,10 @@ export default function FeatureCard() {
   ];
 
   return (
-    <section id="features" className="py-20 bg-neutral-800">
+    <section id="features" className="py-20 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold dark:text-white mb-4">
             Powerful Features for Smart Hiring
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
@@ -129,17 +129,17 @@ export default function FeatureCard() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {cardTitle.map((title, index) => (
             <div
-              className="relative group hover:-translate-y-2 transition-all duration-300 shadow-xl"
+              className="relative group hover:-translate-y-2 transition-all duration-300 shadow-xl rounded-xl"
               key={index}
             >
               <span className="absolute inset-x-0 -bottom-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent w-full mx-auto h-[10px]"></span>
               <span className="absolute inset-x-0 -bottom-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm group-hover:blur-lg w-full mx-auto h-[10px] transition-all duration-300"></span>
-              <div className="relative h-full bg-neutral-900 p-6 rounded-xl ">
+              <div className="relative h-full bg-white border dark:border-0  dark:bg-neutral-900 p-6 rounded-xl ">
                 <div className="text-left mb-4">
                   {icons[index]}{" "}
                   {/* Dynamically inserting the corresponding SVG */}
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">
+                <h3 className="text-xl font-semibold dark:text-white mb-3">
                   {title}
                 </h3>
                 <p className="text-gray-400">{cardDescription[index]}</p>

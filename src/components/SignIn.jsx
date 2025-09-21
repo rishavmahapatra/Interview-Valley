@@ -104,18 +104,21 @@ export function SignIn({ onLogin, user }) {
             <Button type="submit" onClick={handleSubmit} className="w-full">
               {loading ? `Logging in` : "Login"}
             </Button>
-            <GoogleLogin
+            <div>
+     <GoogleLogin
+     className="w-1000px"
   onSuccess={credentialResponse => {
     const decoded = jwtDecode(credentialResponse.credential);
     localStorage.setItem("user", JSON.stringify(decoded));
   console.log(localStorage.getItem("user"));
   user(decoded);
     onLogin();
-  }}
+  }}  
   onError={() => {
     console.log('Login Failed');
   }}
 />
+</div>
           </div>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}

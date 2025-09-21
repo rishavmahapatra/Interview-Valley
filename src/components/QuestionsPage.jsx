@@ -42,8 +42,8 @@ export default function QuestionsPage({ data }) {
     fetchAnswer()
   }
   return (
-    <div className="fade-in sm:mt-16 px-4 sm:px-8 pt-8 lg:mt-16 ">
-      <Button onClick={() => {console.log(localStorage.getItem('answers'))}}>Log Answer</Button>
+    <div className="fade-in sm:mt-16 px-4 sm:px-8 py-8 lg:mt-16 ">
+      {/* <Button onClick={() => {console.log(localStorage.getItem('answers'))}}>Log Answer</Button> */}
       <div className='flex items-center justify-between'>
         <h1 className=" text-2xl font-semibold mb-4 text-gray-100">Questions</h1>
         <Button className='bg-indigo-600 text-white px-4 py-2 rounded mb-4' onClick={() => {localStorage.removeItem("questions"); window.location.reload()}}>Start New Interview</Button>
@@ -58,6 +58,7 @@ export default function QuestionsPage({ data }) {
     <span className="font-bold text-indigo-400">{x.id}.</span>
     <div>
       <p className="text-gray-200 leading-relaxed">{x.question}</p>
+      <p className="text-sm text-gray-400 mt-1">Answer: {x.answer}</p>
       {answer[x.id]   ? (
         <div className="mt-4 p-4 bg-gray-900 rounded-md">
           <h3 className="text-lg font-semibold text-green-400 mb-2">Answer:</h3>
@@ -66,7 +67,7 @@ export default function QuestionsPage({ data }) {
         {speaking ? 'Stop Speaking' : 'Read Aloud'}
       </Button> */}
         </div>)
-        :(<Button className="mt-2" onClick={() => handleGetAnswer(x.id)}>Get Answer ➤</Button> )}
+        :(<Button className="mt-2" onClick={() => handleGetAnswer(x.id)}>Generate new answer ➤</Button> )}
     </div>
   </div>
 </li>

@@ -107,23 +107,23 @@ export default function Home({ user = "Interviewer" }) {
 
   return (
     <section id="home">
-      <div className="2xl:max-w-7xl lg:h-full lg:min-h-screen w-full justify-between mx-auto lg:flex ">
-        <div className="bg-neutral-900 px-4 lg:w-80  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 lg:items-center lg:justify-start">
+      <div className="2xl:max-w-7xl lg:h-full lg:min-h-screen w-full items-between justify-center mx-auto lg:flex ">
+        {/* <div className=" px-4 lg:w-80  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 lg:items-start lg:justify-start">
           <h1 className="lg:my-6 my-2 dark:text-neutral-200 px-2 antialiased lg:text-xl">
             Welcome {localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).given_name : user}!
           </h1>
           <RecentInterview />
-        </div>
+        </div> */}
         {data?.length === 0 ? (
           <div className="w-full relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-8 items-center">
-            <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-extrabold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent bg-gradient-to-b from-neutral-50 to-neutral-600">
+            <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-extrabold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent bg-black dark:bg-gradient-to-b from-neutral-50 to-neutral-600">
               First step towards the{" "}
               <span className="line-through decoration-2 decoration-accent-foreground bg-clip-text text-transparent">
                 lazy
               </span>{" "}
               SMART interview!
             </p>
-            <Dialog>
+            <Dialog >
               <DialogTrigger asChild>
                 <Button className="lg:w-64">Start Interview</Button>
               </DialogTrigger>

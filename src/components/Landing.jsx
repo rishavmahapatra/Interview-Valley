@@ -1,34 +1,36 @@
 "use client";
 import FeatureCard from "./FeatureCard";
-import Footer from "./Footer";
+import Footer1 from "./Footer1";
 import { useNavigate } from "react-router-dom";
 export default function Landing() {
   const navigate = useNavigate();
 
   return (
     <div>
-      <div className="dark:grid-background"></div>
-      <div className="opacity-50 dark:grid-background"></div>
+      {/* <div className="dark:grid-background"></div>
+      <div className="opacity-50 dark:grid-background"></div> */}
       <section id="hero" className="py-20 translate min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-16">
           <div class="grid mt-10 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-8 mt-10">
               <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight ">
-                Interview Smarter,
+                Prepare Smarter,
                 <br />
-                <span class="text-indigo-500">Hire Faster</span>
+                <span class="text-indigo-500">Get Hired Faster</span>
               </h1>
 
               <p class="text-xl text-muted-foreground text-gray-300">
-                Makes hiring easier by using AI to create questions based on
+                {/* Makes hiring easier by using AI to create questions based on
                 Resumes, Job Description &amp; skills. Get personalized interview questions
-                and feedback in seconds.
+                and feedback in seconds. */}
+
+                A quick way to prepare for your next interview. Practice key questions, get insights about your answers, and get more comfortable interviewing.
               </p>
 
               <div class="flex flex-wrap gap-4 ">
                 <button class="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg text-lg transition-all duration-300 transform hover:scale-105"
                 onClick={()=>navigate("/signup")}>
-                  Get Started Free
+                  Get Started for Free
                 </button>
                 {/* <button class="px-8 py-4 border border-indigo-500 text-indigo-400 hover:bg-indigo-500 hover:text-white font-medium rounded-lg text-lg transition-all duration-300">
                   Watch Demo
@@ -67,7 +69,7 @@ export default function Landing() {
               </div>
             </div>
 
-            <div class="relative hidden md:block">
+            {/* <div class="relative hidden md:block">
               <video
                 className="w-full rounded-[8px]"
                 src="https://d12araoe7z5xxk.cloudfront.net/landing-page/video/new-hero-video.mp4"
@@ -75,7 +77,7 @@ export default function Landing() {
                 autoplay=""
                 loop=""
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -168,7 +170,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section id="benefits" class="py-20 bg-neutral-800">
+      <section id="benefits" class="py-20 ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16 animate__animated animate__fadeIn">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -300,7 +302,7 @@ export default function Landing() {
           </div>
         </div>
       </section>
-      <Footer />
+      <Footer1 />
     </div>
   );
 }
