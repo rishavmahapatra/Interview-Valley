@@ -71,14 +71,14 @@ export function SignIn({ onLogin, user }) {
     <div className="flex justify-center items-center h-screen">
       <Card className="fade-in mx-auto p-px text-center max-w-sm w-full">
         <CardHeader>
-          <div className="montserrat-alternates-regular antialiased text-xl py-2">interview <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">valley</span></div>
+          <div className="montserrat-alternates-regular antialiased text-md">interview <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">valley</span></div>
           <CardTitle className="text-2xl font-medium py-2">Login or Create Account</CardTitle>
-          <CardDescription>
+          <CardDescription  className="pb-3">
             Your current chat history on this device will be saved to your new
             account and sync across devices
           </CardDescription>
-        </CardHeader>
-        <CardContent className="pb-10 mx-auto w-[360px] text-center">
+    
+        {/* <CardContent className="pb-10 mx-auto w-[360px] text-center"> */}
             <GoogleLogin
           className="w-full"
           onSuccess={(credentialResponse) => {
@@ -92,6 +92,8 @@ export function SignIn({ onLogin, user }) {
             console.log("Login Failed");
           }}
         />
+        {/* <button className="bg-white">gfhg</button> */}
+            </CardHeader>
           {/* <div className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
@@ -133,7 +135,7 @@ export function SignIn({ onLogin, user }) {
               Sign up
             </Link>
           </div> */}
-        </CardContent>
+        {/* </CardContent> */}
       
       </Card>
     </div>
