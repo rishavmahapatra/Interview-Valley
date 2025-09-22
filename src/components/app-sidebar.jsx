@@ -121,9 +121,10 @@ const data = {
   ],
   
 }
-export function AppSidebar({ user, authenticated, onLogout }) {
+export function AppSidebar({ ...props }) {
+  const { user, authenticated, onLogout } = props;
   return (
-    <Sidebar >
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         {/* <TeamSwitcher teams={data.teams} /> */}
       </SidebarHeader>
