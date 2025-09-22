@@ -70,7 +70,7 @@ export function SignIn({ onLogin, user }) {
   return (
     <div className="flex justify-center items-center h-screen">
       <Card className="fade-in mx-auto p-px text-center max-w-sm w-full">
-        <CardHeader>
+        <CardHeader className="flex flex-col items-center">
           <div className="montserrat-alternates-regular antialiased text-md">interview <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">valley</span></div>
           <CardTitle className="text-2xl font-medium py-2">Login or Create Account</CardTitle>
           <CardDescription  className="pb-3">
