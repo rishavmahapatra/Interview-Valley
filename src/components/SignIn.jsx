@@ -78,7 +78,7 @@ export function SignIn({ onLogin, user }) {
             account and sync across devices
           </CardDescription>
         </CardHeader>
-        <CardContent className="pb-10 mx-auto w-full text-center">
+        <CardContent className="pb-10 mx-auto w-[360px] text-center">
             <GoogleLogin
           className="w-full"
           onSuccess={(credentialResponse) => {
