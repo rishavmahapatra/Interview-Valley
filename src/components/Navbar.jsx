@@ -33,14 +33,14 @@ export default function Navbar({ authenticated, user, onLogout }) {
     // bg-stone-950
     <Disclosure
       as="nav"
-      className="fixed w-full z-50 bg-white/70 dark:bg-neutral-950 backdrop-blur-lg dark:shadow-zinc-800 shadow-sm"
+      className={`fixed w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-lg dark:shadow-zinc-800 shadow-sm ${authenticated && "hidden"}`}
       // className=" dark:bg-zinc-950 backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky  items-center h-auto top-0 left-0 z-50"
     >
       <div className="mx-auto sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="absolute left-0 flex items-center sm:hidden">
             {/* Mobile menu button */}
-            <DisclosureButton className="group relative inline-flex rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+            {/* <DisclosureButton className="group relative inline-flex rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
               <Bars3Icon
@@ -51,18 +51,15 @@ export default function Navbar({ authenticated, user, onLogout }) {
                 aria-hidden="true"
                 className="hidden h-6 w-6 group-data-[open]:block"
               />
-            </DisclosureButton>
+            </DisclosureButton> */}
           </div>
           <div className="flex flex-1 space-x-48 xl:space-x-72 items-center justify-center sm:items-stretch sm:justify-start">
             {/* text-2xl text-primary font-bold */}
             <div  className="flex-shrink-0">
-             <Link to="/" className="montserrat-alternates-regular text-2xl relative font-sm text-gray-700 dark:text-gray-300 shadow-white">
-             {/* <div className=""></div> */}
+             <Link to="/" className="montserrat-alternates-regular text-2xl antialiased relative font-sm text-gray-700 dark:text-gray-300 shadow-white">
               interview <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">valley</span>
-              {/* <Link to="/"> <img className="cursor-pointer h-8 w-auto transition-opacity duration-300 opacity-100" src="logo.png" alt="logo"/></Link> */}
-           
-    </Link>
-    
+            </Link>
+
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex justify-between space-x-4">
@@ -134,19 +131,19 @@ export default function Navbar({ authenticated, user, onLogout }) {
             ) : (
               <div>
               <Button
-                className="hidden lg:inline lg:m-1 border-0"
-                variant="outline"
+                className="hidden lg:inline lg:m-1 w-20"
+                // variant="outline"
                 onClick={() => navigate("/signin")}
               >
                 Login
               </Button>
-              <Button
+              {/* <Button
                 className="hidden lg:inline lg:m-1"
-                // variant="outline"
+                variant="outline"
                 onClick={() => navigate("/signup")}
               >
                 Register
-              </Button>
+              </Button> */}
               </div>
             )}
           </div>
