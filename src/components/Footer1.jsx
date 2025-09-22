@@ -8,9 +8,9 @@ function Footer1() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">© {currentYear} GroxAI. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="/" className="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
-            <a href="/" className="text-gray-400 hover:text-white text-sm">Terms of Service</a>
-            <a href="/" className="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+            <a href="/" className="text-gray-400 hover:text-black dark:hover:text-white text-sm">Privacy Policy</a>
+            <a href="/" className="text-gray-400 hover:text-black dark:hover:text-white text-sm">Terms of Service</a>
+            <a href="/" className="text-gray-400 hover:text-black dark:hover:text-white text-sm">Cookie Policy</a>
           </div>
         </div>
       </div>

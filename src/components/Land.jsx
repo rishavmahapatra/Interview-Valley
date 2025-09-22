@@ -11,7 +11,7 @@ export default function Land() {
     
      
       <div className="h-[90vh] container pt-72 flex max-w-[64rem] flex-col items-center gap-4 text-center">
-        
+        {/* <a class="rounded-2xl border shadow-md bg-muted px-4 py-1.5 text-sm font-medium" target="_blank" href="https://www.buymeacoffee.com/sanketbagad">Buy me a coffee🍻</a> */}
         <h1 className="font-bold  text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
          Prepare Smarter,<br/><span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">Land the Job Faster</span>
         </h1>
@@ -22,7 +22,7 @@ export default function Land() {
           
           <Button
                 className="my-8 px-8 z-50 bg-primary font-medium rounded-md h-11 text-sm transition-all duration-300 transform hover:scale-105"
-                onClick={() => navigate("/signup")}
+                onClick={() => navigate("/signin")}
               >
                 <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -64,12 +64,12 @@ export default function Land() {
 
           <div className="relative">
             {/* <!-- Connection Line --> */}
-            <div className="hidden lg:block absolute left-1/2 top-24 bottom-24 w-0.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-indigo-500 -translate-x-1/2"></div>
+            <div className="hidden lg:block absolute left-1/2 top-24 bottom-24 w-0.5 bg-gradient-to-b from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] -translate-x-1/2"></div>
 
             {/* <!-- Step 1 --> */}
             <div className="relative lg:grid lg:grid-cols-2 gap-8 items-center mb-20 group">
               <div className="lg:text-right">
-                <div className="bg-white/60 dark:bg-neutral-800 p-8 rounded-2xl border border-neutral-700 hover:border-indigo-500 transition-all duration-300">
+                <div className="bg-white/60 dark:bg-neutral-800 p-8 rounded-2xl border hover:border-indigo-500 transition-all duration-300">
                   <span className="inline-block bg-indigo-600/20 text-indigo-400 text-sm font-semibold px-3 py-1 rounded-full mb-4">
                     Step 1 ▾
                   </span>
@@ -90,7 +90,7 @@ export default function Land() {
             <div className="relative lg:grid lg:grid-cols-2 gap-8 items-center mb-20 group">
               <div className="hidden lg:block w-20"></div>
               <div>
-                <div className="bg-white/60 dark:bg-neutral-800 p-8 rounded-2xl border border-neutral-700 hover:border-indigo-500 transition-all duration-300">
+                <div className="bg-white/60 dark:bg-neutral-800 p-8 rounded-2xl border hover:border-indigo-500 transition-all duration-300">
                   <span className="inline-block bg-purple-600/20 text-purple-400 text-sm font-semibold px-3 py-1 rounded-full mb-4">
                     Step 2 ▾
                   </span>
@@ -109,7 +109,7 @@ export default function Land() {
             {/* <!-- Step 3 --> */}
             <div className="relative lg:grid lg:grid-cols-2 gap-8 items-center group">
               <div className="lg:text-right ">
-                <div className="bg-white/60 dark:bg-neutral-800 p-8 rounded-2xl border border-neutral-700 hover:border-indigo-500 transition-all duration-300">
+                <div className="bg-white/60 dark:bg-neutral-800 p-8 rounded-2xl border hover:border-indigo-500 transition-all duration-300">
                   <span className="inline-block bg-indigo-600/20 text-indigo-400 text-sm font-semibold px-3 py-1 rounded-full mb-4">
                     Step 3 ▾
                   </span>

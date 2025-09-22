@@ -14,15 +14,15 @@ import {
 import { useState } from "react"
 
 export default function RecentInterview() {
-  const [interviews, setInterviews] = useState([8,7,6,5]);
+  const [interviews, setInterviews] = useState([]);
   return (
-    <Card>
-      <CardHeader>
+    <Card className="border-0">
+      <CardHeader className="">
         <CardTitle>Recent Interviews</CardTitle>
       </CardHeader>
       
 {interviews.length>0  ? (<div>
-  <CardContent className=" grid gap-5">
+  <CardContent className="grid gap-5">
   <div className="flex items-center gap-4">
           <Avatar className="hidden h-9 w-9 sm:flex">
             <AvatarImage src="/avatars/01.png" alt="Avatar" />

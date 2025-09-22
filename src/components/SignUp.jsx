@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import {url} from '@/components/config.jsx';
 import { OtpVerification } from "./OtpVerification";
+import { GoogleLogin } from '@react-oauth/google';
 
 export const description =
   "A sign up form with first name, last name, email and password inside a card. There's a link to login if you already have an account";
@@ -138,6 +139,19 @@ export function SignUp({ onLogin }) {
           <Link to="/signin" className="underline">
             Sign in
           </Link>
+        </div>
+        <div className="mx-auto text-center">or</div>
+        <div className="mt-4">
+          <GoogleLogin
+            onSuccess={(tokenResponse) => {
+              console.log(tokenResponse);
+              onLogin();
+              navigate("/home");
+            }}
+            onError={(error) => {
+              console.error("Google Login Error:", error);
+            }}
+          />
         </div>
       </CardContent>
     </Card>)
