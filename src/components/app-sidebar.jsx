@@ -12,9 +12,6 @@ import {
   SquareTerminal,
 } from "lucide-react"
 import { NavMain } from "@/components/nav-main"
-// import { NavProjects } from "@/components/nav-projects"
-// import { NavUser } from "@/components/nav-user"
-// import { TeamSwitcher } from "@/components/team-switcher"
 import { ModeToggle } from "./mode-toggle"
 import {
   Sidebar,
@@ -135,16 +132,16 @@ export function AppSidebar({ ...props }) {
    <SidebarFooter>
         {/* <NavUser user={data.user} /> */}
         
-        <div className="p-4 border-t">
-          <div>{user?.name}</div>
-          <div className="mb-2 text-sm text-muted-foreground">
-            {user?.email}
-          </div>
-          <img
+        <div className="p-4 border-t ">
+          <div className="flex text-xs items-center gap-1 mb-2">
+               <img
             src={user?.picture}
             alt="User Avatar"
-            className="w-10 h-10 rounded-full mb-2"
+            className="w-7 h-7 rounded-full"
           />
+          <div className="mx-auto text-start">{localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).given_name : user?.name}, {user?.email}</div>
+          </div>
+          
           {authenticated && (
             <Link
               onClick={() => {

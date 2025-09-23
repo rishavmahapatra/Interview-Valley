@@ -2,6 +2,7 @@
 import FeatureCard from "./FeatureCard";
 import Footer1 from "./Footer1";
 import { Button } from "./ui/button";
+import { Bot } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 export default function Land() {
   const navigate = useNavigate();
@@ -24,25 +25,8 @@ export default function Land() {
                 className="my-8 px-8 z-50 bg-primary font-medium rounded-md h-11 text-sm transition-all duration-300 transform hover:scale-105"
                 onClick={() => navigate("/signin")}
               >
-                <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              className="h-4 w-4 mr-2"
-            >
-              <path d="M12 8V4H8"></path>
-              <rect width="16" height="12" x="4" y="8" rx="2"></rect>
-              <path d="M2 14h2"></path>
-              <path d="M20 14h2"></path>
-              <path d="M15 13v2"></path>
-              <path d="M9 13v2"></path>
-            </svg>Get Started for Free
+               <Bot className="mr-2" />
+               Get Started for Free
               </Button>
         </div>
       </div>
@@ -64,7 +48,7 @@ export default function Land() {
 
           <div className="relative">
             {/* <!-- Connection Line --> */}
-            <div className="hidden lg:block absolute left-1/2 top-24 bottom-24 w-0.5 bg-gradient-to-b from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] -translate-x-1/2"></div>
+            <div className="hidden lg:block absolute left-1/2 top-24 bottom-24 w-0.5 bg-gradient-to-b from-[#3980e3] via-[#d280eb] to-[#ea645d] -translate-x-1/2"></div>
 
             {/* <!-- Step 1 --> */}
             <div className="relative lg:grid lg:grid-cols-2 gap-8 items-center mb-20 group">

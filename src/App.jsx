@@ -150,31 +150,30 @@ function App() {
                     onLogout={handleLogout}
                   />
                   <SidebarInset>
-                    <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-                      <div className="flex items-center gap-2 px-4">
-                        <SidebarTrigger className="-ml-1" />
+                    <header className="flex h-16 shrink-0 items-center transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+                      {" "}
+                      <div className="flex w-full items-center gap-2 px-4">
+                        {" "}
+                        {/* stretch this */}{" "}
+                        <SidebarTrigger className="-ml-1" />{" "}
                         <Separator
                           orientation="vertical"
                           className="mr-2 data-[orientation=vertical]:h-4"
                         />
-                        <div className="flex space-between w-full">
+                        <div className="flex flex-1 items-center justify-between">
+                          {" "}
+                          {/* correct justify */}
                           <div className="montserrat-alternates-regular antialiased text-xl py-2">
                             interview{" "}
-                            <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">
+                            <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text">
                               valley
                             </span>
                           </div>
-                          <ModeToggle />
+                          <ModeToggle className="shrink-0" />
                         </div>
                       </div>
                     </header>
-                    <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-                      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                        <div className="bg-muted/50 aspect-video rounded-xl" />
-                        <div className="bg-muted/50 aspect-video rounded-xl" />
-                        <div className="bg-muted/50 aspect-video rounded-xl" />
-                      </div>
-                      <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
+                    <div className="h-screen bg-transparent overflow-auto">
                     </div>
                   </SidebarInset>
                 </SidebarProvider>
