@@ -97,7 +97,7 @@ function App() {
               path="/signin"
               element={
                 isAuthenticated ? (
-                  <Navigate to="/l" />
+                  <Navigate to="/home" />
                 ) : (
                   <SignIn onLogin={handleLogin} user={setUser} />
                 )
