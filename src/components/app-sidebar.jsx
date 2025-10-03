@@ -1,28 +1,23 @@
-import * as React from "react"
+import React,{useState,useEffect} from "react";
 import {
   AudioWaveform,
   BookOpen,
   Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
+  LogOut,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
-import { NavMain } from "@/components/nav-main"
-import { ModeToggle } from "./mode-toggle"
+} from "lucide-react";
+import { NavMain } from "@/components/nav-main";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import { Link } from "react-router-dom"
+} from "@/components/ui/sidebar";
+import { Link } from "react-router-dom";
+ // This is sample data.
 
-// This is sample data.
 const data = {
   user: {
     name: "shadcn",
@@ -38,7 +33,7 @@ const data = {
       items: [
         {
           title: "History",
-          url: "#",
+          url: "/home",
         },
         {
           title: "Starred",
@@ -116,40 +111,58 @@ const data = {
       ],
     },
   ],
-  
-}
+};
 export function AppSidebar({ ...props }) {
+  const [profileImg,setProfileImg]=useState(null);
+
+
   const { user, authenticated, onLogout } = props;
+   useEffect(() => {
+   const userData = JSON.parse(localStorage.getItem("user"));
+   if(user?.picture){
+    setProfileImg(user.picture);
+   }
+   else if (userData && userData.picture) {
+     setProfileImg(userData.picture); // Set the profile image URL from localStorage
+   }
+  }, []);
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        {/* <TeamSwitcher teams={data.teams} /> */}
-      </SidebarHeader>
+      <SidebarHeader>{/* <TeamSwitcher teams={data.teams} /> */}</SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
-   <SidebarFooter>
+      <SidebarFooter>
         {/* <NavUser user={data.user} /> */}
-        
+
         <div className="p-4 border-t ">
           <div className="flex text-xs items-center gap-1 mb-2">
-               <img
-            src={user?.picture}
-            alt="User Avatar"
-            className="w-7 h-7 rounded-full"
-          />
-          <div className="mx-auto text-start">{localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).given_name : user?.name}, {user?.email}</div>
+            <img
+              src={
+                profileImg ||
+                "/avatars/avatar-1.png"
+              }
+              alt="user avatar"
+              className="w-7 h-7 rounded-full"
+            />
+            <div className="mx-auto text-start pl-1">
+              {localStorage.getItem("user")
+                ? JSON.parse(localStorage.getItem("user")).name
+                : user?.name}
+              {/* , {user?.email || JSON.parse(localStorage.getItem("user"))?.email} */}
+            </div>
           </div>
-          
+
           {authenticated && (
             <Link
               onClick={() => {
                 onLogout();
               }}
               to="/"
-              className="block px-4 rounded-md py-2 text-sm text-white dark:text-black bg-black dark:bg-white data-[focus]:bg-gray-100"
+              className="flex items-center justify-center gap-2 px-4 text-center rounded-md py-2 text-sm text-white dark:text-black bg-black dark:bg-white data-[focus]:bg-gray-100"
             >
+              <LogOut className="w-4 h-4" />
               Logout
             </Link>
           )}
@@ -157,5 +170,5 @@ export function AppSidebar({ ...props }) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

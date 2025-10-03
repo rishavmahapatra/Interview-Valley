@@ -17,13 +17,7 @@ import { SignIn } from "./components/SignIn.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Land from "./components/Land.jsx";
 import { ModeToggle } from "./components/mode-toggle.jsx";
-import {
-  SidebarProvider,
-  SidebarTrigger,
-  SidebarInset,
-} from "@/components/ui/sidebar";
-import { Separator } from "./components/ui/separator.jsx";
-import { AppSidebar } from "@/components/app-sidebar";
+import SidebarLayout from "./components/SidebarLayout.jsx";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,6 +40,9 @@ function App() {
     setInterviewId(interviewId);
   };
   const token = localStorage.getItem("user");
+  useEffect(() => {
+    console.log("isAuthenticated: ", isAuthenticated);
+  }, []);
   useEffect(() => {
     localStorage.getItem("user") || token
       ? (console.log("User found"),
@@ -111,74 +108,34 @@ function App() {
               path="/home"
               element={
                 isAuthenticated ? (
-                  <Home user={setUser} />
+                  <SidebarLayout
+                    user={user}
+                    authenticated={isAuthenticated}
+                    onLogout={handleLogout}
+                  >
+                    <Home user={setUser} />
+                  </SidebarLayout>
                 ) : (
                   <Navigate to="/signin" />
                 )
               }
             />
             <Route
-              path="/upload"
-              element={
-                isAuthenticated ? (
-                  <Upload onUpload={handleUpload} />
-                ) : (
-                  <Navigate to="/" />
-                )
-              }
-            />
-
-            <Route path="/signup" element={<SignUp onLogin={handleLogin} />} />
-
-            <Route
-              path="/interview"
-              element={
-                isAuthenticated ? (
-                  <Chat questions={questions} interviewId={interviewId} />
-                ) : (
-                  <Navigate to="/" />
-                )
-              }
-            />
-            <Route
               path="/l"
               element={
-                <SidebarProvider>
-                  <AppSidebar
+                isAuthenticated ? (
+                  <SidebarLayout
                     user={user}
-                    authenticated={isAuthenticated}
-                    onLogout={handleLogout}
-                  />
-                  <SidebarInset>
-                    <header className="flex h-16 shrink-0 items-center transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-                      {" "}
-                      <div className="flex w-full items-center gap-2 px-4">
-                        {" "}
-                        {/* stretch this */}{" "}
-                        <SidebarTrigger className="-ml-1" />{" "}
-                        <Separator
-                          orientation="vertical"
-                          className="mr-2 data-[orientation=vertical]:h-4"
-                        />
-                        <div className="flex flex-1 items-center justify-between">
-                          {" "}
-                          {/* correct justify */}
-                          <div className="montserrat-alternates-regular antialiased text-xl py-2">
-                            interview{" "}
-                            <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text">
-                              valley
-                            </span>
-                          </div>
-                          <ModeToggle className="shrink-0" />
-                        </div>
-                      </div>
-                    </header>
-                    <div className="h-screen bg-transparent overflow-auto">
-                    </div>
-                  </SidebarInset>
-                </SidebarProvider>
-              }
-            />
+                      authenticated={isAuthenticated}
+                      onLogout={handleLogout}
+                    >
+                      {/* Your /l page content here */}
+                    </SidebarLayout>
+                  ) : (
+                    <Navigate to="/signin" />
+                  )
+                }
+              />
           </Routes>
         </Router>
       </GoogleOAuthProvider>
