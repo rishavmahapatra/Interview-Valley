@@ -20,54 +20,95 @@ export default function QuestionsPage({ data }) {
   //   setIsSpeaking(true);
   // };
   const [answer, setAnswer] = useState({});
+  const [visible, setVisible] = useState({});
+  const [loadingId, setLoadingId] = useState(null);
   useEffect(() => {
     localStorage.setItem('answers', JSON.stringify(answer));
     console.log(answer);
   }, [answer]);
   
   const handleGetAnswer = (id) => {
-    const question = data.find(q => q.id === id)?.question;
+    const question = data.find((q) => q.id === id)?.question;
     async function fetchAnswer() {
-      const response = await fetch(`${url}/get_answer/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ question }),
-      });
-      const data = await response.json();
-      setAnswer(prev => ({...prev, [id]: data.answer}));
-      console.log(answer);
+      setLoadingId(id);
+      try {
+        const response = await fetch(`${url}/get_answer/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server returned ${response.status}`);
+        }
+
+        const data = await response.json();
+        setAnswer((prev) => ({ ...prev, [id]: data.answer }));
+        // show generated answer when it arrives
+        setVisible((prev) => ({ ...prev, [id]: true }));
+      } catch (err) {
+        console.error("Failed to fetch answer:", err);
+        setAnswer((prev) => ({ ...prev, [id]: "Error fetching answer." }));
+        setVisible((prev) => ({ ...prev, [id]: true }));
+      } finally {
+        setLoadingId(null);
+      }
     }
-    fetchAnswer()
+    fetchAnswer();
+  };
+  const handleShowAnswer = (id) => {
+    setVisible(prev => ({ ...prev, [id]: true }));
   }
   return (
-    <div className="fade-in sm:mt-16 px-4 sm:px-8 py-8 lg:mt-16 ">
+    <div className="fade-in sm:mt-8 px-4 sm:px-8 py-8 lg:mt-9 ">
       {/* <Button onClick={() => {console.log(localStorage.getItem('answers'))}}>Log Answer</Button> */}
       <div className='flex items-center justify-between'>
-        <h1 className=" text-2xl font-semibold mb-4 text-gray-100">Questions</h1>
-        <Button className='bg-indigo-600 text-white px-4 py-2 rounded mb-4' onClick={() => {localStorage.removeItem("questions"); window.location.reload()}}>Start New Interview</Button>
+        <h1 className=" text-2xl font-semibold mb-4 text-neutral-800 dark:text-gray-100"> 🗒️ Resume based Questions</h1>
+        <Button className='bg px-4 py-2 rounded mb-4' onClick={() => {localStorage.removeItem("questions"); window.location.reload()}}>Start New Interview</Button>
       </div>
 
 
-      <ScrollArea className="h-[80vh] w-full p-4 rounded-lg border border-gray-700 shadow-sm bg-gray-900">
+  <ScrollArea className="h-[80vh] w-full p-4 rounded-lg border border-gray-200 shadow-sm bg-white dark:bg-gray-900 dark:border-gray-700">
         <ul className="space-y-4">
           {data.map((x) => (
            <li key={x.id}>
-  <div className="flex items-start gap-3 p-4 rounded-md bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-colors">
-    <span className="font-bold text-indigo-400">{x.id}.</span>
+  <div className="flex items-start gap-3 p-4 rounded-md bg-white border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50 transition-colors">
+    <span className="font-bold text-indigo-600 dark:text-indigo-400">{x.id}.</span>
     <div>
-      <p className="text-gray-200 leading-relaxed">{x.question}</p>
-      <p className="text-sm text-gray-400 mt-1">Answer: {x.answer}</p>
-      {answer[x.id]   ? (
-        <div className="mt-4 p-4 bg-gray-900 rounded-md">
-          <h3 className="text-lg font-semibold text-green-400 mb-2">Answer:</h3>
-          <ReactMarkdown >{answer[x.id]}</ReactMarkdown>
+      <p className="text-gray-900 dark:text-gray-200 leading-relaxed">{x.question}</p>
+      
+      {visible[x.id] && (
+        <p className="text-sm mt-1 font-semibold text-gray-500 dark:text-gray-400"><span className='text-green-600 dark:text-green-400 '>Answer: </span>{x.answer}</p>
+      )}
+      <div className="flex gap-2 mt-2">
+      <Button className={`bg-green-400 text-xs ${visible[x.id] ? 'hidden' : 'block'}`} onClick={() => handleShowAnswer(x.id)}>Show answer ➤</Button>
+      {answer[x.id] ? (
+        <div className="mt-4">
+          <h3 className="text-sm font-semibold text-green-600 dark:text-green-400 ">New answer:</h3>
+          <div className="text-sm font-semibold leading-relaxed text-gray-500 dark:text-gray-400">
+            <ReactMarkdown>{answer[x.id]}</ReactMarkdown>
+          </div>
+
           {/* <Button className="mt-2" onClick={() => handleSpeak(answer[x.id])}>
         {speaking ? 'Stop Speaking' : 'Read Aloud'}
       </Button> */}
+      
         </div>)
-        :(<Button className="mt-2" onClick={() => handleGetAnswer(x.id)}>Generate new answer ➤</Button> )}
+        : (
+          <>
+            <Button
+              variant="outline"
+              className={`mt-0 text-xs ${visible[x.id] ? "block" : "hidden"}`}
+              onClick={() => handleGetAnswer(x.id)}
+              disabled={loadingId === x.id}
+            >
+              {loadingId === x.id ? "Generating..." : "Generate new answer ➤"}
+            </Button>
+          </>
+        )}
+         </div>
     </div>
   </div>
 </li>

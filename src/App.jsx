@@ -18,9 +18,11 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Land from "./components/Land.jsx";
 import { ModeToggle } from "./components/mode-toggle.jsx";
 import SidebarLayout from "./components/SidebarLayout.jsx";
+import { OtpVerification } from "./components/OtpVerification.jsx";
+import FeatureCard from "./components/FeatureCard.jsx";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+const [isAuthenticated, setIsAuthenticated] = useState(() => !!localStorage.getItem("user"));
   const [questions, setQuestions] = useState([]);
   const [interviewId, setInterviewId] = useState("");
   const [user, setUser] = useState();
@@ -40,9 +42,7 @@ function App() {
     setInterviewId(interviewId);
   };
   const token = localStorage.getItem("user");
-  useEffect(() => {
-    console.log("isAuthenticated: ", isAuthenticated);
-  }, []);
+  
   useEffect(() => {
     localStorage.getItem("user") || token
       ? (console.log("User found"),
@@ -54,7 +54,9 @@ function App() {
     //   // handleLogout()
     // }
   }, [token]);
-
+useEffect(() => {
+    console.log("isAuthenticated: ", isAuthenticated);
+  }, [isAuthenticated]);
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <GoogleOAuthProvider clientId="750789723123-1sd7uafuq4nrr52b3dm7lk5dhgmf7vn5.apps.googleusercontent.com">
@@ -89,7 +91,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={isAuthenticated ? <Navigate to="/l" /> : <Land />}
+              element={isAuthenticated ? <Navigate to="/home" /> : <Land />}
             />
             <Route path="*" element={<Navigate to="/" />} />
 
@@ -126,16 +128,16 @@ function App() {
                 isAuthenticated ? (
                   <SidebarLayout
                     user={user}
-                      authenticated={isAuthenticated}
-                      onLogout={handleLogout}
-                    >
-                      {/* Your /l page content here */}
-                    </SidebarLayout>
-                  ) : (
-                    <Navigate to="/signin" />
-                  )
-                }
-              />
+                    authenticated={isAuthenticated}
+                    onLogout={handleLogout}
+                  >
+                    <FeatureCard />
+                  </SidebarLayout>
+                ) : (
+                  <Navigate to="/signin" />
+                )
+              }
+            />
           </Routes>
         </Router>
       </GoogleOAuthProvider>

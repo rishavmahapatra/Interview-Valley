@@ -116,17 +116,22 @@ export default function Home({ user = "Interviewer" }) {
           <RecentInterview />
         </div> */}
         {data?.length === 0 ? (
-          <div className=" w-full relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-8 items-center">
-            <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-bold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent text-black bg-black/60 dark:bg-gradient-to-b from-neutral-50 to-neutral-600">
-              First step towards the{" "}
-              <span className="line-through decoration-2 decoration-accent-foreground bg-clip-text text-transparent">
-                lazy
-              </span>{" "}
-              SMART interview!
-            </p>
+          <div className=" w-full relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-5 items-center">
+            {/* <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-bold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent text-black bg-black/60 dark:bg-gradient-to-b from-neutral-50 to-neutral-600"> */}
+            <p className="text-3xl py-2 sm:text-5xl font-semibold text-center tracking-tight bg-clip-text text-transparent
+bg-gray-600  dark:bg-gradient-to-b dark:from-slate-200 dark:via-slate-300 dark:to-slate-600">
+
+  First step towards the{" "}
+  <span className="line-through decoration-2 decoration-gray-400 text-gray-500 dark:bg-clip-text dark:text-transparent">
+  {/* <span className="line-through decoration-2 decoration-accent-foreground bg-clip-text text-transparent"> */}
+    lazy
+  </span>{" "}
+  SMART interview!
+</p>
+
             <Dialog >
               <DialogTrigger asChild>
-                <Button className="lg:w-64">Start Interview</Button>
+                <Button className="lg:w-64 bg-blue-600dark:bg-primary">Start Interview</Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>

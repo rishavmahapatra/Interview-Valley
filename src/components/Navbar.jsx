@@ -15,6 +15,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Button } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { useNavigate } from "react-router-dom";
+import { SidebarTrigger,SidebarProvider } from "./ui/sidebar";
 
 const navigation = [
   // { name: "Home", href: "/home", current: true },
@@ -33,7 +34,8 @@ export default function Navbar({ authenticated, user, onLogout }) {
     // bg-stone-950
     <Disclosure
       as="nav"
-      className={`fixed w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-lg dark:shadow-zinc-800 shadow-sm ${authenticated && "hidden"}`}
+      // ${authenticated && "hidden"}
+      className={`fixed w-full z-50 bg-white/80 dark:bg-black/20 backdrop-blur-lg ${authenticated && "hidden"}`}
       // className=" dark:bg-zinc-950 backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky  items-center h-auto top-0 left-0 z-50"
     >
       <div className="mx-auto sm:px-6 lg:px-8">
@@ -59,8 +61,7 @@ export default function Navbar({ authenticated, user, onLogout }) {
              <Link to="/" className="montserrat-alternates-regular text-2xl antialiased relative font-sm text-gray-700 dark:text-gray-300 shadow-white">
               interview <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">valley</span>
             </Link>
-
-            </div>
+          </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex justify-between space-x-4">
                 {navigation.map((item) => (
