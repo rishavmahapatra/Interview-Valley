@@ -23,14 +23,15 @@ export default function SidebarLayout({
           onLogout={onLogout}
         />
         <div className="fixed w-full top-0 left-0 bg-transparent z-50">
-            <div className="flex items-center gap-4 px-4 py-2">
+            <div className="flex items-center gap-8 px-4 py-2">
+               {/* <SidebarTrigger /> */}
               <div className="montserrat-alternates-regular antialiased text-2xl py-2">
                 interview{" "}
                 <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text">
                   valley
                 </span>
               </div>
-              <SidebarTrigger />
+             
             </div>
         </div>
         <SidebarInset>

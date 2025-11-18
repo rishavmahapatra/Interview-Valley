@@ -62,7 +62,7 @@ export default function QuestionsPage({ data }) {
     setVisible(prev => ({ ...prev, [id]: true }));
   }
   return (
-    <div className="fade-in sm:mt-8 px-4 sm:px-8 py-8 lg:mt-9 ">
+    <div className="fade-in flex flex-col justify-center align-center mt-10 sm:mt-8 px-4 sm:px-8 py-8 lg:mt-9 ">
       {/* <Button onClick={() => {console.log(localStorage.getItem('answers'))}}>Log Answer</Button> */}
       <div className='flex items-center justify-between'>
         <h1 className=" text-2xl font-semibold mb-4 text-neutral-800 dark:text-gray-100"> 🗒️ Resume based Questions</h1>

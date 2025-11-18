@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { NavMain } from "@/components/nav-main";
 import { ModeToggle } from "./mode-toggle";
+import { useTheme } from "@/components/theme-provider";
 import {
   Sidebar,
   SidebarGroupLabel,
@@ -54,10 +55,6 @@ const data = {
           title: "New Interview",
           url: "/home",
         },
-        // {
-        //   title: "Starred",
-        //   url: "#",
-        // },
         {
           title: "Settings",
           icon: Settings2,
@@ -71,6 +68,8 @@ export function AppSidebar({ ...props }) {
   const [profileImg, setProfileImg] = useState(null);
 
   const { user, authenticated, onLogout } = props;
+  const { theme, setTheme } = useTheme();
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user"));
     if (user?.picture) {
@@ -94,7 +93,7 @@ export function AppSidebar({ ...props }) {
       </SidebarGroupLabel> */}
       <SidebarHeader></SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        {/* <NavMain items={data.navMain} /> */}
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
@@ -103,11 +102,14 @@ export function AppSidebar({ ...props }) {
           <CollapsibleTrigger asChild>
             <div className="flex flex-col items-start w-full">
               <SidebarMenuButton
-                className="hover:bg-transparent bg-transparent cursor-default"
+                className=" cursor-default"
                 tooltip="Toggle Theme"
+                onClick={toggleTheme}
               >
-                <ModeToggle />
-                {/* <span className="-mx-1">Toggle Theme</span> */}
+                  <ModeToggle />
+                  <span className="-mx-1 cursor-pointer" onClick={toggleTheme}>
+                    Toggle Theme
+                  </span>
               </SidebarMenuButton>
               {authenticated && (
                 <AlertDialog>

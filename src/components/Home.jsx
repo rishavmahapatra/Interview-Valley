@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,15 +9,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {url} from '@/components/config.jsx';
+import { url } from "@/components/config.jsx";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Bot } from "lucide-react";
 import RecentInterview from "./RecentInterview";
 import QuestionsPage from "./QuestionsPage";
 
 export default function Home({ user = "Interviewer" }) {
-
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,18 +28,18 @@ export default function Home({ user = "Interviewer" }) {
   const [questions, setQuestions] = useState([]);
   const [data, SetData] = useState([]);
 
-  const prevQuestions = JSON.parse(localStorage.getItem('questions'));
-   
-  useEffect(()=>{
-    if(prevQuestions){
+  const prevQuestions = JSON.parse(localStorage.getItem("questions"));
+
+  useEffect(() => {
+    if (prevQuestions) {
       SetData(prevQuestions);
     }
-  },[]);
+  }, []);
   // Update data when localStorage changes
   // useEffect(()=>SetData(),[data])
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if  (!resume && !jobDescription) {
+    if (!resume && !jobDescription) {
       alert("Please Enter Mandatory Fields and try again");
       return;
     }
@@ -93,7 +92,7 @@ export default function Home({ user = "Interviewer" }) {
         const data = await response.json();
         // console.log(typeof data);
         SetData(data);
-        localStorage.setItem('questions', JSON.stringify(data));
+        localStorage.setItem("questions", JSON.stringify(data));
         // Handle the successful response, e.g., navigate to another page
       } else {
         alert("Failed to upload files. Please try again.");
@@ -108,7 +107,7 @@ export default function Home({ user = "Interviewer" }) {
 
   return (
     <section id="home">
-      <div className="2xl:max-w-7xl lg:h-full lg:min-h-screen w-full items-between justify-center mx-auto lg:flex ">
+      <div className="2xl:max-w-7xl  h-screen sm:h-auto lg:h-full lg:min-h-screen w-full items-between justify-center mx-auto flex ">
         {/* <div className=" px-4 lg:w-80 border-r border-neutral-900 dark:bg-black  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 lg:items-start lg:justify-start">
           <h1 className="lg:my-6 my-2 dark:text-neutral-200 px-2 antialiased lg:text-xl">
             Welcome {localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).given_name : user}!
@@ -116,29 +115,34 @@ export default function Home({ user = "Interviewer" }) {
           <RecentInterview />
         </div> */}
         {data?.length === 0 ? (
-          <div className=" w-full relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-5 items-center">
+          <div className="w-full relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-5 items-center">
             {/* <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-bold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent text-black bg-black/60 dark:bg-gradient-to-b from-neutral-50 to-neutral-600"> */}
-            <p className="text-3xl py-2 sm:text-5xl font-semibold text-center tracking-tight bg-clip-text text-transparent
-bg-gray-600  dark:bg-gradient-to-b dark:from-slate-200 dark:via-slate-300 dark:to-slate-600">
+            <p
+              className="text-3xl py-2 sm:text-5xl font-bold text-center tracking-tight bg-clip-text text-transparent
+              bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:bg-gradient-to-b
+              dark:from-slate-200 dark:via-slate-300 dark:to-slate-600"
+            >
+              First step towards the{" "}
+              <span className="line-through decoration-2 decoration-[#245395] dark:decoration-gray-500 dark:bg-clip-text dark:text-transparent">
+                {/* <span className="line-through decoration-2 decoration-accent-foreground bg-clip-text text-transparent"> */}
+                lazy
+              </span>{" "}
+              SMART interview!
+            </p>
 
-  First step towards the{" "}
-  <span className="line-through decoration-2 decoration-gray-400 text-gray-500 dark:bg-clip-text dark:text-transparent">
-  {/* <span className="line-through decoration-2 decoration-accent-foreground bg-clip-text text-transparent"> */}
-    lazy
-  </span>{" "}
-  SMART interview!
-</p>
-
-            <Dialog >
+            <Dialog>
               <DialogTrigger asChild>
-                <Button className="lg:w-64 bg-blue-600dark:bg-primary">Start Interview</Button>
+                <Button className="my-4 px-6 z-50 bg-primary font-medium rounded-md h-11 text-sm transition-all duration-300 transform hover:scale-105">
+                   <Bot className="mr-1" />
+                  Start Interview
+                </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
+              <DialogContent className="max-w-[390px] sm:max-w-[425px]">
+                {/* <DialogHeader>
                   <DialogTitle>Enter Interviewee details</DialogTitle>
-                </DialogHeader>
+                </DialogHeader> */}
                 <div className="grid gap-2 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
+                  {/* <div className="grid grid-cols-4 items-center gap-4">
                     <Label htmlFor="interviewee_fname" className="text-right">
                       First Name
                     </Label>
@@ -194,11 +198,11 @@ bg-gray-600  dark:bg-gradient-to-b dark:from-slate-200 dark:via-slate-300 dark:t
                       className="col-span-3"
                       onChange={(e) => setCompany(e.target.value)}
                     />
-                  </div>
+                  </div> */}
                   <DialogHeader className="my-4">
                     <DialogTitle>Upload Resume or Job Description</DialogTitle>
                   </DialogHeader>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                  <div className="grid grid-cols-4 items-center justify-between gap-4">
                     <Label htmlFor="resume" className="text-right">
                       Resume
                     </Label>
@@ -235,7 +239,7 @@ bg-gray-600  dark:bg-gradient-to-b dark:from-slate-200 dark:via-slate-300 dark:t
             </Dialog>
           </div>
         ) : (
-          <QuestionsPage data={data}/>
+          <QuestionsPage data={data} />
         )}
       </div>
     </section>
