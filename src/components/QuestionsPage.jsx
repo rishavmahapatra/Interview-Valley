@@ -75,18 +75,18 @@ export default function QuestionsPage({ data }) {
           {data.map((x) => (
            <li key={x.id}>
   <div className="flex items-start gap-3 p-4 rounded-md bg-white border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50 transition-colors">
-    <span className="font-bold text-indigo-600 dark:text-indigo-400">{x.id}.</span>
+    <span className="font-bold">{x.id}.</span>
     <div>
       <p className="text-gray-900 dark:text-gray-200 leading-relaxed">{x.question}</p>
       
       {visible[x.id] && (
-        <p className="text-sm mt-1 font-semibold text-gray-500 dark:text-gray-400"><span className='text-green-600 dark:text-green-400 '>Answer: </span>{x.answer}</p>
+        <p className="text-sm mt-1 font-semibold fade-in text-gray-500 dark:text-gray-400"><span className='text-green-600 dark:text-green-400 '>Answer: </span>{x.answer}</p>
       )}
       <div className="flex gap-2 mt-2">
-      <Button className={`bg-green-400 text-xs ${visible[x.id] ? 'hidden' : 'block'}`} onClick={() => handleShowAnswer(x.id)}>Show answer ➤</Button>
+      <Button variant="outline" className={` text-xs ${visible[x.id] ? 'hidden' : 'block'}`} onClick={() => handleShowAnswer(x.id)}>Show AI generated answer ➤</Button>
       {answer[x.id] ? (
-        <div className="mt-4">
-          <h3 className="text-sm font-semibold text-green-600 dark:text-green-400 ">New answer:</h3>
+        <div className="mt-2 fade-in">
+          <h3 className="text-sm  font-semibold text-green-600 dark:text-green-400 ">New answer:</h3>
           <div className="text-sm font-semibold leading-relaxed text-gray-500 dark:text-gray-400">
             <ReactMarkdown>{answer[x.id]}</ReactMarkdown>
           </div>

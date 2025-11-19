@@ -34,7 +34,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(() => !!localStorage.getI
     setIsAuthenticated(false);
     localStorage.removeItem("access_token");
     localStorage.removeItem("questions");
-    localStorage.removeItem("user");
+    localStorage.removeItem("user");  
     console.log("Logout");
   };
   const handleUpload = (questions, interviewId) => {
@@ -118,7 +118,7 @@ useEffect(() => {
                     <Home user={setUser} />
                   </SidebarLayout>
                 ) : (
-                  <Navigate to="/signin" />
+                  <Navigate to="/" />
                 )
               }
             />

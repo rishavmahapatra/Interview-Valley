@@ -134,7 +134,7 @@ export default function Home({ user = "Interviewer" }) {
               <DialogTrigger asChild>
                 <Button className="my-4 px-6 z-50 bg-primary font-medium rounded-md h-11 text-sm transition-all duration-300 transform hover:scale-105">
                    <Bot className="mr-1" />
-                  Start Interview
+                  Start New Interview
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-[390px] sm:max-w-[425px]">

@@ -226,27 +226,28 @@ export default function Land() {
             </div>
 
             <div className="relative ">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur-lg opacity-30"></div>
-              <div className="relative bg-neutral-900 dark:bg-neutral-900 p-8 rounded-2xl border border-neutral-700">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-700 dark:from-indigo-300 dark:to-purple-300 rounded-2xl blur-lg opacity-30"></div>
+              <div className="relative bg-white dark:bg-neutral-900 p-8 rounded-2xl border border-gray-200 dark:border-neutral-700 shadow-md">
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between p-4 bg-neutral-800 rounded-lg">
-                    <span className="text-white font-medium">Time Saved</span>
-                    <span className="text-green-400 font-bold">80%</span>
+                  <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-800 rounded-lg">
+                    <span className="text-gray-700 dark:text-white font-medium">Time Saved</span>
+                    <span className="text-green-500 font-bold">80%</span>
                   </div>
-                  <div className="flex items-center justify-between p-4 bg-neutral-800 rounded-lg">
-                    <span className="text-white font-medium">Hiring Accuracy</span>
-                    <span className="text-green-400 font-bold">95%</span>
+                  <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-800 rounded-lg">
+                    <span className="text-gray-700 dark:text-white font-medium">Hiring Accuracy</span>
+                    <span className="text-green-500 font-bold">95%</span>
                   </div>
-                  <div className="flex items-center justify-between p-4 bg-neutral-800 rounded-lg">
-                    <span className="text-white font-medium">Cost Reduction</span>
-                    <span className="text-green-400 font-bold">60%</span>
+                  <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-800 rounded-lg">
+                    <span className="text-gray-700 dark:text-white font-medium">Cost Reduction</span>
+                    <span className="text-green-500 font-bold">60%</span>
                   </div>
-                  <button
-                    onClick={() => navigate("/signup")}
+                  <Button
+                  variant="primary"
+                    onClick={() => navigate("/signin")}
                     className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity duration-300"
                   >
                     Start Optimizing Your Hiring
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

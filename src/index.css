@@ -112,7 +112,8 @@
   }
  
   .fade-in {
-    animation: fadeIn ease 500ms;
+    opacity: 0;
+    animation: fadeIn 500ms ease forwards;
   }
   .translate{
     animation: fadeIn ease-in-out 700ms;
@@ -120,8 +121,8 @@
   
   
   @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% { opacity: 0; transform: translateY(7px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 
   .grid-background {
