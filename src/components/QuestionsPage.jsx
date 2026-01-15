@@ -1,34 +1,36 @@
-import React, { useEffect } from 'react'
-import { ScrollArea } from './ui/scroll-area'
-import { Button } from "@/components/ui/button"
-import {url} from '@/components/config.jsx';
-import { useState } from 'react'
-import ReactMarkdown from 'react-markdown';
-// import { useSpeechSynthesis } from 'react-speech-kit'
+import React, { useEffect } from "react";
+import { ScrollArea } from "./ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import { url } from "@/components/config.jsx";
+import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import { File,Lightbulb } from "lucide-react";
+import ApiAlert from "./ApiAlert.jsx";
 
-export default function QuestionsPage({ data }) {
-  // const { speak, cancel, speaking } = useSpeechSynthesis();
-  // const handleSpeak = (markdownText) => {
-  //   if (speaking) {
-  //     cancel();
-  //     return;
-  //   }
+export default function QuestionsPage({ data,setData }) {
 
-  //   // ReactMarkdown doesn't automatically give you plain text from a rendered component.
-  //   // The most reliable way is to pass the original string to the speak function.
-  //   speak({ text: markdownText }); 
-  //   setIsSpeaking(true);
-  // };
   const [answer, setAnswer] = useState({});
   const [visible, setVisible] = useState({});
   const [loadingId, setLoadingId] = useState(null);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    localStorage.setItem('answers', JSON.stringify(answer));
-    console.log(answer);
+    localStorage.setItem("answers", JSON.stringify(answer));
+    console.log(JSON.stringify(answer));
   }, [answer]);
   
+  useEffect(() => {
+  if (loadingId !== null) {
+    const timer = setTimeout(() => setLoading(true), 2000);
+    return () => clearTimeout(timer);
+  } else {
+    setLoading(false);
+  }
+}, [loadingId]);
+
+
   const handleGetAnswer = (id) => {
     const question = data.find((q) => q.id === id)?.question;
+    const answer = data.find((q) => q.id === id)?.answer;
     async function fetchAnswer() {
       setLoadingId(id);
       try {
@@ -37,7 +39,7 @@ export default function QuestionsPage({ data }) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ question }),
+          body: JSON.stringify({ question, answer }),
         });
 
         if (!response.ok) {
@@ -59,62 +61,105 @@ export default function QuestionsPage({ data }) {
     fetchAnswer();
   };
   const handleShowAnswer = (id) => {
-    setVisible(prev => ({ ...prev, [id]: true }));
-  }
+    setVisible((prev) => ({ ...prev, [id]: true }));
+  };
   return (
-    <div className="fade-in flex flex-col justify-center align-center mt-10 sm:mt-8 px-4 sm:px-8 py-8 lg:mt-9 ">
-      {/* <Button onClick={() => {console.log(localStorage.getItem('answers'))}}>Log Answer</Button> */}
-      <div className='flex items-center justify-between'>
-        <h1 className=" text-2xl font-semibold mb-4 text-neutral-800 dark:text-gray-100"> 🗒️ Resume based Questions</h1>
-        <Button className='bg px-4 py-2 rounded mb-4' onClick={() => {localStorage.removeItem("questions"); window.location.reload()}}>Start New Interview</Button>
+    <div className="fade-in h-[calc(100vh-64px)] flex flex-col justify-center align-center px-4 sm:px-8">
+      {loading && (<ApiAlert />)}
+      <div className="flex items-center justify-between my-2">
+        <h1 className=" text-xl font-mono tracking-tighter mb-2 my-auto text-neutral-700 dark:text-gray-300">
+          {/* <File className="inline-block mr-2 mb-1 text-indigo-400 dark:text-indigo-300" /> */}
+          Resume based Questions-
+        </h1>
+        <Button
+        variant="default"
+          className="mb-1 bg-green-600"
+          onClick={() => {
+            localStorage.removeItem("questions");
+            setData([]);
+          }}
+        >
+          Start New Interview
+        </Button>
       </div>
-
-
-  <ScrollArea className="h-[80vh] w-full p-4 rounded-lg border border-gray-200 shadow-sm bg-white dark:bg-gray-900 dark:border-gray-700">
-        <ul className="space-y-4">
+<div className="max-w-7xl">
+           <ScrollArea className="h-[78vh] w-full p-4 rounded-lg border border-gray-200 shadow-sm bg-white dark:bg-gray-900 dark:border-gray-700">
+        <ul className="space-y-4 ">
           {data.map((x) => (
-           <li key={x.id}>
-  <div className="flex items-start gap-3 p-4 rounded-md bg-white border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50 transition-colors">
-    <span className="font-bold">{x.id}.</span>
-    <div>
-      <p className="text-gray-900 dark:text-gray-200 leading-relaxed">{x.question}</p>
-      
-      {visible[x.id] && (
-        <p className="text-sm mt-1 font-semibold fade-in text-gray-500 dark:text-gray-400"><span className='text-green-600 dark:text-green-400 '>Answer: </span>{x.answer}</p>
-      )}
-      <div className="flex gap-2 mt-2">
-      <Button variant="outline" className={` text-xs ${visible[x.id] ? 'hidden' : 'block'}`} onClick={() => handleShowAnswer(x.id)}>Show AI generated answer ➤</Button>
-      {answer[x.id] ? (
-        <div className="mt-2 fade-in">
-          <h3 className="text-sm  font-semibold text-green-600 dark:text-green-400 ">New answer:</h3>
-          <div className="text-sm font-semibold leading-relaxed text-gray-500 dark:text-gray-400">
-            <ReactMarkdown>{answer[x.id]}</ReactMarkdown>
-          </div>
+            <li key={x.id}>
+              <div className="flex items-start gap-3 p-4 rounded-md bg-white border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50 transition-colors">
+                <span className="font-bold">{x.id}.</span>
+                <div>
+                  <p className="text-gray-900 dark:text-gray-200 leading-relaxed">
+                    {x.question}
+                  </p>
 
-          {/* <Button className="mt-2" onClick={() => handleSpeak(answer[x.id])}>
-        {speaking ? 'Stop Speaking' : 'Read Aloud'}
-      </Button> */}
-      
-        </div>)
-        : (
-          <>
-            <Button
-              variant="outline"
-              className={`mt-0 text-xs ${visible[x.id] ? "block" : "hidden"}`}
-              onClick={() => handleGetAnswer(x.id)}
-              disabled={loadingId === x.id}
-            >
-              {loadingId === x.id ? "Generating..." : "Generate new answer ➤"}
-            </Button>
-          </>
-        )}
-         </div>
-    </div>
-  </div>
-</li>
+                  {visible[x.id] && (
+                    <p className="text- my-4 font-semibold fade-in text-gray-500 dark:text-gray-400">
+                      <span className="text-green-600 dark:text-green-400 ">
+                        Answer:{" "}
+                      </span>
+                      {x.answer}
+                    </p>
+                  )}
+                  <div className="flex gap-2 mt-2">
+                    <Button
+                      variant="outline"
+                      className={` text-xs ${
+                        visible[x.id] ? "hidden" : "block"
+                      }`}
+                      onClick={() => handleShowAnswer(x.id)}
+                    >
+                      Show AI answer ➤
+                    </Button>
+                    
+                    {answer[x.id] ? (
+                      <div className="my-4 fade-in">
+                        {/* <h3 className="  font-semibold text-green-600 dark:text-green-400 ">
+                          New answer:
+                        </h3> */}
+                        <div className="prose dark:prose-invert max-w-none mt-2">
+                          <ReactMarkdown >{answer[x.id]}</ReactMarkdown>
+                        </div>
+
+                        {/* <Button className="mt-2" onClick={() => handleSpeak(answer[x.id])}>
+                          {speaking ? 'Stop Speaking' : 'Read Aloud'}
+                          </Button> */}
+                      </div>
+                    ) : (
+                      <div className={`flex gap-2 items-center ${visible[x.id] ? "flex" : "hidden"}`}>
+                        <Button
+                          variant="default"
+                          className="text-xs bg-blue-500 dark:text-gray-100 px-5 py-1 inline-flex justify-center items-center"
+                          onClick={() => handleGetAnswer(x.id)}
+                          disabled={loadingId === x.id}
+                        >
+                          {loadingId === x.id
+                            ? "Generating..."
+                            : (<>Explain more<Lightbulb className="w-4 h-4" /></>)}
+                        </Button>
+                        {/* <Button
+                          variant="outline"
+                          className="text-xs px-2 py-1"
+                          onClick={() => handleGetAnswer(x.id)}
+                          disabled={loadingId === x.id}
+                        >
+                          {loadingId === x.id
+                            ? "Generating..."
+                            : "Generate new answer ➤"}
+                        </Button> */}
+                        
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </li>
           ))}
         </ul>
       </ScrollArea>
+</div>
+     
     </div>
-  )
+  );
 }

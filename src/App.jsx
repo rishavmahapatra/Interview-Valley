@@ -1,25 +1,29 @@
 // src/App.js
-import React, { useEffect, useState } from "react";
+import React, {lazy, Suspense, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
+import MainLayout from "./layout/MainLayout.jsx";
 import Upload from "./components/Upload.jsx";
 import Landing from "./components/Landing.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Chat from "./components/Chat.jsx";
 import { ThemeProvider } from "@/components/theme-provider";
-import Home from "./components/Home.jsx";
+// import Home from "./components/Home.jsx";
 import { SignUp } from "./components/SignUp.jsx";
 import { SignIn } from "./components/SignIn.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Land from "./components/Land.jsx";
+import Error from "./components/Error.jsx";
 import { ModeToggle } from "./components/mode-toggle.jsx";
 import SidebarLayout from "./components/SidebarLayout.jsx";
 import { OtpVerification } from "./components/OtpVerification.jsx";
 import FeatureCard from "./components/FeatureCard.jsx";
+
+const Home = lazy(() => import("./components/Home.jsx"));
 
 function App() {
 const [isAuthenticated, setIsAuthenticated] = useState(() => !!localStorage.getItem("user"));
@@ -61,11 +65,6 @@ useEffect(() => {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <GoogleOAuthProvider clientId="750789723123-1sd7uafuq4nrr52b3dm7lk5dhgmf7vn5.apps.googleusercontent.com">
         <Router>
-          <Navbar
-            onLogout={handleLogout}
-            user={user}
-            authenticated={isAuthenticated}
-          />
           <div className="dark:grid-background "></div>
           <div className="opacity-50 dark:grid-background "></div>
           <div
@@ -89,12 +88,14 @@ useEffect(() => {
             }}
           ></div>
           <Routes>
+             <Route element={<MainLayout onLogout={handleLogout}
+            user={user}
+            authenticated={isAuthenticated} />}>
             <Route
               path="/"
-              element={isAuthenticated ? <Navigate to="/home" /> : <Land />}
+              // element={isAuthenticated ? <Navigate to="/home" /> : <Land />}
+              element={<Land />}
             />
-            <Route path="*" element={<Navigate to="/" />} />
-
             <Route
               path="/signin"
               element={
@@ -105,24 +106,14 @@ useEffect(() => {
                 )
               }
             />
-
             <Route
               path="/home"
-              element={
-                isAuthenticated ? (
-                  <SidebarLayout
-                    user={user}
-                    authenticated={isAuthenticated}
-                    onLogout={handleLogout}
-                  >
-                    <Home user={setUser} />
-                  </SidebarLayout>
-                ) : (
-                  <Navigate to="/" />
-                )
-              }
+              element={ 
+              <Suspense fallback={<div>Loading...</div>}>
+              <Home user={setUser} />
+              </Suspense>}
             />
-            <Route
+            {/* <Route
               path="/l"
               element={
                 isAuthenticated ? (
@@ -137,7 +128,10 @@ useEffect(() => {
                   <Navigate to="/signin" />
                 )
               }
-            />
+            /> */}
+            <Route path="*" element={<Error />} />
+            </Route>
+             
           </Routes>
         </Router>
       </GoogleOAuthProvider>

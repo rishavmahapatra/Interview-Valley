@@ -108,9 +108,12 @@
     margin: 0;
     padding: 0;
     @apply bg-background text-foreground;
-    
+    scroll-behavior:smooth
   }
- 
+  .fade-inn {
+    opacity: 0;
+    animation: fadeIn 1000ms ease forwards;
+  }
   .fade-in {
     opacity: 0;
     animation: fadeIn 500ms ease forwards;
@@ -119,8 +122,11 @@
     animation: fadeIn ease-in-out 700ms;
   }
   
-  
   @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+  @keyframes fadeInn {
     0% { opacity: 0; transform: translateY(7px); }
     100% { opacity: 1; transform: translateY(0); }
   }

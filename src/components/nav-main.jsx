@@ -22,7 +22,7 @@ export function NavMain({
   items,
 }) {
   return (
-    <SidebarGroup className="mt-10 ">
+    <SidebarGroup className="mt-10">
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible

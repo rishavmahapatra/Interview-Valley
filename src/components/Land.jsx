@@ -8,29 +8,32 @@ export default function Land() {
   const navigate = useNavigate();
 
   return (
-    <div className="relative">
-    
-     
-      <div className="h-[90vh] container pt-72 flex max-w-[64rem] flex-col items-center gap-4 text-center">
-        {/* <a class="rounded-2xl border shadow-md bg-muted px-4 py-1.5 text-sm font-medium" target="_blank" href="https://www.buymeacoffee.com/sanketbagad">Buy me a coffee🍻</a> */}
-        <h1 className="font-bold  text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-         Prepare Smarter,<br/><span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">Land the Job Faster</span>
+    <div>
+      <div className="md:min-h-[calc(100vh-64px)] container fade-inn flex max-w-[64rem] flex-col justify-center items-center gap-4 text-center">
+        <section id="hero" className="py-20 ">
+          <h1 className="font-bold fade-inn text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
+          Prepare Smarter,
+          <br />
+          <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">
+            Land the Job Faster
+          </span>
         </h1>
         <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          A quick way to prepare for your next interview. Practice key questions, get insights about your answers, and get more comfortable interviewing.
+          A quick way to prepare for your next interview. Practice key
+          questions, get insights about your answers, and get more comfortable
+          interviewing.
         </p>
         <div className="space-x-4 space-y-4">
-          
           <Button
-                className="my-8 px-8 z-50 bg-primary font-medium rounded-md h-11 text-sm transition-all duration-300 transform hover:scale-105"
-                onClick={() => navigate("/signin")}
-              >
-               <Bot className="mr-2" />
-               Get Started for Free
-              </Button>
+            className="my-8 px-8 z-50 bg-primary font-medium rounded-md h-11 text-sm transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/home")}
+          >
+            <Bot className="mr-2" />
+            Get Started for Free
+          </Button>
         </div>
+        </section>
       </div>
-     
 
       <FeatureCard />
 
@@ -230,19 +233,25 @@ export default function Land() {
               <div className="relative bg-white dark:bg-neutral-900 p-8 rounded-2xl border border-gray-200 dark:border-neutral-700 shadow-md">
                 <div className="space-y-6">
                   <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-800 rounded-lg">
-                    <span className="text-gray-700 dark:text-white font-medium">Time Saved</span>
+                    <span className="text-gray-700 dark:text-white font-medium">
+                      Time Saved
+                    </span>
                     <span className="text-green-500 font-bold">80%</span>
                   </div>
                   <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-800 rounded-lg">
-                    <span className="text-gray-700 dark:text-white font-medium">Hiring Accuracy</span>
+                    <span className="text-gray-700 dark:text-white font-medium">
+                      Hiring Accuracy
+                    </span>
                     <span className="text-green-500 font-bold">95%</span>
                   </div>
                   <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-800 rounded-lg">
-                    <span className="text-gray-700 dark:text-white font-medium">Cost Reduction</span>
+                    <span className="text-gray-700 dark:text-white font-medium">
+                      Cost Reduction
+                    </span>
                     <span className="text-green-500 font-bold">60%</span>
                   </div>
                   <Button
-                  variant="primary"
+                    variant="primary"
                     onClick={() => navigate("/signin")}
                     className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity duration-300"
                   >
@@ -253,18 +262,18 @@ export default function Land() {
             </div>
           </div>
         </div>
-          <div
-        style={{
-          backgroundImage: 'url("https://assets.dub.co/misc/grid.svg")',
-          position: "absolute",
-          zIndex: -1,
-          width: "100%",
-          height: "100%",
-          top: 0,
-          opacity: 0.3,
-          filter: "invert(1)",
-        }}
-      ></div>
+        <div
+          style={{
+            backgroundImage: 'url("https://assets.dub.co/misc/grid.svg")',
+            position: "absolute",
+            zIndex: -1,
+            width: "100%",
+            height: "100%",
+            top: 0,
+            opacity: 0.3,
+            filter: "invert(1)",
+          }}
+        ></div>
       </section>
       <Footer1 />
     </div>

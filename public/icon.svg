@@ -1,0 +1,13 @@
+<svg viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="gradFull" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#66A3FF"/>
+      <stop offset="50%" stop-color="#A580FF"/>
+      <stop offset="100%" stop-color="#FF82B2"/>
+    </linearGradient>
+  </defs>
+  <!-- clipped + scaled version, thickened to survive -->
+  <circle cx="48" cy="32" r="18" fill="url(#gradFull)" />
+  <rect x="40" y="52" width="16" height="56" rx="4" fill="url(#gradFull)"/>
+  <path d="M64 52 L92 108 L120 52" fill="url(#gradFull)" />
+</svg>
