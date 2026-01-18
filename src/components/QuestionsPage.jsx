@@ -67,13 +67,13 @@ export default function QuestionsPage({ data,setData }) {
     <div className="fade-in h-[calc(100vh-64px)] flex flex-col justify-center align-center px-4 sm:px-8">
       {loading && (<ApiAlert />)}
       <div className="flex items-center justify-between my-2">
-        <h1 className=" text-xl font-mono tracking-tighter mb-2 my-auto text-neutral-700 dark:text-gray-300">
+        <h1 className=" text-xl mb-2 my-auto text-neutral-700 dark:text-gray-300">
           {/* <File className="inline-block mr-2 mb-1 text-indigo-400 dark:text-indigo-300" /> */}
-          Resume based Questions-
+          🧾 Resume based Questions-
         </h1>
         <Button
         variant="default"
-          className="mb-1 bg-green-600"
+          className="mb-1"
           onClick={() => {
             localStorage.removeItem("questions");
             setData([]);
@@ -104,8 +104,8 @@ export default function QuestionsPage({ data,setData }) {
                   )}
                   <div className="flex gap-2 mt-2">
                     <Button
-                      variant="outline"
-                      className={` text-xs ${
+                      variant="default"
+                      className={`bg-blue-500 dark:text-neutral-50 dark:bg-blue-500 hover:bg-blue-500/90 hover:dark:bg-blue-600 text-xs ${
                         visible[x.id] ? "hidden" : "block"
                       }`}
                       onClick={() => handleShowAnswer(x.id)}
@@ -130,7 +130,7 @@ export default function QuestionsPage({ data,setData }) {
                       <div className={`flex gap-2 items-center ${visible[x.id] ? "flex" : "hidden"}`}>
                         <Button
                           variant="default"
-                          className="text-xs bg-blue-500 dark:text-gray-100 px-5 py-1 inline-flex justify-center items-center"
+                          className="text-xs px-5 py-1 inline-flex justify-center items-center"
                           onClick={() => handleGetAnswer(x.id)}
                           disabled={loadingId === x.id}
                         >

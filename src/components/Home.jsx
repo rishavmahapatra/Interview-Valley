@@ -117,12 +117,6 @@ export default function Home({ user = "Interviewer" }) {
   return (
     <section id="home">
       <div className="2xl:max-w-7xl h-[calc(100vh-64px)] sm:h-auto lg:h-full lg:min-h-[calc(100vh-64px)] w-full items-between justify-center mx-auto flex ">
-        {/* <div className=" px-4 lg:w-80 border-r border-neutral-900 dark:bg-black  h-52 lg:h-auto lg:mt-16 flex flex-col lg:space-y-14 lg:items-start lg:justify-start">
-          <h1 className="lg:my-6 my-2 dark:text-neutral-200 px-2 antialiased lg:text-xl">
-            Welcome {localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).given_name : user}!
-          </h1>
-          <RecentInterview />
-        </div> */}
         {data?.length === 0 ? (
           <div className="w-full relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-5 items-center">
             {/* <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-bold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent text-black bg-black/60 dark:bg-gradient-to-b from-neutral-50 to-neutral-600"> */}
@@ -147,67 +141,7 @@ export default function Home({ user = "Interviewer" }) {
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-[390px] sm:max-w-[425px]">
-                {/* <DialogHeader>
-                  <DialogTitle>Enter Interviewee details</DialogTitle>
-                </DialogHeader> */}
                 <div className="grid gap-2 py-4">
-                  {/* <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="interviewee_fname" className="text-right">
-                      First Name
-                    </Label>
-                    <Input
-                      id="interviewee_fname"
-                      placeholder="*required"
-                      className="col-span-3"
-                      onChange={(e) => setFirstName(e.target.value)}
-                      
-                    />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="interviewee_lname" className="text-right">
-                      Last Name
-                    </Label>
-                    <Input
-                      id="interviewee_lname"
-                      placeholder=" optional"
-                      className="col-span-3"
-                      onChange={(e) => setLastName(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="interviewee_email" className="text-right">
-                      Email Id
-                    </Label>
-                    <Input
-                      id="interviewee_email"
-                      placeholder=" optional"
-                      className="col-span-3"
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="interviewee_phone" className="text-right">
-                      Phone No
-                    </Label>
-                    <Input
-                      id="interviewee_phone"
-                      placeholder=" optional"
-                      className="col-span-3"
-                      onChange={(e) => setPhone(e.target.value)}
-                    />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="interviewee_company" className="text-right">
-                      Company
-                    </Label>
-                    <Input
-                      id="interviewee_company"
-                      placeholder=" optional"
-                      className="col-span-3"
-                      onChange={(e) => setCompany(e.target.value)}
-                    />
-                  </div> */}
                   <DialogHeader className="my-4 mx-auto">
                     <DialogTitle>Upload Resume or Job Description</DialogTitle>
                   </DialogHeader>
