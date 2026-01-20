@@ -71,8 +71,14 @@ export default function QuestionsPage({ data,setData }) {
           {/* <File className="inline-block mr-2 mb-1 text-indigo-400 dark:text-indigo-300" /> */}
           🧾 Resume based Questions-
         </h1>
+     < div> 
+     <Button variant="ghost" className="mb-1" download>
+        <a href={`${url}/view/696ec0db740876007820d083`}  target="_blank">
+        <File className="mr-2 mb-1 inline-block text-indigo-400 dark:text-indigo-300" />Downaload Resume
+        </a>
+        </Button> 
         <Button
-        variant="default"
+        variant="ghost"
           className="mb-1"
           onClick={() => {
             localStorage.removeItem("questions");
@@ -80,7 +86,7 @@ export default function QuestionsPage({ data,setData }) {
           }}
         >
           Start New Interview
-        </Button>
+        </Button></div>
       </div>
 <div className="max-w-7xl">
            <ScrollArea className="h-[78vh] w-full p-4 rounded-lg border border-gray-200 shadow-sm bg-white dark:bg-gray-900 dark:border-gray-700">

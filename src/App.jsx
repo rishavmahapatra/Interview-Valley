@@ -113,6 +113,7 @@ useEffect(() => {
               <Home user={setUser} />
               </Suspense>}
             />
+            <Route path="/demo" element={<Chat />} />
             {/* <Route
               path="/l"
               element={
