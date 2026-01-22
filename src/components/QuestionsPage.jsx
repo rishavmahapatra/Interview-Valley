@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { url } from "@/components/config.jsx";
-import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { File,Lightbulb } from "lucide-react";
 import ApiAlert from "./ApiAlert.jsx";
@@ -73,7 +72,7 @@ export default function QuestionsPage({ data,setData }) {
         </h1>
      < div> 
      <Button variant="ghost" className="mb-1" download>
-        <a href={`${url}/view/696ec0db740876007820d083`}  target="_blank">
+        <a href={`${url}/download/696ec0db740876007820d083`}  target="_blank">
         <File className="mr-2 mb-1 inline-block text-indigo-400 dark:text-indigo-300" />Downaload Resume
         </a>
         </Button> 
