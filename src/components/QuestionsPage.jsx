@@ -63,12 +63,13 @@ export default function QuestionsPage({ data,setData }) {
     setVisible((prev) => ({ ...prev, [id]: true }));
   };
   return (
-    <div className="fade-in h-[calc(100vh-64px)] flex flex-col justify-center align-center px-4 sm:px-8">
+    <div className="fade-in h-[calc(100vh-64px)] flex flex-col justify-center align-center px-4 sm:px-8 -translate-y-1">
       {loading && (<ApiAlert />)}
       <div className="flex items-center justify-between my-2">
-        <h1 className=" text-xl mb-2 my-auto text-neutral-700 dark:text-gray-300">
+         {/* text-neutral-700 dark:text-gray-300 🧾*/}
+        <h1 className="text-xl mb-2 my-auto">
           {/* <File className="inline-block mr-2 mb-1 text-indigo-400 dark:text-indigo-300" /> */}
-          🧾 Resume based Questions-
+           🧾 Resume based Questions
         </h1>
      < div> 
      <Button variant="ghost" className="mb-1" download>
@@ -80,6 +81,15 @@ export default function QuestionsPage({ data,setData }) {
         variant="ghost"
           className="mb-1"
           onClick={() => {
+            setData([]);
+          }}
+        >
+          View Previous Interviews
+        </Button>
+        <Button
+        variant="ghost"
+          className="mb-1 hover:scale-105 transition-all duration-300"
+          onClick={() => {
             localStorage.removeItem("questions");
             setData([]);
           }}
@@ -88,11 +98,11 @@ export default function QuestionsPage({ data,setData }) {
         </Button></div>
       </div>
 <div className="max-w-7xl">
-           <ScrollArea className="h-[78vh] w-full p-4 rounded-lg border border-gray-200 shadow-sm bg-white dark:bg-gray-900 dark:border-gray-700">
+           <ScrollArea className="h-[78vh] w-full p-4 rounded-lg border border-gray-200 shadow-sm bg-white dark:bg-gray-950 dark:border-gray-700">
         <ul className="space-y-4 ">
           {data.map((x) => (
             <li key={x.id}>
-              <div className="flex items-start gap-3 p-4 rounded-md bg-white border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700/50 transition-colors">
+              <div className="flex items-start gap-3 p-4 rounded-md bg-white border border-gray-200 hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-800 dark:hover:bg-gray-900/75 transition-colors">
                 <span className="font-bold">{x.id}.</span>
                 <div>
                   <p className="text-gray-900 dark:text-gray-200 leading-relaxed">
@@ -110,7 +120,9 @@ export default function QuestionsPage({ data,setData }) {
                   <div className="flex gap-2 mt-2">
                     <Button
                       variant="default"
-                      className={`bg-blue-500 dark:text-neutral-50 dark:bg-blue-500 hover:bg-blue-500/90 hover:dark:bg-blue-600 text-xs ${
+                      className={`
+                        // bg-blue-500 dark:text-neutral-50 dark:bg-blue-600 hover:bg-blue-500/90 hover:dark:bg-blue-600/90
+                        text-xs ${
                         visible[x.id] ? "hidden" : "block"
                       }`}
                       onClick={() => handleShowAnswer(x.id)}
@@ -134,14 +146,14 @@ export default function QuestionsPage({ data,setData }) {
                     ) : (
                       <div className={`flex gap-2 items-center ${visible[x.id] ? "flex" : "hidden"}`}>
                         <Button
-                          variant="default"
+                          variant="outline"
                           className="text-xs px-5 py-1 inline-flex justify-center items-center"
                           onClick={() => handleGetAnswer(x.id)}
                           disabled={loadingId === x.id}
                         >
                           {loadingId === x.id
-                            ? "Generating..."
-                            : (<>Explain more<Lightbulb className="w-4 h-4" /></>)}
+                            ? "Diving Deep..."
+                            : (<>Dive Deep<Lightbulb className="w-4 h-4 text-yellow-500 dark:text-yellow-300" /></>)}
                         </Button>
                         {/* <Button
                           variant="outline"

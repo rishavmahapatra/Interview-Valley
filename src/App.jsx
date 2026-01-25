@@ -1,5 +1,5 @@
 // src/App.js
-import React, {lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -26,7 +26,9 @@ import FeatureCard from "./components/FeatureCard.jsx";
 const Home = lazy(() => import("./components/Home.jsx"));
 
 function App() {
-const [isAuthenticated, setIsAuthenticated] = useState(() => !!localStorage.getItem("user"));
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    () => !!localStorage.getItem("user"),
+  );
   const [questions, setQuestions] = useState([]);
   const [interviewId, setInterviewId] = useState("");
   const [user, setUser] = useState();
@@ -38,7 +40,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(() => !!localStorage.getI
     setIsAuthenticated(false);
     localStorage.removeItem("access_token");
     localStorage.removeItem("questions");
-    localStorage.removeItem("user");  
+    localStorage.removeItem("user");
     console.log("Logout");
   };
   const handleUpload = (questions, interviewId) => {
@@ -46,7 +48,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(() => !!localStorage.getI
     setInterviewId(interviewId);
   };
   const token = localStorage.getItem("user");
-  
+
   useEffect(() => {
     localStorage.getItem("user") || token
       ? (console.log("User found"),
@@ -58,11 +60,11 @@ const [isAuthenticated, setIsAuthenticated] = useState(() => !!localStorage.getI
     //   // handleLogout()
     // }
   }, [token]);
-useEffect(() => {
+  useEffect(() => {
     console.log("isAuthenticated: ", isAuthenticated);
   }, [isAuthenticated]);
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <GoogleOAuthProvider clientId="750789723123-1sd7uafuq4nrr52b3dm7lk5dhgmf7vn5.apps.googleusercontent.com">
         <Router>
           <div className="dark:grid-background "></div>
@@ -88,14 +90,6 @@ useEffect(() => {
             }}
           ></div>
           <Routes>
-             <Route element={<MainLayout onLogout={handleLogout}
-            user={user}
-            authenticated={isAuthenticated} />}>
-            <Route
-              path="/"
-              // element={isAuthenticated ? <Navigate to="/home" /> : <Land />}
-              element={<Land />}
-            />
             <Route
               path="/signin"
               element={
@@ -107,14 +101,30 @@ useEffect(() => {
               }
             />
             <Route
-              path="/home"
-              element={ 
-              <Suspense fallback={<div>Loading...</div>}>
-              <Home user={setUser} />
-              </Suspense>}
-            />
-            <Route path="/demo" element={<Chat />} />
-            {/* <Route
+              element={
+                <MainLayout
+                  onLogout={handleLogout}
+                  user={user}
+                  authenticated={isAuthenticated}
+                />
+              }
+            >
+              <Route
+                path="/"
+                // element={isAuthenticated ? <Navigate to="/home" /> : <Land />}
+                element={<Land />}
+              />
+
+              <Route
+                path="/home"
+                element={
+                  <Suspense fallback={<div></div>}>
+                    <Home user={setUser} />
+                  </Suspense>
+                }
+              />
+              <Route path="/demo" element={<Chat />} />
+              {/* <Route
               path="/l"
               element={
                 isAuthenticated ? (
@@ -130,9 +140,8 @@ useEffect(() => {
                 )
               }
             /> */}
-            <Route path="*" element={<Error />} />
+              <Route path="*" element={<Error />} />
             </Route>
-             
           </Routes>
         </Router>
       </GoogleOAuthProvider>

@@ -121,31 +121,27 @@ export default function Home({ user = "Interviewer" }) {
           <div className="w-full relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-5 items-center">
             {/* <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-bold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent text-black bg-black/60 dark:bg-gradient-to-b from-neutral-50 to-neutral-600"> */}
             <p
-              className="text-3xl fade-in py-2 sm:text-5xl font-bold text-center tracking-tight bg-clip-text text-transparent
-              bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:bg-gradient-to-b
+              className="text-3xl fade-in py-2 sm:text-5xl font-semibold text-center bg-clip-text text-transparent
+              bg-gradient-to-br from-slate-800 via-slate-700 to-slate-400 
               dark:from-slate-200 dark:via-slate-300 dark:to-slate-600"
+              //  dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d]
             >
-              First step towards the{" "}
-              <span className="line-through decoration-2 decoration-[#245395] dark:decoration-gray-500 dark:bg-clip-text dark:text-transparent">
-                {/* <span className="line-through decoration-2 decoration-accent-foreground bg-clip-text text-transparent"> */}
-                lazy
-              </span>{" "}
-              SMART interview!
+              First step towards the <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d]">SMART interview</span><span className="text-yellow-500">✨</span>
             </p>
 
             <Dialog>
               <DialogTrigger asChild>
-                <Button className="fade-inn my-4 px-6 z-50 bg-primary font-medium rounded-md h-11 text-sm transition-all duration-300 transform hover:scale-105">
-                   <Upload className="mr-1" />
-                  Upload Resume or Job Description
+                <Button variant="ghost" className="fade-inn my-4 px-6 z-50 font-medium rounded-full drop-shadow-sm  h-11 text-sm transition-all duration-300 transform hover:scale-105">
+                   <Upload className="mr-1 " />
+                  Upload your resume or job description and let AI generate tailored interview Q&A
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-[390px] sm:max-w-[425px]">
-                <div className="grid gap-2 py-4">
-                  <DialogHeader className="my-4 mx-auto">
-                    <DialogTitle>Upload Resume or Job Description</DialogTitle>
+                <div className="py-4">
+                  <DialogHeader className="mb-4">
+                    <DialogTitle className="mx-auto my-3">Upload Resume or Job Description</DialogTitle>
                   </DialogHeader>
-                  <div className="grid grid-cols-4 items-center justify-between gap-4">
+                  <div className="grid grid-cols-4 items-center justify-between gap-2">
                     <Label htmlFor="resume" className="text-right">
                       Resume
                     </Label>
@@ -157,10 +153,10 @@ export default function Home({ user = "Interviewer" }) {
                       required
                     />
                   </div>
-                  <DialogDescription className="text-center m-0 p-0 gap-0">
+                  <DialogDescription className="text-center gap-0">
                     or
                   </DialogDescription>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                  <div className="grid grid-cols-4 items-center gap-2">
                     <Label htmlFor="jd" className="text-right">
                       Job Desc
                     </Label>
@@ -172,12 +168,12 @@ export default function Home({ user = "Interviewer" }) {
                     />
                   </div>
                 </div>
-                <DialogFooter>
-                  <Button type="submit" className=" lg:w-" onClick={handleSubmit}>
+                {/* <DialogFooter> */}
+                  <Button type="submit" className="w-fit mx-auto " onClick={handleSubmit} disabled={!resume || !jobDescription}>
                     {loading ? "Loading..." : `Start Interview `}{" "}
                     {/* Show loading state */}
                   </Button>
-                </DialogFooter>
+                {/* </DialogFooter> */}
               </DialogContent>
             </Dialog>
           </div>
