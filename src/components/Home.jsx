@@ -131,7 +131,7 @@ export default function Home({ user = "Interviewer" }) {
 
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="ghost" className="fade-inn my-4 px-6 z-50 font-medium rounded-full drop-shadow-sm  h-11 text-sm transition-all duration-300 transform hover:scale-105">
+                <Button variant="ghost" className="fade-inn my-4 px-6 z-50 rounded-full drop-shadow-sm text-md h-11 transition-all duration-300 transform hover:scale-105">
                    <Upload className="mr-1 " />
                   Upload your resume or job description and let AI generate tailored interview Q&A
                 </Button>
@@ -141,19 +141,19 @@ export default function Home({ user = "Interviewer" }) {
                   <DialogHeader className="mb-4">
                     <DialogTitle className="mx-auto my-3">Upload Resume or Job Description</DialogTitle>
                   </DialogHeader>
-                  <div className="grid grid-cols-4 items-center justify-between gap-2">
+                  {/* <div className="grid grid-cols-4 items-center justify-between gap-2">
                     <Label htmlFor="resume" className="text-right">
                       Resume
-                    </Label>
+                    </Label> */}
                     <Input
                       id="resume"
                       type="file"
-                      className="file:text-muted-foreground col-span-3"
+                      className="file:mr-4 file:px-4 file:border-0 file:rounded-md file:bg-muted file:text-foreground"
                       onChange={(e) => setResume(e.target.files[0])}
                       required
                     />
-                  </div>
-                  <DialogDescription className="text-center gap-0">
+                  {/* </div> */}
+                  {/* <DialogDescription className="text-center gap-0">
                     or
                   </DialogDescription>
                   <div className="grid grid-cols-4 items-center gap-2">
@@ -166,10 +166,10 @@ export default function Home({ user = "Interviewer" }) {
                       className="file:text-muted-foreground col-span-3"
                       onChange={(e) => setJobDescription(e.target.files[0])}
                     />
-                  </div>
+                  </div> */}
                 </div>
                 {/* <DialogFooter> */}
-                  <Button type="submit" className="w-fit mx-auto " onClick={handleSubmit} disabled={!resume || !jobDescription}>
+                  <Button type="submit" className="w-fit mx-auto " onClick={handleSubmit}>
                     {loading ? "Loading..." : `Start Interview `}{" "}
                     {/* Show loading state */}
                   </Button>

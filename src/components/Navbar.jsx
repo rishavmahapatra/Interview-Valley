@@ -73,8 +73,9 @@ const [scrolled, setScrolled] = useState(false);
           <div className="flex flex-1 space-x-48 xl:space-x-72 items-center justify-center sm:items-stretch sm:justify-start">
             {/* text-2xl text-primary font-bold */}
             <div  className="flex-shrink-0">
-             <Link to="/" className="montserrat-alternates-regular text-2xl font-extrabold antialiased relative text-gray-700 dark:text-gray-300 shadow-white">
-              interview <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">valley</span>
+             <Link to="/" className="montserrat-alternates-regular text-xl antialiased relative text-gray-700 dark:text-gray-300 shadow-white">
+              {/* interview valley */}
+              <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text font-bold">interview valley</span>
             </Link>
           </div>
             <div className="hidden sm:ml-6 sm:block">
