@@ -2,7 +2,7 @@
 import FeatureCard from "./FeatureCard";
 import Footer1 from "./Footer1";
 import { Button } from "./ui/button";
-import { Bot } from "lucide-react";
+import { Zap, CircleCheckBig } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 export default function Land() {
   const navigate = useNavigate();
@@ -10,28 +10,44 @@ export default function Land() {
   return (
     <div>
       <div className="md:min-h-[calc(100vh-64px)] container fade-inn flex max-w-[64rem] flex-col justify-center items-center gap-4 text-center">
-        <section id="hero" className="py-20 ">
+        <section id="hero">
           <h1 className="font-bold fade-inn text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-          Prepare Smarter,
-          <br />
-          <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">
-            Land the Job Faster
-          </span>
-        </h1>
-        <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          A quick way to prepare for your next interview. Practice key
-          questions, get insights about your answers, and get more comfortable
-          interviewing.
-        </p>
-        <div className="space-x-4 space-y-4">
-          <Button
-            className="my-8 px-8 z-50 bg-primary font-medium rounded-md h-11 text-sm transition-all duration-300 transform hover:scale-105"
-            onClick={() => navigate("/home")}
-          >
-            <Bot className="mr-2" />
-            Get Started for Free
-          </Button>
-        </div>
+            Prepare Smarter,
+            <br />
+            <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">
+              Land the Job Faster 
+            </span>
+          </h1>
+          <p className="max-w-[42rem] leading-normal text-gray-700 dark:text-gray-300 sm:text-xl ">
+            A quick way to prepare for your next interview. Practice key
+            questions, get insights about your answers, and get more comfortable
+            interviewing.
+          </p>
+          <div className="space-x-4 space-y-4">
+            <Button
+              className="my-8 px-8 z-50 font-medium rounded-md h-11 text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl"
+              onClick={() => navigate("/home")}
+            >
+              <Zap />
+              Get Started for Free
+            </Button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mt-4 text-lg text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <CircleCheckBig className="h-4 w-4 text-green-500" />
+                <span>100% Free Forever</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <CircleCheckBig className="h-4 w-4 text-green-500" />
+                <span>Quick sign-in with Google</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <CircleCheckBig className="h-4 w-4 text-green-500" />
+                <span>Instant results</span>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
 
@@ -54,7 +70,7 @@ export default function Land() {
             <div className="hidden lg:block absolute left-1/2 top-24 bottom-24 w-0.5 bg-gradient-to-b from-[#3980e3] via-[#d280eb] to-[#ea645d] -translate-x-1/2"></div>
 
             {/* <!-- Step 1 --> */}
-            <div className="relative lg:grid lg:grid-cols-2 gap-8 items-center mb-20 group">
+            <div className="relative lg:grid lg:grid-cols-2 gap-8 items-center mb-10 group">
               <div className="lg:text-right">
                 <div className="bg-white/60 dark:bg-neutral-800 p-8 rounded-2xl border hover:border-indigo-500 transition-all duration-300">
                   <span className="inline-block bg-indigo-600/20 text-indigo-400 text-sm font-semibold px-3 py-1 rounded-full mb-4">
@@ -74,7 +90,7 @@ export default function Land() {
             </div>
 
             {/* <!-- Step 2 --> */}
-            <div className="relative lg:grid lg:grid-cols-2 gap-8 items-center mb-20 group">
+            <div className="relative lg:grid lg:grid-cols-2 gap-8 items-center mb-10 group">
               <div className="hidden lg:block w-20"></div>
               <div>
                 <div className="bg-white/60 dark:bg-neutral-800 p-8 rounded-2xl border hover:border-indigo-500 transition-all duration-300">
@@ -251,9 +267,8 @@ export default function Land() {
                     <span className="text-green-500 font-bold">60%</span>
                   </div>
                   <Button
-                    variant="primary"
                     onClick={() => navigate("/signin")}
-                    className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity duration-300"
+                    className="w-full py-4 bg-gradient-to-r text-white font-medium rounded-lg hover:opacity-90 transition-opacity duration-300"
                   >
                     Start Optimizing Your Hiring
                   </Button>
