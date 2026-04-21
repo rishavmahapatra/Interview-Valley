@@ -14,6 +14,14 @@
   font-style: normal;
 }
 
+.font-body {
+  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+}
+
+.font-display {
+  font-family: "Fraunces", "Space Grotesk", system-ui, -apple-system, sans-serif;
+}
+
 
 @layer base {
   :root {
@@ -108,6 +116,7 @@
     margin: 0;
     padding: 0;
     @apply bg-background text-foreground;
+    font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
     scroll-behavior:smooth
   }
   .fade-inn {
@@ -129,6 +138,78 @@
   @keyframes fadeInn {
     0% { opacity: 0; transform: translateY(7px); }
     100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes floatSlow {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+
+  @keyframes heroTilt {
+    0% {
+      opacity: 0; transform: translateX(-100px);
+    }
+    /* 50% {
+      transform: translateY(-50px) rotateX(0deg);
+    } */
+    100% {
+      opacity: 100; transform: translateY(0) rotateX(1.5deg);
+    }
+  }
+
+  .float-slow {
+    animation: floatSlow 9s ease-in-out infinite;
+  }
+
+  .scene-3d {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+
+  .hero-device-3d {
+    transform-style: preserve-3d;
+    animation: heroTilt 500ms ease;
+    will-change: transform;
+  }
+
+  .hero-device-3d:hover {
+    animation-play-state: paused;
+    transform: translateY(-8px) rotateX(0deg);
+  }
+
+  .panel-3d {
+    transform-style: preserve-3d;
+    box-shadow:
+      0 18px 42px rgba(15, 23, 42, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  }
+
+  .hover-lift-3d {
+    transform-style: preserve-3d;
+    transition:
+      transform 300ms ease,
+      box-shadow 300ms ease,
+      border-color 300ms ease,
+      background-color 300ms ease;
+  }
+
+  .hover-lift-3d:hover {
+    transform: translateY(-6px) rotateX(1deg);
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .float-slow,
+    .hero-device-3d {
+      animation: none;
+    }
+
+    .hero-device-3d,
+    .hero-device-3d:hover,
+    .hover-lift-3d:hover {
+      transform: none;
+    }
   }
 
   .grid-background {

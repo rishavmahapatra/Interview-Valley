@@ -1,143 +1,97 @@
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { url } from "@/components/config.jsx";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+/* eslint-disable react/prop-types */
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-
-export const description =
-  "A login form with email and password. There's a link to sign up if you don't have an account.";
+import { ArrowLeft, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function SignIn({ onLogin, user }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    setLoading(true);
-    // Prepare the data as URL-encoded
-    const formBody = new URLSearchParams();
-    // formBody.append("grant_type", "password");
-    formBody.append("email", username);
-    formBody.append("password", password);
-    // formBody.append("scope", "");
-    // formBody.append("client_id", "string");
-    // formBody.append("client_secret", "string");
-
-    try {
-      const response = await fetch(`${url}/signin`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: formBody.toString(), // Send the form data as a string
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Success:", result);
-
-        // Store the access token
-        localStorage.setItem("access_token", result.name);
-
-        // Call the onLogin function and pass the username
-        onLogin();
-        user(username);
-      } else {
-        const errorText = await response.text();
-        console.error("Error response:", errorText);
-        alert("Login failed. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error caught:", error);
-      alert("An error occurred. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
   return (
-    <div className="flex justify-center items-center h-screen">
-      <Card className="fade-in mx-auto p-px text-center max-w-sm w-full">
-        <CardHeader className="flex flex-col items-center">
-          <div className="montserrat-alternates-regular antialiased text-md">interview <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text ">valley</span></div>
-          <CardTitle className="text-2xl font-medium py-2">Login or Create Account</CardTitle>
-          <CardDescription  className="pb-3">
-            Your current chat history on this device will be saved to your new
-            account and sync across devices
-          </CardDescription>
-    
-        {/* <CardContent className="pb-10 mx-auto w-[360px] text-center"> */}
-            <GoogleLogin
-          className="w-full"
-          onSuccess={(credentialResponse) => {
-            const decoded = jwtDecode(credentialResponse.credential);
-            localStorage.setItem("user", JSON.stringify(decoded));
-            console.log(localStorage.getItem("user"));
-            user(decoded);
-            onLogin();
-          }}
-          onError={() => {
-            console.log("Login Failed");
-          }}
-        />
-        {/* <button className="bg-white">gfhg</button> */}
-            </CardHeader>
-          {/* <div className="grid gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="m@example.com"
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-                <Link
-                  href="#"
-                  className="ml-auto inline-block text-sm underline"
-                >
-                  Forgot your password?
-                </Link>
+    <main className="min-h-screen bg-[#f7f4eb] px-4 py-10 text-zinc-950 dark:bg-zinc-950 dark:text-white sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-6xl items-center justify-center">
+        <div className="grid w-full overflow-hidden rounded-lg border border-zinc-900/10 bg-white shadow-2xl shadow-zinc-900/10 dark:border-white/10 dark:bg-zinc-900 lg:grid-cols-[1.05fr_0.95fr]">
+          <section className="relative hidden bg-zinc-950 p-10 text-white lg:block">
+            <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:42px_42px]" />
+            <div className="relative flex h-full flex-col justify-between">
+              <Link
+                className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-zinc-300 hover:text-white"
+                to="/"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                Back to home
+              </Link>
+              <div>
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-white text-zinc-950">
+                  <Sparkles className="h-6 w-6" />
+                </div>
+                <h1 className="font-display text-5xl font-bold leading-tight">
+                  Prepare with a calmer, smarter workflow.
+                </h1>
+                <p className="mt-5 max-w-md text-lg leading-8 text-zinc-300">
+                  Sign in to keep your generated interview sessions available
+                  across devices.
+                </p>
               </div>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <div className="grid gap-3 text-sm font-semibold text-zinc-200">
+                {["Resume-aware questions", "Instant AI feedback", "Saved practice history"].map(
+                  (item) => (
+                    <span className="flex items-center gap-2" key={item}>
+                      <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                      {item}
+                    </span>
+                  ),
+                )}
+              </div>
             </div>
-            <Button type="submit" onClick={handleSubmit} className="w-full">
-              {loading ? `Logging in` : "Login"}
-            </Button>
-            <div></div>
-          </div>
-          <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link to="/signup" className="underline">
-              Sign up
+          </section>
+
+          <section className="p-6 sm:p-10">
+            <Link
+              className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white lg:hidden"
+              to="/"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to home
             </Link>
-          </div> */}
-        {/* </CardContent> */}
-      
-      </Card>
-    </div>
+
+            <div className="mx-auto max-w-sm py-10">
+              <div className="mb-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
+                  Welcome
+                </p>
+                <h2 className="mt-3 font-display text-4xl font-bold">
+                  Login or create an account.
+                </h2>
+                <p className="mt-4 leading-7 text-zinc-600 dark:text-zinc-300">
+                  Use Google to start quickly. Your interview prep stays synced
+                  and easy to return to.
+                </p>
+              </div>
+
+              <div className="rounded-lg border border-zinc-900/10 bg-zinc-50 p-4 dark:border-white/10 dark:bg-white/5">
+                <GoogleLogin
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                  onSuccess={(credentialResponse) => {
+                    const decoded = jwtDecode(credentialResponse.credential);
+                    localStorage.setItem("user", JSON.stringify(decoded));
+                    user(decoded);
+                    onLogin();
+                  }}
+                />
+              </div>
+
+              <div className="mt-6 flex items-start gap-3 rounded-lg bg-emerald-50 p-4 text-sm leading-6 text-emerald-950 dark:bg-emerald-400/10 dark:text-emerald-100">
+                <ShieldCheck className="mt-0.5 h-5 w-5 flex-none" />
+                <p>
+                  Authentication is only used to preserve your practice
+                  sessions. You can continue using the app after sign-in.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
   );
 }

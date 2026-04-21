@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -12,55 +11,44 @@ import {
 import { url } from "@/components/config.jsx";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Bot } from "lucide-react";
-import RecentInterview from "./RecentInterview";
+import {
+  ArrowRight,
+  CheckCircle2,
+  FileText,
+  Sparkles,
+  UploadCloud,
+} from "lucide-react";
 import QuestionsPage from "./QuestionsPage";
 import Shimmer from "./Shimmer";
-import { Upload } from 'lucide-react';
 
-export default function Home({ user = "Interviewer" }) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [company, setCompany] = useState("");
+const starterCards = [
+  "Resume-aware technical prompts",
+  "Behavioral questions mapped to the role",
+  "AI answer guidance when you want to go deeper",
+];
+
+export default function Home() {
   const [resume, setResume] = useState(null);
   const [jobDescription, setJobDescription] = useState(null);
-  const [loading, setLoading] = useState(false); // Loading state
-  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-
-  const prevQuestions = JSON.parse(localStorage.getItem("questions"));
+  const [error, setError] = useState("");
 
   useEffect(() => {
+    const prevQuestions = JSON.parse(localStorage.getItem("questions"));
     if (prevQuestions) {
       setData(prevQuestions);
     }
   }, []);
-  // Update data when localStorage changes
-  // useEffect(()=>setData(),[data])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+
     if (!resume && !jobDescription) {
-      alert("Please Enter Mandatory Fields and try again");
+      setError("Upload a resume, job description, or both to begin.");
       return;
     }
-
-    // let url = `https://interviewvalley.onrender.com/questions_generation_from_files/?interviewee_fname=${encodeURIComponent(
-    //   firstName
-    // )}`;
-    // if (lastName) {
-    //   url += `&interviewee_lname=${encodeURIComponent(lastName)}`;
-    // }
-    // if (email) {
-    //   url += `&interviewee_email=${encodeURIComponent(email)}`;
-    // }
-    // if (phone) {
-    //   url += `&interviewee_phone=${encodeURIComponent(phone)}`;
-    // }
-    // if (company) {
-    //   url += `&interviewee_company=${encodeURIComponent(company)}`;
-    // }
 
     const formData = new FormData();
     if (resume) {
@@ -70,117 +58,170 @@ export default function Home({ user = "Interviewer" }) {
       formData.append("files_upload", jobDescription);
     }
 
-    // const token = localStorage.getItem("access_token");
+    setLoading(true);
 
-    // if (!token) {
-    //   alert("Please Login again to continue using services");
-
-    //   return;
-    // }
-
-    setLoading(true); // Set loading to true
-    
     try {
       const response = await fetch(`${url}/upload`, {
         method: "POST",
         headers: {
-          // Authorization: `Bearer ${token}`,
           Accept: "application/json",
         },
         body: formData,
       });
 
       if (response.ok) {
-        const data = await response.json();
-        // console.log(typeof data);
-        setData(data);
-        localStorage.setItem("questions", JSON.stringify(data));
-        // Handle the successful response, e.g., navigate to another page
+        const result = await response.json();
+        setData(result);
+        localStorage.setItem("questions", JSON.stringify(result));
       } else {
-        alert("Failed to upload files. Please try again.");
+        setError("Upload failed. Please check the file and try again.");
       }
-      
-    } catch (error) {
-      console.error("Error during fetch:", error);
-      alert("An error occurred. Please try again.");
+    } catch (err) {
+      console.error("Error during fetch:", err);
+      setError("The server could not be reached. Please try again.");
     } finally {
-      setLoading(false); // Set loading to false when request completes
+      setLoading(false);
     }
   };
-  if (loading){
-    return (
-     
-        <Shimmer />
-   
-    );
+
+  if (loading) {
+    return <Shimmer />;
   }
+
+  if (data?.length > 0) {
+    return <QuestionsPage data={data} setData={setData} />;
+  }
+
   return (
-    <section id="home">
-      <div className="2xl:max-w-7xl h-[calc(100vh-64px)] sm:h-auto lg:h-full lg:min-h-[calc(100vh-64px)] w-full items-between justify-center mx-auto flex ">
-        {data?.length === 0 ? (
-          <div className="w-full relative sm:top-56 lg:top-0 flex flex-col max-w-4xl lg:max-w-6xl justify-center lg:gap-5 items-center">
-            {/* <p className="text-2xl py-2 sm:text-5xl antialiased text-center font-bold tracking-tight drop-shadow-lg bg-clip-text dark:text-transparent text-black bg-black/60 dark:bg-gradient-to-b from-neutral-50 to-neutral-600"> */}
-            <p
-              className="text-3xl fade-in py-2 sm:text-5xl font-semibold text-center bg-clip-text text-transparent
-              bg-gradient-to-br from-slate-800 via-slate-700 to-slate-400 
-              dark:from-slate-200 dark:via-slate-300 dark:to-slate-600"
-              //  dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d]
-            >
-              First step towards the <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d]">SMART interview</span><span className="text-yellow-500">✨</span>
-            </p>
+    <main className="min-h-[calc(100vh-64px)] bg-[#f7f4eb] px-4 py-12 dark:bg-zinc-950 sm:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+        <section>
+          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-zinc-900/10 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-zinc-200">
+            <Sparkles className="h-4 w-4 text-amber-500" />
+            New practice session
+          </p>
+          <h1 className="font-display text-4xl font-bold leading-tight text-zinc-950 dark:text-white sm:text-6xl">
+            Build an interview set from your real materials.
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-700 dark:text-zinc-300">
+            Upload a resume or job description and turn it into a focused
+            interview practice workspace in a few seconds.
+          </p>
+
+          <div className="mt-8 grid gap-3">
+            {starterCards.map((item) => (
+              <div
+                className="flex items-center gap-3 rounded-lg border border-zinc-900/10 bg-white/70 p-4 text-sm font-semibold text-zinc-800 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-zinc-200"
+                key={item}
+              >
+                <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                {item}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-lg border border-zinc-900/10 bg-white p-5 shadow-2xl shadow-zinc-900/10 dark:border-white/10 dark:bg-zinc-900">
+          <div className="rounded-lg bg-zinc-950 p-5 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400">
+                  Session Builder
+                </p>
+                <h2 className="mt-2 text-2xl font-bold">
+                  Start with a file.
+                </h2>
+              </div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-zinc-950">
+                <UploadCloud className="h-6 w-6" />
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              {[
+                ["01", "Upload"],
+                ["02", "Generate"],
+                ["03", "Practice"],
+              ].map(([number, label]) => (
+                <div
+                  className="rounded-lg border border-white/10 bg-white/5 p-4"
+                  key={label}
+                >
+                  <p className="font-display text-2xl font-bold">{number}</p>
+                  <p className="mt-1 text-sm font-semibold text-zinc-300">
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 rounded-lg border border-zinc-900/10 bg-zinc-50 p-5 dark:border-white/10 dark:bg-white/5">
+            <div className="flex items-start gap-3">
+              <FileText className="mt-1 h-5 w-5 text-zinc-500" />
+              <div>
+                <h3 className="font-semibold text-zinc-950 dark:text-white">
+                  Resume or job description
+                </h3>
+                <p className="mt-1 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                  PDF, doc, or text-based files work best. Upload one or both
+                  for stronger question matching.
+                </p>
+              </div>
+            </div>
 
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="ghost" className="fade-inn my-4 px-6 z-50 rounded-full drop-shadow-sm text-md h-11 transition-all duration-300 transform hover:scale-105">
-                   <Upload className="mr-1 " />
-                  Upload your resume or job description and let AI generate tailored interview Q&A
+                <Button className="mt-6 h-12 w-full rounded-lg text-base font-semibold">
+                  Upload and Generate
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-[390px] sm:max-w-[425px]">
-                <div className="py-4">
-                  <DialogHeader className="mb-4">
-                    <DialogTitle className="mx-auto my-3">Upload Resume or Job Description</DialogTitle>
-                  </DialogHeader>
-                  {/* <div className="grid grid-cols-4 items-center justify-between gap-2">
-                    <Label htmlFor="resume" className="text-right">
-                      Resume
-                    </Label> */}
+              <DialogContent className="max-w-[92vw] rounded-lg sm:max-w-lg">
+                <DialogHeader>
+                  <DialogTitle className="font-display text-2xl">
+                    Upload practice materials
+                  </DialogTitle>
+                  <DialogDescription>
+                    Add a resume, job description, or both. You can start with a
+                    single file.
+                  </DialogDescription>
+                </DialogHeader>
+
+                <form className="grid gap-5 pt-2" onSubmit={handleSubmit}>
+                  <div className="grid gap-2">
+                    <Label htmlFor="resume">Resume</Label>
                     <Input
                       id="resume"
-                      type="file"
-                      className="file:mr-4 file:px-4 file:border-0 file:rounded-md file:bg-muted file:text-foreground"
                       onChange={(e) => setResume(e.target.files[0])}
-                      required
-                    />
-                  {/* </div> */}
-                  {/* <DialogDescription className="text-center gap-0">
-                    or
-                  </DialogDescription>
-                  <div className="grid grid-cols-4 items-center gap-2">
-                    <Label htmlFor="jd" className="text-right">
-                      Job Desc
-                    </Label>
-                    <Input
-                      id="jd"
                       type="file"
-                      className="file:text-muted-foreground col-span-3"
-                      onChange={(e) => setJobDescription(e.target.files[0])}
                     />
-                  </div> */}
-                </div>
-                {/* <DialogFooter> */}
-                  <Button type="submit" className="w-fit mx-auto " onClick={handleSubmit}>
-                    {loading ? "Loading..." : `Start Interview `}{" "}
-                    {/* Show loading state */}
+                  </div>
+
+                  <div className="grid gap-2">
+                    <Label htmlFor="jobDescription">Job description</Label>
+                    <Input
+                      id="jobDescription"
+                      onChange={(e) => setJobDescription(e.target.files[0])}
+                      type="file"
+                    />
+                  </div>
+
+                  {error ? (
+                    <p className="rounded-md bg-red-50 px-3 py-2 text-sm font-medium text-red-700 dark:bg-red-400/10 dark:text-red-300">
+                      {error}
+                    </p>
+                  ) : null}
+
+                  <Button className="h-11 w-full rounded-lg" type="submit">
+                    Generate Questions
                   </Button>
-                {/* </DialogFooter> */}
+                </form>
               </DialogContent>
             </Dialog>
           </div>
-        ) : (
-          <QuestionsPage data={data} setData={setData} />
-        )}
+        </section>
       </div>
-    </section>
+    </main>
   );
 }

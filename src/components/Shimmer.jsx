@@ -1,39 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ApiAlert from "./ApiAlert.jsx";
 
-
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 export default function Shimmer() {
-  const [loading, setLoading] = useState(false);
-  setTimeout(() => {
-    setLoading(true);
-      }, 6000);
+  const [showAlert, setShowAlert] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowAlert(true), 6000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <>
-    {loading && (<ApiAlert />)}
-     
-    <div className="fade-in flex flex-col justify-center items-center mx-auto px-4 sm:px-8 max-w-7xl w-full">
-      <div className="max-w-7xl w-full mt-8 pt-4">
-        <div className=" w-full p-4 rounded-lg shadow-sm bg-neutral-100/15 dark:bg-neutral-900/15 space-y-4 overflow-hidden">
+    <main className="min-h-[calc(100vh-64px)] bg-[#f7f4eb] px-4 py-10 dark:bg-zinc-950 sm:px-6 lg:px-8">
+      {showAlert ? <ApiAlert /> : null}
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-6">
+          <div className="h-4 w-36 animate-pulse rounded bg-zinc-300 dark:bg-zinc-800" />
+          <div className="mt-4 h-10 w-2/3 animate-pulse rounded bg-zinc-300 dark:bg-zinc-800" />
+        </div>
+        <div className="grid gap-4">
           {[...Array(5)].map((_, idx) => (
             <div
+              className="rounded-lg border border-zinc-900/10 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-zinc-900"
               key={idx}
-              className="flex gap-3 p-4 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 animate-pulse"
             >
-             
-              <div className="h-4 w-6 bg-gray-300 dark:bg-gray-700 rounded" />
-              <div className="flex-1 space-y-3">
-                <div className="h-4 w-3/4 bg-gray-300 dark:bg-gray-700 rounded" />
-                <div className="h-4 w-2/4 bg-gray-300 dark:bg-gray-700 rounded" />
-                <div className="flex gap-2 mt-2">
-                  <div className="h-7 w-32 bg-gray-300 dark:bg-gray-700 rounded" />
+              <div className="flex gap-4">
+                <div className="h-10 w-10 animate-pulse rounded-lg bg-zinc-200 dark:bg-zinc-800" />
+                <div className="flex-1 space-y-3">
+                  <div className="h-4 w-4/5 animate-pulse rounded bg-zinc-200 dark:bg-zinc-800" />
+                  <div className="h-4 w-2/3 animate-pulse rounded bg-zinc-200 dark:bg-zinc-800" />
+                  <div className="h-9 w-32 animate-pulse rounded-lg bg-zinc-200 dark:bg-zinc-800" />
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
-    </>
+    </main>
   );
 }

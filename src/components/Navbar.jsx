@@ -1,181 +1,113 @@
-import React, { useEffect, useState }  from "react";
-import { Link } from "react-router-dom";
-import {
-  // Button,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-// import {logo} from ".../public/iv-dark-horizontal-logo.jpeg"
-import { Button } from "./ui/button";
+/* eslint-disable react/prop-types */
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { LogOut, Sparkles } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ModeToggle } from "./mode-toggle";
-import { useNavigate } from "react-router-dom";
-import { SidebarTrigger,SidebarProvider } from "./ui/sidebar";
+import { Button } from "./ui/button";
 
-const navigation = [
-  // { name: "Home", href: "/home", current: true },
-  // { name: "Features", href: "#", current: false },
-  // { name: "Skill Extactor", href: "#", current: false },
-  // { name: "FAQs", href: "#", current: false },
+const links = [
+  { name: "Home", href: "/" },
+  { name: "Practice", href: "/home" },
+  { name: "Demo", href: "/demo" },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+function getStoredUser() {
+  try {
+    return JSON.parse(localStorage.getItem("user"));
+  } catch {
+    return null;
+  }
 }
 
 export default function Navbar({ authenticated, user, onLogout }) {
-
-const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 28); // change 80 to your threshold
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const navigate = useNavigate();
-  console.log(authenticated)
+  const { pathname } = useLocation();
+  const storedUser = getStoredUser();
+  const activeUser = typeof user === "object" && user ? user : storedUser;
+
   return (
-    // bg-stone-950
-    <Disclosure
-      as="nav"
-      // ${authenticated && "hidden"}
-      className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
-        scrolled ? " bg-background" : "bg-transparent"
-      }`}
-      // className=" dark:bg-zinc-950 backdrop-blur-md dark:shadow-zinc-800 shadow-sm sticky  items-center h-auto top-0 left-0 z-50"
-    >
-      <div className="mx-auto sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <div className="absolute left-0 flex items-center sm:hidden">
-            {/* Mobile menu button */}
-            {/* <DisclosureButton className="group relative inline-flex rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-              <span className="absolute -inset-0.5" />
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon
-                aria-hidden="true"
-                className="block h-6 w-6 group-data-[open]:hidden"
-              />
-              <XMarkIcon
-                aria-hidden="true"
-                className="hidden h-6 w-6 group-data-[open]:block"
-              />
-            </DisclosureButton> */}
-          </div>
-          <div className="flex flex-1 space-x-48 xl:space-x-72 items-center justify-center sm:items-stretch sm:justify-start">
-            {/* text-2xl text-primary font-bold */}
-            <div  className="flex-shrink-0">
-             <Link to="/" className="montserrat-alternates-regular text-xl antialiased relative text-gray-700 dark:text-gray-300 shadow-white">
-              {/* interview valley */}
-              <span className="bg-gradient-to-r from-[#245395] via-[#874a9a] to-[#d0190f] dark:from-[#3980e3] dark:via-[#d280eb] dark:to-[#ea645d] text-transparent bg-clip-text font-bold">interview valley</span>
-            </Link>
-          </div>
-            <div className="hidden sm:ml-6 sm:block">
-              <div className="flex justify-between space-x-4">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    aria-current={item.current ? "page" : undefined}
-                    className={classNames(
-                      item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-muted-foreground hover:bg-gray-700 hover:text-white",
-                      "rounded-md px-3 py-2 text-sm font-medium"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="absolute right-0 flex items-center gap-x-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <ModeToggle />
-            {authenticated ? (
-              <Menu as="div" className="relative ml-3 group">
-                <div>
-                  <MenuButton className="relative flex rounded-full text-sm">
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">Open user menu</span>
-                    <img className="w-8 h-8 rounded-sm" src={user?.picture || localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture} alt={user?.name} />
-                  </MenuButton>
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-zinc-900/10 bg-white/80 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/80">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link
+          to="/"
+          className="flex items-center gap-2 text-sm font-bold tracking-tight text-zinc-950 dark:text-white"
+        >
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-950 text-white shadow-sm dark:bg-white dark:text-zinc-950">
+            <Sparkles className="h-4 w-4" />
+          </span>
+          <span className="font-display text-xl">Interview Valley</span>
+        </Link>
+
+        <div className="hidden items-center gap-1 rounded-lg border border-zinc-900/10 bg-zinc-100/70 p-1 dark:border-white/10 dark:bg-white/5 md:flex">
+          {links.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                className={`rounded-md px-3 py-1.5 text-sm font-semibold transition ${
+                  isActive
+                    ? "bg-white text-zinc-950 shadow-sm dark:bg-zinc-900 dark:text-white"
+                    : "text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white"
+                }`}
+                key={link.href}
+                to={link.href}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <ModeToggle />
+          {authenticated ? (
+            <Menu as="div" className="relative">
+              <MenuButton className="flex items-center gap-2 rounded-lg border border-zinc-900/10 bg-white px-2 py-1.5 text-sm font-semibold text-zinc-800 shadow-sm transition hover:bg-zinc-50 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:hover:bg-white/10">
+                {activeUser?.picture ? (
+                  <img
+                    alt={activeUser?.name || "User"}
+                    className="h-7 w-7 rounded-md object-cover"
+                    src={activeUser.picture}
+                  />
+                ) : (
+                  <span className="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-950 text-xs text-white dark:bg-white dark:text-zinc-950">
+                    {(activeUser?.name || "U").slice(0, 1)}
+                  </span>
+                )}
+                <span className="hidden max-w-28 truncate sm:inline">
+                  {activeUser?.name || "Account"}
+                </span>
+              </MenuButton>
+              <MenuItems className="absolute right-0 z-10 mt-2 w-64 origin-top-right rounded-lg border border-zinc-900/10 bg-white p-2 shadow-xl focus:outline-none dark:border-white/10 dark:bg-zinc-950">
+                <div className="border-b border-zinc-900/10 px-3 py-2 dark:border-white/10">
+                  <p className="truncate text-sm font-semibold text-zinc-950 dark:text-white">
+                    {activeUser?.name || "Signed in"}
+                  </p>
+                  <p className="truncate text-xs text-zinc-500">
+                    {activeUser?.email || "Ready to practice"}
+                  </p>
                 </div>
-                <MenuItems className="absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-white dark:bg-black py-1 shadow-lg ring-1 dark:ring-gray-700 ring-black ring-opacity-5 transition focus:outline-none">
-                  {/* <MenuItem> */}
-                  <li 
-                  className="block px-4 border-b-2 py-2 text-sm text-gray-700 dark:text-gray-300 data-[focus]:bg-gray-100 dark:data-[focus]:bg-gray-800"
->
-                    {localStorage.getItem("user")
-                    ? JSON.parse(localStorage.getItem("user")).name
-                    : user?.name}
-                    <span className="block text-xs">{localStorage.getItem("user")
-                    ? JSON.parse(localStorage.getItem("user")).email
-                    : user?.email}</span>
-                  </li>
-                  <MenuItem>
-                    <Link
-                      onClick={() => {
-                        onLogout();
-                      }}
-                      to="/"
-                      className="block px-4 py-2 mx-auto text-center text-sm text-gray-700 dark:text-gray-300 data-[focus]:bg-gray-100 dark:data-[focus]:bg-gray-800"
-                    >
-                      Logout
-                    </Link>
-                  </MenuItem>
-                </MenuItems>
-              </Menu>
-            ) : (
-              <div>
-              <Button
-                className="hidden lg:inline lg:m-1 w-20"
-                // variant="outline"
-                onClick={() => navigate("/signin")}
-              >
-                Login
-              </Button>
-              {/* <Button
-                className="hidden lg:inline lg:m-1"
-                variant="outline"
-                onClick={() => navigate("/signup")}
-              >
-                Register
-              </Button> */}
-              </div>
-            )}
-          </div>
+                <MenuItem>
+                  <Link
+                    className="mt-2 flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-white/10"
+                    onClick={onLogout}
+                    to="/"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </Link>
+                </MenuItem>
+              </MenuItems>
+            </Menu>
+          ) : (
+            <Button
+              className="h-10 rounded-lg px-4 font-semibold"
+              onClick={() => navigate("/signin")}
+            >
+              Login
+            </Button>
+          )}
         </div>
       </div>
-
-      <DisclosurePanel className="sm:hidden">
-        <div className="space-y-1 px-2 pb-3 pt-2">
-          {navigation.map((item) => (
-            <DisclosureButton
-              key={item.name}
-              as={Link}
-              to={item.href}
-              aria-current={item.current ? "page" : undefined}
-              className={classNames(
-                item.current
-                  ? "bg-gray-900 text-white"
-                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                "block rounded-md px-3 py-2 text-base font-medium"
-              )}
-            >
-              {item.name}
-            </DisclosureButton>
-          ))}
-        </div>
-      </DisclosurePanel>
-    </Disclosure>
+    </nav>
   );
 }
