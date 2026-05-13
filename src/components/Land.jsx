@@ -214,7 +214,7 @@ export default function Land() {
             ))}
           </div>
 
-          <div className="heroScroll relative mt-12 w-full max-w-5xl">
+          <div className="heroScroll hidden sm:block relative mt-12 w-full max-w-5xl">
             <div className="hero-device-3d w-full rounded-lg border border-zinc-900/10 bg-zinc-950 p-3 text-left shadow-2xl shadow-zinc-900/20 transition duration-500 dark:border-white/10">
               <div className="rounded-md bg-[#f8f5ec] p-4 dark:bg-zinc-900">
                 <div className="mb-4 flex flex-col gap-3 border-b border-zinc-900/10 pb-4 dark:border-white/10 sm:flex-row sm:items-center sm:justify-between">

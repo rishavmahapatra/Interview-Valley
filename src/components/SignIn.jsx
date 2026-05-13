@@ -67,8 +67,8 @@ export function SignIn({ onLogin, user }) {
                 </p>
               </div>
 
-              <div className="rounded-lg border border-zinc-900/10 bg-zinc-50 p-4 dark:border-white/10 dark:bg-white/5">
-                <GoogleLogin
+              <div className="rounded-lg border border-zinc-900/10 bg-zinc-50 w-[300px] sm:w-[360px] p-4 dark:border-white/10 dark:bg-white/5">
+                <GoogleLogin className="w-full"
                   onError={() => {
                     console.log("Login Failed");
                   }}
