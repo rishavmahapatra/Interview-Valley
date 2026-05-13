@@ -4,11 +4,19 @@ import { LogOut, Sparkles } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ModeToggle } from "./mode-toggle";
 import { Button } from "./ui/button";
+import { useRef } from 'react';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import gsap from 'gsap'; // <-- import GSAP
+import { useGSAP } from '@gsap/react'; // <-- import the hook from our React package
+
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger) 
 
 const links = [
   { name: "Home", href: "/" },
   { name: "Practice", href: "/home" },
-  { name: "Demo", href: "/demo" },
+  // { name: "Demo", href: "/demo" },
 ];
 
 function getStoredUser() {
@@ -20,25 +28,54 @@ function getStoredUser() {
 }
 
 export default function Navbar({ authenticated, user, onLogout }) {
+
+    	const nav = useRef();
+useGSAP(() => {
+    gsap.from('.item',
+      {
+    y: -10,
+    opacity: 0,
+    duration: 1,
+    delay:0.3,
+    ease: "power3.out",
+  //   scrollTrigger: {
+  //   trigger: ".container",
+  //   markers: true,
+  //   start: "top 0%", 
+  //   end: "top -10%",
+  //   scrub: 1,
+  // }
+      }
+    );
+  }
+, { dependencies: [] });
+
+
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const storedUser = getStoredUser();
   const activeUser = typeof user === "object" && user ? user : storedUser;
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 border-b border-zinc-900/10 bg-white/80 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/80">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <nav ref= {nav} className=" fixed inset-x-0 top-0 z-50 border-b border-zinc-900/10 bg-white/80 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/80">
+      <div className="mx-auto item flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           to="/"
           className="flex items-center gap-2 text-sm font-bold tracking-tight text-zinc-950 dark:text-white"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-950 text-white shadow-sm dark:bg-white dark:text-zinc-950">
+          <img
+                    alt="User"
+                    className="h-7 w-7 object-cover"
+                    src= "icon.png" 
+                  />
+          {/* <img src="icon.png" alt="logo" /> */}
+          {/* <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-950 text-white shadow-sm dark:bg-white dark:text-zinc-950">
             <Sparkles className="h-4 w-4" />
-          </span>
+          </span> */}
           <span className="font-display text-xl">Interview Valley</span>
         </Link>
 
-        <div className="hidden items-center gap-1 rounded-lg border border-zinc-900/10 bg-zinc-100/70 p-1 dark:border-white/10 dark:bg-white/5 md:flex">
+        {/* <div className="hidden items-center gap-1 rounded-lg border border-zinc-900/10 bg-zinc-100/70 p-1 dark:border-white/10 dark:bg-white/5 md:flex">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -55,7 +92,7 @@ export default function Navbar({ authenticated, user, onLogout }) {
               </Link>
             );
           })}
-        </div>
+        </div> */}
 
         <div className="flex items-center gap-2">
           <ModeToggle />

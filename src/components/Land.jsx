@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import {
   ArrowRight,
@@ -15,6 +15,15 @@ import { useNavigate } from "react-router-dom";
 import FeatureCard from "./FeatureCard";
 import Footer1 from "./Footer1";
 import { Button } from "./ui/button";
+import { useRef } from 'react';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import gsap from 'gsap'; // <-- import GSAP
+import { useGSAP } from '@gsap/react'; // <-- import the hook from our React package
+
+gsap.registerPlugin(ScrollTrigger) 
+
+let hasAnimated = false; // Global flag to prevent re-animation on navigation
 
 const proofPoints = [
   "Free to start",
@@ -71,18 +80,63 @@ const benefits = [
 ];
 
 export default function Land() {
+      	const hero = useRef();
+useGSAP(() => {
+
+  if (!hasAnimated) {
+    gsap.from(".herosection", {
+      y: 70,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    });
+
+    hasAnimated = true;
+  }
+  gsap.to(".heroScroll", {
+    y: 10,
+    scale: 1.1,
+    scrollTrigger: {
+      trigger: ".heroScroll",
+      start: "top 80%",
+      end: "top 00%",
+      scrub: 1,
+    },
+  });
+
+  const sectionAnimation = (target, xValue) => {
+    gsap.from(target, {
+      x: xValue,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+
+      scrollTrigger: {
+        trigger: target,
+        markers: true,
+        start: "top 95%",
+        end: "top 30%",
+        scrub: 0.3,
+      },
+    });
+  };
+  sectionAnimation("#featureCard", -95);
+  sectionAnimation("#howItWorks", 95);
+   sectionAnimation("#benefits", -95);
+
+}, []);
   const navigate = useNavigate();
 
   return (
-    <main className="overflow-hidden">
+    <main ref={hero} className=" overflow-hidden">
       <section
-        id="hero"
-        className="relative isolate px-4 pb-20 pt-28 sm:px-6 lg:px-8"
+        
+        className="hero relative isolate px-4 pb-20 pt-28 sm:px-6 lg:px-8"
       >
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(135deg,#f7f4eb_0%,#e8f2ef_44%,#f3e8df_100%)] dark:bg-[linear-gradient(135deg,#070707_0%,#101817_48%,#1b1712_100%)]" />
         <div className="absolute inset-0 -z-10 opacity-[0.08] [background-image:linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] [background-size:25px_25px] dark:opacity-[0.1] dark:[background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)]" />
 
-        <div className="scene-3d mx-auto flex max-w-7xl flex-col items-center text-center">
+        <div className="scene-3d herosection mx-auto flex max-w-7xl flex-col items-center text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-900/10 bg-white/65 px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/10 dark:text-zinc-200">
             <Zap className="h-4 w-4 text-amber-500" />
             AI interview practice built for real roles
@@ -104,13 +158,13 @@ export default function Land() {
               Start Practicing
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button
+            {/* <Button
               variant="outline"
               className="h-12 rounded-lg border-zinc-300 bg-white/70 px-6 text-base font-semibold text-zinc-900 backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white dark:border-white/15 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
               onClick={() => navigate("/demo")}
             >
               Try Demo
-            </Button>
+            </Button> */}
           </div>
 
           <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">
@@ -122,8 +176,8 @@ export default function Land() {
             ))}
           </div>
 
-          <div className="relative mt-12 w-full max-w-5xl">
-            <div className="hero-device-3d w-full rounded-lg border border-zinc-900/10 bg-zinc-950 p-3 text-left shadow-2xl shadow-zinc-900/20 transition duration-500 dark:border-white/10">
+          {/* <div className="heroScroll relative mt-12 w-full max-w-5xl">
+            <div className="hero-device-3 w-full rounded-lg border border-zinc-900/10 bg-zinc-950 p-3 text-left shadow-2xl shadow-zinc-900/20 transition duration-500 dark:border-white/10">
               <div className="rounded-md bg-[#f8f5ec] p-4 dark:bg-zinc-900">
                 <div className="mb-4 flex flex-col gap-3 border-b border-zinc-900/10 pb-4 dark:border-white/10 sm:flex-row sm:items-center sm:justify-between">
                   <div>
@@ -218,16 +272,18 @@ export default function Land() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
-      <FeatureCard />
+      <div id="featureCard" className="min-h-screen py-20">
+  <FeatureCard />
+</div>
 
-      <section id="howItWorks" className="bg-white py-20 dark:bg-zinc-950">
+      <section  id="howItWorks" className="bg-white py-20 dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-sky-600 dark:text-sky-400">
+            <p className=" mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-sky-600 dark:text-sky-400">
               Workflow
             </p>
             <h2 className="font-display text-3xl font-bold text-zinc-950 dark:text-white md:text-5xl">
@@ -235,7 +291,7 @@ export default function Land() {
             </h2>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-3">
+          <div className="grid new gap-4 lg:grid-cols-3">
             {steps.map(({ title, description, icon: Icon }, index) => (
               <article
                 className="hover-lift-3d rounded-lg border border-zinc-200 bg-zinc-50 p-6 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
