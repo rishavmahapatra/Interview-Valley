@@ -70,7 +70,7 @@ export function SignIn({ onLogin, user }) {
                 </p>
               </div>
 
-              <div className="rounded-lg border border-zinc-900/10 bg-zinc-50 w-[300px] sm:w-[360px] p-4 dark:border-white/10 dark:bg-white/5">
+              {/* <div className="rounded-lg border border-zinc-900/10 bg-zinc-50 w-[300px] sm:w-[360px] p-4 dark:border-white/10 dark:bg-white/5"> */}
                 <GoogleLogin className="w-full"
                   onError={() => {
                     console.log("Login Failed");
@@ -82,7 +82,7 @@ export function SignIn({ onLogin, user }) {
                     onLogin();
                   }}
                 />
-              </div>
+              {/* </div> */}
 
               <div className="mt-6 flex items-start gap-3 rounded-lg bg-emerald-50 p-4 text-sm leading-6 text-emerald-950 dark:bg-emerald-400/10 dark:text-emerald-100">
                 <ShieldCheck className="mt-0.5 h-5 w-5 flex-none" />
