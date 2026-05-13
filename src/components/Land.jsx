@@ -79,52 +79,79 @@ const benefits = [
   },
 ];
 
+const testimonials = [
+  {
+    quote:
+      "The questions feel role-specific, and the feedback makes it obvious what to fix next.",
+    name: "Ananya",
+    title: "Frontend candidate",
+  },
+  {
+    quote:
+      "I stopped over-preparing and started iterating. Much faster to get to solid answers.",
+    name: "Karan",
+    title: "SWE interview prep",
+  },
+  {
+    quote:
+      "Great for turning a job description into a practice plan without guessing what matters.",
+    name: "Meera",
+    title: "Product-minded engineer",
+  },
+];
+
 export default function Land() {
-      	const hero = useRef();
-useGSAP(() => {
+  const hero = useRef();
 
-  if (!hasAnimated) {
-    gsap.from(".herosection", {
-      y: 70,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-    });
+  useGSAP(() => {
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
 
-    hasAnimated = true;
-  }
-  gsap.to(".heroScroll", {
-    y: 10,
-    scale: 1.1,
-    scrollTrigger: {
-      trigger: ".heroScroll",
-      start: "top 80%",
-      end: "top 00%",
-      scrub: 1,
-    },
-  });
+    if (prefersReducedMotion) return;
 
-  const sectionAnimation = (target, xValue) => {
-    gsap.from(target, {
-      x: xValue,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
+    if (!hasAnimated) {
+      gsap.from(".herosection", {
+        y: 70,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      });
 
+      hasAnimated = true;
+    }
+    gsap.to(".heroScroll", {
+      y: 10,
+      scale: 1.1,
       scrollTrigger: {
-        trigger: target,
-        markers: true,
-        start: "top 95%",
-        end: "top 30%",
-        scrub: 0.3,
+        trigger: ".heroScroll",
+        start: "top 80%",
+        end: "top 00%",
+        scrub: 1,
       },
     });
-  };
-  sectionAnimation("#featureCard", -95);
-  sectionAnimation("#howItWorks", 95);
-   sectionAnimation("#benefits", -95);
 
-}, []);
+    const sectionAnimation = (target, xValue) => {
+      gsap.from(target, {
+        x: xValue,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+
+        scrollTrigger: {
+          trigger: target,
+          start: "top 95%",
+          end: "top 30%",
+          scrub: 0.3,
+        },
+      });
+    };
+    sectionAnimation("#featureCard", -95);
+    sectionAnimation("#howItWorks", 95);
+    sectionAnimation("#benefits", -95);
+    sectionAnimation("#feedback", 95);
+
+  }, []);
   const navigate = useNavigate();
 
   return (
@@ -136,14 +163,25 @@ useGSAP(() => {
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(135deg,#f7f4eb_0%,#e8f2ef_44%,#f3e8df_100%)] dark:bg-[linear-gradient(135deg,#070707_0%,#101817_48%,#1b1712_100%)]" />
         <div className="absolute inset-0 -z-10 opacity-[0.08] [background-image:linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] [background-size:25px_25px] dark:opacity-[0.1] dark:[background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)]" />
 
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-28 top-10 -z-10 h-[420px] w-[420px] rounded-full bg-emerald-400/25 blur-3xl dark:bg-emerald-500/10"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-36 top-24 -z-10 h-[520px] w-[520px] rounded-full bg-sky-400/25 blur-3xl dark:bg-sky-500/10"
+        />
+
         <div className="scene-3d herosection mx-auto flex max-w-7xl flex-col items-center text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-900/10 bg-white/65 px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/10 dark:text-zinc-200">
             <Zap className="h-4 w-4 text-amber-500" />
             AI interview practice built for real roles
           </div>
-
-          <h1 className="font-display max-w-5xl text-5xl font-bold leading-[1.02] text-zinc-950 dark:text-white sm:text-6xl lg:text-7xl">
-            Interview Valley
+{/* <div className="absolute inset-0 -z-10 blur-3xl opacity-20 bg-blue-500/20" /> */}
+           <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-6xl md:text-7xl">
+            Ace every interview with{" "}
+            <br></br>
+            <span className="bg-gradient-to-r from-indigo-600 dark:from-indigo-500 via-blue-500 to-sky-500 dark:to-sky-400 bg-clip-text text-transparent">AI-powered practice</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-700 dark:text-zinc-200 sm:text-xl">
             Prepare with questions tailored to your resume and job description,
@@ -176,8 +214,8 @@ useGSAP(() => {
             ))}
           </div>
 
-          {/* <div className="heroScroll relative mt-12 w-full max-w-5xl">
-            <div className="hero-device-3 w-full rounded-lg border border-zinc-900/10 bg-zinc-950 p-3 text-left shadow-2xl shadow-zinc-900/20 transition duration-500 dark:border-white/10">
+          <div className="heroScroll relative mt-12 w-full max-w-5xl">
+            <div className="hero-device-3d w-full rounded-lg border border-zinc-900/10 bg-zinc-950 p-3 text-left shadow-2xl shadow-zinc-900/20 transition duration-500 dark:border-white/10">
               <div className="rounded-md bg-[#f8f5ec] p-4 dark:bg-zinc-900">
                 <div className="mb-4 flex flex-col gap-3 border-b border-zinc-900/10 pb-4 dark:border-white/10 sm:flex-row sm:items-center sm:justify-between">
                   <div>
@@ -218,6 +256,7 @@ useGSAP(() => {
                     <div className="h-3 w-4/5 rounded-full bg-zinc-200 dark:bg-zinc-800" />
                     <div className="h-3 w-2/3 rounded-full bg-zinc-200 dark:bg-zinc-800" />
                     <div className="h-3 w-5/6 rounded-full bg-zinc-200 dark:bg-zinc-800" />
+                    <div className="h-3 w-3/4 rounded-full bg-zinc-200 dark:bg-zinc-800" />
                   </div>
                   <div className="mt-6 rounded-lg bg-amber-100 p-3 text-sm font-semibold text-amber-900 dark:bg-amber-400/15 dark:text-amber-200">
                     Resume matched to frontend engineer role
@@ -272,7 +311,7 @@ useGSAP(() => {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </section>
 
@@ -330,13 +369,6 @@ useGSAP(() => {
               Interview Valley helps candidates practice against the role in
               front of them, with feedback that points to the next best edit.
             </p>
-            <Button
-              className="mt-8 h-12 rounded-lg bg-zinc-950 px-6 text-base font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-              onClick={() => navigate("/signin")}
-            >
-              Create My Session
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
@@ -360,6 +392,73 @@ useGSAP(() => {
                 </p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="feedback" className="bg-white py-20 dark:bg-zinc-950">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 max-w-3xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-400">
+              Feedback Loop
+            </p>
+            <h2 className="font-display text-3xl font-bold text-zinc-950 dark:text-white md:text-5xl">
+              Built to feel like real prep.
+            </h2>
+            <p className="mt-4 text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+              Practice, review, and improve without rebuilding your plan from
+              scratch each time.
+            </p>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            {testimonials.map(({ quote, name, title }) => (
+              <figure
+                key={name}
+                className="hover-lift-3d rounded-lg border border-zinc-200 bg-zinc-50 p-6 dark:border-white/10 dark:bg-white/5"
+              >
+                <blockquote className="text-base leading-7 text-zinc-700 dark:text-zinc-200">
+                  “{quote}”
+                </blockquote>
+                <figcaption className="mt-6 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="font-semibold text-zinc-950 dark:text-white">
+                      {name}
+                    </p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                      {title}
+                    </p>
+                  </div>
+                  <MessageSquareText className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="mt-14 overflow-hidden rounded-2xl border border-zinc-900/10 bg-[linear-gradient(135deg,#0b1220_0%,#1a1033_45%,#0b1f1a_100%)] px-6 py-12 text-white shadow-xl shadow-zinc-950/10 dark:border-white/10 sm:px-10">
+            <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
+                  Start today
+                </p>
+                <h3 className="mt-3 font-display text-3xl font-bold leading-tight sm:text-4xl">
+                  Turn the job post into a practice session in minutes.
+                </h3>
+                <p className="mt-4 max-w-2xl text-lg leading-8 text-white/80">
+                  Upload context, get a focused set of questions, and iterate
+                  with feedback until your answers sound like you.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+                <Button
+                  className="h-12 rounded-lg bg-white px-6 text-base dark:text-white font-semibold text-zinc-950 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-0.5 hover:bg-white/90"
+                  onClick={() => navigate("/signin")}
+                >
+                  Create My Session
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
