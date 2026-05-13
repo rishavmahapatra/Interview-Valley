@@ -23,8 +23,6 @@ import { useGSAP } from '@gsap/react'; // <-- import the hook from our React pac
 
 gsap.registerPlugin(ScrollTrigger) 
 
-let hasAnimated = false; // Global flag to prevent re-animation on navigation
-
 const proofPoints = [
   "Free to start",
   "Google sign-in",
@@ -110,16 +108,13 @@ export default function Land() {
 
     if (prefersReducedMotion) return;
 
-    if (!hasAnimated) {
+    
       gsap.from(".herosection", {
         y: 70,
         opacity: 0,
         duration: 0.8,
         ease: "power3.out",
       });
-
-      hasAnimated = true;
-    }
     gsap.to(".heroScroll", {
       y: 10,
       scale: 1.1,
