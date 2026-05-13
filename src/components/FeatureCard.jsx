@@ -54,7 +54,7 @@ const features = [
 
 export default function FeatureCard() {
   return (
-    <section id="features" className="relative py-20">
+    <section id="features" className="relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 max-w-3xl">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-amber-600 dark:text-amber-400">

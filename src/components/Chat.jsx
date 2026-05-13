@@ -63,7 +63,7 @@ function ResumePreview() {
       <div className="mx-auto h-full max-w-xl rounded-lg border border-zinc-900/10 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-zinc-900">
         <div className="flex items-start justify-between gap-6">
           <div>
-            <div className="h-6 w-48 rounded bg-zinc-900 dark:bg-white" />
+            <div className="h-6 w-48 rounded bg-zinc-900 dark:bg-zinc-800" />
             <div className="mt-3 h-3 w-64 max-w-full rounded bg-zinc-200 dark:bg-zinc-700" />
             <div className="mt-2 h-3 w-44 rounded bg-zinc-200 dark:bg-zinc-700" />
           </div>
