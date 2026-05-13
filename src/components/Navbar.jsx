@@ -57,8 +57,21 @@ useGSAP(() => {
   const activeUser = typeof user === "object" && user ? user : storedUser;
 
   return (
-    <nav ref= {nav} className=" fixed inset-x-0 top-0 z-50 border-b border-zinc-900/10 bg-white/80 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/80">
-      <div className="mx-auto item flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<nav
+  ref={nav}
+  className="
+    fixed inset-x-0 top-0 z-50
+    border-b border-black/5 dark:border-white/10
+
+    bg-white/60 dark:bg-black/30
+    backdrop-blur-xl
+
+    supports-[backdrop-filter]:bg-white/50
+    dark:supports-[backdrop-filter]:bg-black/20
+
+    shadow-[0_1px_0_rgba(255,255,255,0.04)]
+  "
+>      <div className="mx-auto item flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           to="/"
           className="flex items-center gap-2 text-sm font-bold tracking-tight text-zinc-950 dark:text-white"

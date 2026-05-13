@@ -177,11 +177,11 @@ export default function Land() {
             <Zap className="h-4 w-4 text-amber-500" />
             AI interview practice built for real roles
           </div>
-
+{/* <div className="absolute inset-0 -z-10 blur-3xl opacity-20 bg-blue-500/20" /> */}
            <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-6xl md:text-7xl">
             Ace every interview with{" "}
             <br></br>
-            <span className="text-gradient">AI-powered practice</span>
+            <span className="bg-gradient-to-r from-indigo-600 dark:from-indigo-500 via-blue-500 to-sky-500 dark:to-sky-400 bg-clip-text text-transparent">AI-powered practice</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-700 dark:text-zinc-200 sm:text-xl">
             Prepare with questions tailored to your resume and job description,
@@ -451,7 +451,7 @@ export default function Land() {
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
                 <Button
-                  className="h-12 rounded-lg bg-white px-6 text-base font-semibold text-zinc-950 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-0.5 hover:bg-white/90"
+                  className="h-12 rounded-lg bg-white px-6 text-base dark:text-white font-semibold text-zinc-950 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-0.5 hover:bg-white/90"
                   onClick={() => navigate("/signin")}
                 >
                   Create My Session
