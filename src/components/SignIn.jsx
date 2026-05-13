@@ -10,7 +10,6 @@ export function SignIn({ onLogin, user }) {
       <div className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-6xl items-center justify-center">
         <div className="grid w-full overflow-hidden rounded-lg border border-zinc-900/10 bg-white shadow-2xl shadow-zinc-900/10 dark:border-white/10 dark:bg-zinc-900 lg:grid-cols-[1.05fr_0.95fr]">
           <section className="relative hidden bg-zinc-950 p-10 text-white lg:block">
-            <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:42px_42px]" />
             <div className="relative flex h-full flex-col justify-between">
               <Link
                 className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-zinc-300 hover:text-white"
@@ -21,7 +20,11 @@ export function SignIn({ onLogin, user }) {
               </Link>
               <div>
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-white text-zinc-950">
-                  <Sparkles className="h-6 w-6" />
+                       <img
+                    alt="User"
+                    className="h-7 w-7 object-cover"
+                    src= "icon.png" 
+                  />
                 </div>
                 <h1 className="font-display text-5xl font-bold leading-tight">
                   Prepare with a calmer, smarter workflow.
