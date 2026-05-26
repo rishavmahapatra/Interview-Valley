@@ -126,12 +126,13 @@ export default function Land() {
       },
     });
 
-    const sectionAnimation = (target, xValue) => {
+    const sectionAnimation = (target, yValue) => {
       gsap.from(target, {
-        x: xValue,
+        y: yValue,
         opacity: 0,
+        scale: 0.94,
         duration: 1,
-        ease: "power3.out",
+        // ease: "power3.out",
 
         scrollTrigger: {
           trigger: target,
@@ -141,10 +142,10 @@ export default function Land() {
         },
       });
     };
-    sectionAnimation("#featureCard", -95);
-    sectionAnimation("#howItWorks", 95);
-    sectionAnimation("#benefits", -95);
-    sectionAnimation("#feedback", 95);
+    sectionAnimation("#featureCard", 50);
+    sectionAnimation("#howItWorks", 50);
+    sectionAnimation("#benefits", 50);
+    sectionAnimation("#feedback", 50);
 
   }, []);
   const navigate = useNavigate();
@@ -210,7 +211,7 @@ export default function Land() {
           </div>
 
           <div className="heroScroll hidden sm:block relative mt-12 w-full max-w-5xl">
-            <div className="hero-device-3d w-full rounded-lg border border-zinc-900/10 bg-zinc-950 p-3 text-left shadow-2xl shadow-zinc-900/20 transition duration-500 dark:border-white/10">
+            <div className="hero-device-3 w-full rounded-lg border border-zinc-900/10 bg-zinc-950 p-3 text-left shadow-2xl shadow-zinc-900/20 transition duration-500 dark:border-white/10">
               <div className="rounded-md bg-[#f8f5ec] p-4 dark:bg-zinc-900">
                 <div className="mb-4 flex flex-col gap-3 border-b border-zinc-900/10 pb-4 dark:border-white/10 sm:flex-row sm:items-center sm:justify-between">
                   <div>
