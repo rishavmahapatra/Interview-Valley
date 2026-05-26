@@ -142,10 +142,12 @@ export default function Land() {
         },
       });
     };
-    sectionAnimation("#featureCard", 50);
-    sectionAnimation("#howItWorks", 50);
-    sectionAnimation("#benefits", 50);
-    sectionAnimation("#feedback", 50);
+    
+    sectionAnimation("#featureCard", -50);
+    sectionAnimation("#howItWorks", 40);
+    sectionAnimation("#benefits", -50);
+    sectionAnimation("#feedback", 40);
+    sectionAnimation(".footerbanner", -50);
 
   }, []);
   const navigate = useNavigate();
@@ -431,7 +433,7 @@ export default function Land() {
             ))}
           </div>
 
-          <div className="mt-14 overflow-hidden rounded-2xl border border-zinc-900/10 bg-[linear-gradient(135deg,#0b1220_0%,#1a1033_45%,#0b1f1a_100%)] px-6 py-12 text-white shadow-xl shadow-zinc-950/10 dark:border-white/10 sm:px-10">
+          <div className="footerbanner mt-14 overflow-hidden rounded-2xl border border-zinc-900/10 bg-[linear-gradient(135deg,#0b1220_0%,#1a1033_45%,#0b1f1a_100%)] px-6 py-12 text-white shadow-xl shadow-zinc-950/10 dark:border-white/10 sm:px-10">
             <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
