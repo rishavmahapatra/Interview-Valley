@@ -4,14 +4,6 @@ import { LogOut, Sparkles } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ModeToggle } from "./mode-toggle";
 import { Button } from "./ui/button";
-import { useRef } from 'react';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-import gsap from 'gsap'; // <-- import GSAP
-import { useGSAP } from '@gsap/react'; // <-- import the hook from our React package
-
-gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(ScrollTrigger) 
 
 const links = [
   { name: "Home", href: "/" },
@@ -29,26 +21,6 @@ function getStoredUser() {
 
 export default function Navbar({ authenticated, user, onLogout }) {
 
-    	const nav = useRef();
-useGSAP(() => {
-    gsap.from('.item',
-      {
-    y: -10,
-    opacity: 0,
-    duration: 1,
-    delay:0.3,
-    ease: "power3.out",
-  //   scrollTrigger: {
-  //   trigger: ".container",
-  //   markers: true,
-  //   start: "top 0%", 
-  //   end: "top -10%",
-  //   scrub: 1,
-  // }
-      }
-    );
-  }
-, { dependencies: [] });
 
 
   const navigate = useNavigate();
@@ -58,7 +30,6 @@ useGSAP(() => {
 
   return (
 <nav
-  ref={nav}
   className="
     fixed inset-x-0 top-0 z-50
     border-b border-black/5 dark:border-white/10

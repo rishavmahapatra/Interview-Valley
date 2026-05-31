@@ -112,8 +112,9 @@ export default function Land() {
       gsap.from(".herosection", {
         y: 70,
         opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
+        duration: 0.5,
+        delay: 0.2,
+        ease: "power3.in",
       });
     gsap.to(".heroScroll", {
       y: 10,
@@ -144,9 +145,9 @@ export default function Land() {
     };
     
     sectionAnimation("#featureCard", -50);
-    sectionAnimation("#howItWorks", 40);
+    sectionAnimation("#howItWorks", -50);
     sectionAnimation("#benefits", -50);
-    sectionAnimation("#feedback", 40);
+    sectionAnimation("#feedback", -50);
     sectionAnimation(".footerbanner", -50);
 
   }, []);
