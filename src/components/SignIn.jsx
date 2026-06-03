@@ -23,7 +23,7 @@ export function SignIn({ onLogin, user }) {
                        <img
                     alt="User"
                     className="h-7 w-7 object-cover"
-                    src= "icon.png" 
+                    src= "icon.avif" 
                   />
                 </div>
                 <h1 className="font-display text-5xl font-bold leading-tight">
