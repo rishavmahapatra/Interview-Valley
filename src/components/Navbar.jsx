@@ -50,7 +50,7 @@ export default function Navbar({ authenticated, user, onLogout }) {
           <img
                     alt="User"
                     className="h-7 w-7 object-cover"
-                    src= "icon.png" 
+                    src= "icon.avif" 
                   />
           {/* <img src="icon.png" alt="logo" /> */}
           {/* <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-950 text-white shadow-sm dark:bg-white dark:text-zinc-950">
