@@ -7,7 +7,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import MainLayout from "./layout/MainLayout.jsx";
-import Chat from "./components/Chat.jsx";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SignIn } from "./components/SignIn.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -86,7 +85,6 @@ function App() {
                   </Suspense>
                 }
               />
-              <Route path="/demo" element={<Chat />} />
               {/* <Route
               path="/l"
               element={
